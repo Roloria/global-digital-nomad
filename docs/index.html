@@ -402,8 +402,18 @@ footer a { color: var(--accent); text-decoration: none; }
     background: var(--bg-2);
     border-top: 1px solid var(--border);
   }
+  /* 表格:右边阴影渐变提示横向有更多列 */
+  .table-wrap { background:
+    linear-gradient(to right, var(--card) 30%, rgba(255,255,255,0)) 0 0 / 20px 100% no-repeat,
+    linear-gradient(to right, rgba(255,255,255,0), var(--card) 70%) 100% 0 / 20px 100% no-repeat,
+    var(--card);
+    background-attachment: local, local, scroll;
+  }
+  .table-wrap::-webkit-scrollbar { height: 4px; }
+  .table-wrap::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
   table { min-width: 900px; font-size: 13px; }
-  th, td { padding: 9px 10px; }
+  th, td { padding: 8px 9px; }
   .bar { width: 50px; }
   .form-grid { grid-template-columns: 1fr; }
   .score-row { grid-template-columns: 80px 1fr 45px; font-size: 11px; gap: 8px; }
@@ -413,9 +423,38 @@ footer a { color: var(--accent); text-decoration: none; }
   .modal-body { padding: 14px 18px; }
   .modal-footer { padding: 12px 18px; flex-wrap: wrap; }
   .modal-footer .btn { flex: 1; }
-  #methodology { padding: 14px 16px; }
-  #methodology h2 { font-size: 16px; }
+  #methodology, #about, #faq { padding: 14px 16px; }
+  #methodology h2, #about h2, #faq h2 { font-size: 16px; }
   footer { font-size: 11px; padding: 14px 0; }
+
+  /* 汇率切换器:在手机端隐藏冗长的 meta(自动/时间/API),
+     只保留币种按钮 + 汇率值,避免 4 行折行 */
+  .currency-toggle { padding: 3px 5px; gap: 4px; flex-shrink: 0; }
+  .currency-toggle #rate-meta, .currency-toggle .rate-meta { display: none !important; }
+  .currency-toggle .seg { padding: 3px 8px; font-size: 11px; }
+  /* 给 .rate 一个简化版,只显示 1 USD ≈ X.XX */
+  .currency-toggle .rate > b { display: inline; }
+
+  /* 手机控件区 controls:紧凑,搜索全宽,其他元素内联 */
+  .controls { row-gap: 8px !important; }
+
+  /* 顶部 header 主链接:容许堆 2 行 */
+  header .links { row-gap: 6px; }
+
+  /* 移动端隐藏 「最近更新」列(主表+展开行),减少横向滚动 */
+  #main-table thead th:last-child, #main-table tbody td:last-child { display: none; }
+  #main-table tbody tr.detail-row td { padding: 12px 4px; }
+
+  /* 详情面板「最近更新」也隐藏(表格里已不再展示) */
+  .detail-row .meta-update { display: none; }
+
+  /* 提交按钮文字在手机端缩短 */
+  #btn-submit { font-size: 12px; padding: 8px 10px; }
+  #btn-submit::before { content: "📤"; margin-right: 4px; }
+  #link-submit { font-size: 11px; }
+
+  /* detail-grid 在极窄屏缩窄最小卡宽 */
+  .detail-grid { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)) !important; }
 }
 
 @media (min-width: 481px) and (max-width: 720px) {
@@ -982,7 +1021,7 @@ function rowHTML(d, i){
   return `
     <tr class="${isExp?"expanded":""}" data-i="${i}">
       <td class="rank">${d["排名"]}</td>
-      <td><div class="city-cell"><div class="city-flag">${d["国旗"]}</div><div><div class="city-name">${d["城市"]} <span style="font-size:10px; color:var(--text-3); font-weight:400; margin-left:4px;">📅 ${d["最后更新"]}</span></div><div class="city-country">${d["国家"]} · <span class="pill ${d["区域"]}">${d["区域"]}</span></div></div></div></td>
+      <td><div class="city-cell"><div class="city-flag">${d["国旗"]}</div><div><div class="city-name">${d["城市"]}</div><div class="city-country">${d["国家"]} · <span class="pill ${d["区域"]}">${d["区域"]}</span></div></div></div></td>
       <td class="num">${num(d["游民数"])}</td>
       <td class="num ${costClass(d["月成本 (USD)"])}">${formatCost(d["月成本 (USD)"])}</td>
       <td>${dotHTML(d["网络"])}</td>
@@ -1004,7 +1043,7 @@ function rowHTML(d, i){
         <div><strong>年均气温：</strong>${d["年均气温 (°C)"]}°C</div>
         <div><strong>最佳季节：</strong>${d["最佳季节"]}</div>
         <div><strong>签证：</strong>${d["签证"]}</div>
-        <div><strong>最后更新：</strong>${d["最后更新"]}</div>
+        <div class="meta-update"><strong>最后更新：</strong>${d["最后更新"]}</div>
       </div>
       <div class="detail-grid">
         ${SCORE_FIELDS.map(f => {
