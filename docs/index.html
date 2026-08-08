@@ -9,7 +9,7 @@
 <meta name="theme-color" content="#0ea5e9">
 <meta name="color-scheme" content="light dark">
 
-<title>🌍 全球数字游民城市 + 🌐 社区地图 · 80 城 12 维 · 60 社区</title>
+<title>🌍 全球数字游民城市榜 · 80 城 12 维评分 · 远程办公 & 游民签证指南</title>
 <meta name="description" content="全球数字游民城市排名 + 🌐 数字游民社区地图 · 远程办公城市推荐 / 数字游民签证指南 · 覆盖 5 大区域 40 国 80 城 + 60 个社区,从月成本、网络、安全、夜生活到 LGBTQ+ 等 12 个维度加权评分;社区板块支持联合办公/联合生活/度假村/聚会/在线社群筛选,可匿名提交体验共建知识库。">
 <meta name="keywords" content="数字游民,数字游民城市,数字游民签证,数字游民社区,数字游民社群,远程办公,远程工作,远程工作者,自由职业,自由职业者,跨国工作,海外工作,游民签证,慢生活,海外城市排名,出国工作,co-working,coworking,coliving,digital nomad community,digital nomad cities,远程办公城市,性价比城市,digital nomad,remote work,freelancer,nomad visa,best cities for digital nomads">
 <meta name="author" content="Roloria · Global Digital Nomad Project">
@@ -398,6 +398,59 @@ footer a { color: var(--accent); text-decoration: none; }
 .success-box h4 { margin: 0 0 8px; color: var(--good); }
 .action-buttons { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
 
+/* ==== Top-level View Tabs ==== */
+.view-tabs {
+  display: flex; gap: 0;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 6px;
+  margin-bottom: 18px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+}
+.view-tab {
+  flex: 1; min-width: 0;
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 11px 18px;
+  border-radius: 10px;
+  border: none;
+  background: transparent;
+  color: var(--text-2);
+  font-size: 14px; font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+  text-decoration: none;
+}
+.view-tab:hover { color: var(--accent); background: var(--bg-2); }
+.view-tab.active {
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  color: white;
+  box-shadow: 0 4px 14px rgba(14,165,233,0.25);
+}
+.view-tab .badge {
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 10px; font-weight: 700;
+  padding: 2px 6px; border-radius: 999px;
+  background: rgba(255,255,255,0.25);
+}
+.view-tab:not(.active) .badge {
+  background: var(--bg-2); color: var(--text-3);
+}
+.view {
+  display: none;
+  animation: viewFade 0.25s ease-out;
+}
+.view.active { display: block; }
+@keyframes viewFade {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@media (max-width: 480px) {
+  .view-tabs { padding: 4px; }
+  .view-tab { padding: 9px 10px; font-size: 13px; gap: 4px; }
+  .view-tab .badge { display: none; }
+}
 /* ==== Communities Section ==== */
 #communities { scroll-margin-top: 80px; }
 .community-header {
@@ -670,13 +723,23 @@ footer a { color: var(--accent); text-decoration: none; }
   <div class="tagline">开源社区维护 · 80 个城市 · 12 维度评分 · 欢迎匿名提交更新</div>
   <div class="links">
     <a href="#submit" id="link-submit">📤 提交城市评分(匿名)</a>
-    <a href="#communities">🌐 数字游民社区</a>
     <a href="#methodology">📐 评分标准</a>
     <a href="#about">📖 关于 / 更新频率</a>
     <a href="https://github.com/Roloria/global-digital-nomad" target="_blank" rel="noopener">📦 GitHub</a>
     <a href="https://github.com/Roloria/global-digital-nomad/discussions" target="_blank" rel="noopener">💬 讨论</a>
   </div>
 </header>
+
+<div class="view-tabs" id="view-tabs" role="tablist" aria-label="主导航">
+  <a href="#cities" class="view-tab active" data-view="cities" role="tab" aria-selected="true" aria-controls="view-cities">
+    🏙️ 城市榜单 <span class="badge">80</span>
+  </a>
+  <a href="#communities" class="view-tab" data-view="communities" role="tab" aria-selected="false" aria-controls="view-communities">
+    🌐 数字游民社区 <span class="badge">60</span>
+  </a>
+</div>
+
+<div class="view view-cities active" id="view-cities" role="tabpanel" aria-labelledby="tab-cities">
 
 <div class="stats" id="stats"></div>
 
@@ -726,8 +789,12 @@ footer a { color: var(--accent); text-decoration: none; }
 </table>
 </div>
 
-<!-- ===== 数字游民社区 / Digital Nomad Communities ===== -->
-<div id="communities" style="margin-top:30px;">
+</div>
+
+<!-- ===== 数字游民社区 view ===== -->
+<div class="view view-communities" id="view-communities" role="tabpanel" aria-labelledby="tab-communities">
+
+<div id="communities">
 
 <div class="community-header">
   <h2>🌐 全球数字游民社区地图
@@ -772,6 +839,8 @@ footer a { color: var(--accent); text-decoration: none; }
 <div class="community-grid" id="comm-grid"></div>
 
 </div>
+
+</div><!-- /.view-communities -->
 
 <div id="faq" style="margin-top:30px; background:var(--card); border:1px solid var(--border); border-radius:12px; padding:20px 24px;">
   <h2 style="margin:0 0 14px; font-size:18px;">❓ 常见问题(SEO / AEO 友好)</h2>
@@ -1950,6 +2019,55 @@ renderStats();
 renderAbout();
 renderCommunityStats();
 renderCommunities();
+
+// ====== View Tabs (cities | communities) ======
+function setActiveView(view){
+  const tabs = document.querySelectorAll('.view-tab');
+  const views = document.querySelectorAll('.view');
+  tabs.forEach(t => {
+    const active = t.dataset.view === view;
+    t.classList.toggle('active', active);
+    t.setAttribute('aria-selected', active ? 'true' : 'false');
+  });
+  views.forEach(v => {
+    v.classList.toggle('active', v.id === 'view-' + view);
+  });
+  // Update page meta
+  const titles = {
+    cities: '🌍 全球数字游民城市榜 · 80 城 12 维评分 · 远程办公 & 游民签证指南',
+    communities: '🌐 全球数字游民社区地图 · 60 个热门社区 · 联合办公/联合生活/度假村'
+  };
+  if(titles[view]) document.title = titles[view];
+  try { window.scrollTo({top: 0, behavior: 'instant'}); } catch(_) { window.scrollTo(0, 0); }
+}
+
+document.querySelectorAll('.view-tab').forEach(tab => {
+  tab.addEventListener('click', e => {
+    e.preventDefault();
+    const view = tab.dataset.view;
+    setActiveView(view);
+    // Sync URL hash without scrolling
+    if (history.replaceState) {
+      history.replaceState(null, '', '#' + view);
+    } else {
+      location.hash = '#' + view;
+    }
+  });
+});
+
+// Initial view from URL hash
+function getInitialView(){
+  const h = (location.hash || '').toLowerCase();
+  // 兼容 #communities / #community / 旧 #communit
+  if (h.includes('communit')) return 'communities';
+  return 'cities';
+}
+setActiveView(getInitialView());
+
+// Sync view on hash change
+window.addEventListener('hashchange', () => {
+  setActiveView(getInitialView());
+});
 renderCurrency();
 renderRateIndicator();
 

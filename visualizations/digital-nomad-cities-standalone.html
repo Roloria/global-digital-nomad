@@ -20,7 +20,7 @@
 &lt;meta name=&quot;theme-color&quot; content=&quot;#0ea5e9&quot;&gt;
 &lt;meta name=&quot;color-scheme&quot; content=&quot;light dark&quot;&gt;
 
-&lt;title&gt;🌍 全球数字游民城市 + 🌐 社区地图 · 80 城 12 维 · 60 社区&lt;/title&gt;
+&lt;title&gt;🌍 全球数字游民城市榜 · 80 城 12 维评分 · 远程办公 &amp; 游民签证指南&lt;/title&gt;
 &lt;meta name=&quot;description&quot; content=&quot;全球数字游民城市排名 + 🌐 数字游民社区地图 · 远程办公城市推荐 / 数字游民签证指南 · 覆盖 5 大区域 40 国 80 城 + 60 个社区,从月成本、网络、安全、夜生活到 LGBTQ+ 等 12 个维度加权评分;社区板块支持联合办公/联合生活/度假村/聚会/在线社群筛选,可匿名提交体验共建知识库。&quot;&gt;
 &lt;meta name=&quot;keywords&quot; content=&quot;数字游民,数字游民城市,数字游民签证,数字游民社区,数字游民社群,远程办公,远程工作,远程工作者,自由职业,自由职业者,跨国工作,海外工作,游民签证,慢生活,海外城市排名,出国工作,co-working,coworking,coliving,digital nomad community,digital nomad cities,远程办公城市,性价比城市,digital nomad,remote work,freelancer,nomad visa,best cities for digital nomads&quot;&gt;
 &lt;meta name=&quot;author&quot; content=&quot;Roloria · Global Digital Nomad Project&quot;&gt;
@@ -409,6 +409,59 @@ footer a { color: var(--accent); text-decoration: none; }
 .success-box h4 { margin: 0 0 8px; color: var(--good); }
 .action-buttons { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
 
+/* ==== Top-level View Tabs ==== */
+.view-tabs {
+  display: flex; gap: 0;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 6px;
+  margin-bottom: 18px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+}
+.view-tab {
+  flex: 1; min-width: 0;
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 11px 18px;
+  border-radius: 10px;
+  border: none;
+  background: transparent;
+  color: var(--text-2);
+  font-size: 14px; font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+  text-decoration: none;
+}
+.view-tab:hover { color: var(--accent); background: var(--bg-2); }
+.view-tab.active {
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  color: white;
+  box-shadow: 0 4px 14px rgba(14,165,233,0.25);
+}
+.view-tab .badge {
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 10px; font-weight: 700;
+  padding: 2px 6px; border-radius: 999px;
+  background: rgba(255,255,255,0.25);
+}
+.view-tab:not(.active) .badge {
+  background: var(--bg-2); color: var(--text-3);
+}
+.view {
+  display: none;
+  animation: viewFade 0.25s ease-out;
+}
+.view.active { display: block; }
+@keyframes viewFade {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@media (max-width: 480px) {
+  .view-tabs { padding: 4px; }
+  .view-tab { padding: 9px 10px; font-size: 13px; gap: 4px; }
+  .view-tab .badge { display: none; }
+}
 /* ==== Communities Section ==== */
 #communities { scroll-margin-top: 80px; }
 .community-header {
@@ -681,13 +734,23 @@ footer a { color: var(--accent); text-decoration: none; }
   &lt;div class=&quot;tagline&quot;&gt;开源社区维护 · 80 个城市 · 12 维度评分 · 欢迎匿名提交更新&lt;/div&gt;
   &lt;div class=&quot;links&quot;&gt;
     &lt;a href=&quot;#submit&quot; id=&quot;link-submit&quot;&gt;📤 提交城市评分(匿名)&lt;/a&gt;
-    &lt;a href=&quot;#communities&quot;&gt;🌐 数字游民社区&lt;/a&gt;
     &lt;a href=&quot;#methodology&quot;&gt;📐 评分标准&lt;/a&gt;
     &lt;a href=&quot;#about&quot;&gt;📖 关于 / 更新频率&lt;/a&gt;
     &lt;a href=&quot;https://github.com/Roloria/global-digital-nomad&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;📦 GitHub&lt;/a&gt;
     &lt;a href=&quot;https://github.com/Roloria/global-digital-nomad/discussions&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;💬 讨论&lt;/a&gt;
   &lt;/div&gt;
 &lt;/header&gt;
+
+&lt;div class=&quot;view-tabs&quot; id=&quot;view-tabs&quot; role=&quot;tablist&quot; aria-label=&quot;主导航&quot;&gt;
+  &lt;a href=&quot;#cities&quot; class=&quot;view-tab active&quot; data-view=&quot;cities&quot; role=&quot;tab&quot; aria-selected=&quot;true&quot; aria-controls=&quot;view-cities&quot;&gt;
+    🏙️ 城市榜单 &lt;span class=&quot;badge&quot;&gt;80&lt;/span&gt;
+  &lt;/a&gt;
+  &lt;a href=&quot;#communities&quot; class=&quot;view-tab&quot; data-view=&quot;communities&quot; role=&quot;tab&quot; aria-selected=&quot;false&quot; aria-controls=&quot;view-communities&quot;&gt;
+    🌐 数字游民社区 &lt;span class=&quot;badge&quot;&gt;60&lt;/span&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;view view-cities active&quot; id=&quot;view-cities&quot; role=&quot;tabpanel&quot; aria-labelledby=&quot;tab-cities&quot;&gt;
 
 &lt;div class=&quot;stats&quot; id=&quot;stats&quot;&gt;&lt;/div&gt;
 
@@ -737,8 +800,12 @@ footer a { color: var(--accent); text-decoration: none; }
 &lt;/table&gt;
 &lt;/div&gt;
 
-&lt;!-- ===== 数字游民社区 / Digital Nomad Communities ===== --&gt;
-&lt;div id=&quot;communities&quot; style=&quot;margin-top:30px;&quot;&gt;
+&lt;/div&gt;
+
+&lt;!-- ===== 数字游民社区 view ===== --&gt;
+&lt;div class=&quot;view view-communities&quot; id=&quot;view-communities&quot; role=&quot;tabpanel&quot; aria-labelledby=&quot;tab-communities&quot;&gt;
+
+&lt;div id=&quot;communities&quot;&gt;
 
 &lt;div class=&quot;community-header&quot;&gt;
   &lt;h2&gt;🌐 全球数字游民社区地图
@@ -783,6 +850,8 @@ footer a { color: var(--accent); text-decoration: none; }
 &lt;div class=&quot;community-grid&quot; id=&quot;comm-grid&quot;&gt;&lt;/div&gt;
 
 &lt;/div&gt;
+
+&lt;/div&gt;&lt;!-- /.view-communities --&gt;
 
 &lt;div id=&quot;faq&quot; style=&quot;margin-top:30px; background:var(--card); border:1px solid var(--border); border-radius:12px; padding:20px 24px;&quot;&gt;
   &lt;h2 style=&quot;margin:0 0 14px; font-size:18px;&quot;&gt;❓ 常见问题(SEO / AEO 友好)&lt;/h2&gt;
@@ -1961,6 +2030,55 @@ renderStats();
 renderAbout();
 renderCommunityStats();
 renderCommunities();
+
+// ====== View Tabs (cities | communities) ======
+function setActiveView(view){
+  const tabs = document.querySelectorAll(&#x27;.view-tab&#x27;);
+  const views = document.querySelectorAll(&#x27;.view&#x27;);
+  tabs.forEach(t =&gt; {
+    const active = t.dataset.view === view;
+    t.classList.toggle(&#x27;active&#x27;, active);
+    t.setAttribute(&#x27;aria-selected&#x27;, active ? &#x27;true&#x27; : &#x27;false&#x27;);
+  });
+  views.forEach(v =&gt; {
+    v.classList.toggle(&#x27;active&#x27;, v.id === &#x27;view-&#x27; + view);
+  });
+  // Update page meta
+  const titles = {
+    cities: &#x27;🌍 全球数字游民城市榜 · 80 城 12 维评分 · 远程办公 &amp; 游民签证指南&#x27;,
+    communities: &#x27;🌐 全球数字游民社区地图 · 60 个热门社区 · 联合办公/联合生活/度假村&#x27;
+  };
+  if(titles[view]) document.title = titles[view];
+  try { window.scrollTo({top: 0, behavior: &#x27;instant&#x27;}); } catch(_) { window.scrollTo(0, 0); }
+}
+
+document.querySelectorAll(&#x27;.view-tab&#x27;).forEach(tab =&gt; {
+  tab.addEventListener(&#x27;click&#x27;, e =&gt; {
+    e.preventDefault();
+    const view = tab.dataset.view;
+    setActiveView(view);
+    // Sync URL hash without scrolling
+    if (history.replaceState) {
+      history.replaceState(null, &#x27;&#x27;, &#x27;#&#x27; + view);
+    } else {
+      location.hash = &#x27;#&#x27; + view;
+    }
+  });
+});
+
+// Initial view from URL hash
+function getInitialView(){
+  const h = (location.hash || &#x27;&#x27;).toLowerCase();
+  // 兼容 #communities / #community / 旧 #communit
+  if (h.includes(&#x27;communit&#x27;)) return &#x27;communities&#x27;;
+  return &#x27;cities&#x27;;
+}
+setActiveView(getInitialView());
+
+// Sync view on hash change
+window.addEventListener(&#x27;hashchange&#x27;, () =&gt; {
+  setActiveView(getInitialView());
+});
 renderCurrency();
 renderRateIndicator();
 
