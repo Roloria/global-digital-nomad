@@ -1,0 +1,62 @@
+name: Validate Data
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'data/**'
+      - '.github/workflows/validate.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'data/**'
+      - '.github/workflows/validate.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  validate-csv:
+    name: 校验 CSV 数据完整性
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install openpyxl
+
+      - name: 校验数据
+        env:
+          CSV_PATH: data/digital-nomad-cities.csv
+          XLSX_PATH: data/digital-nomad-cities.xlsx
+        run: |
+          python .github/scripts/validate_data.py
+
+  validate-docs:
+    name: 校验文档链接
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: 检查文档链接
+        run: |
+          set -e
+          for f in README.md CONTRIBUTING.md CODE_OF_CONDUCT.md data/README.md docs/methodology.md docs/data-sources.md; do
+            if [ ! -f "$f" ]; then
+              echo "❌ 缺少文件: $f"
+              exit 1
+            fi
+          done
+          echo "✅ 所有文档文件存在"
+
