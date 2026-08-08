@@ -1,0 +1,433 @@
+<div id="nomad-root">
+<style>
+#nomad-root {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  color: #1f2937;
+  background: linear-gradient(135deg, #fafbfc 0%, #f1f5f9 100%);
+  padding: 20px;
+  border-radius: 14px;
+  --accent: #0ea5e9;
+  --accent2: #6366f1;
+  --good: #10b981;
+  --mid: #f59e0b;
+  --bad: #ef4444;
+  --bg: #ffffff;
+  --border: #e5e7eb;
+}
+.nm-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.nm-title { font-size: 22px; font-weight: 700; color: #0f172a; }
+.nm-subtitle { font-size: 13px; color: #64748b; margin-top: 4px; }
+.nm-legend { display: flex; gap: 14px; font-size: 12px; color: #475569; align-items: center; flex-wrap: wrap;}
+.nm-legend .dot { width: 10px; height: 10px; border-radius: 3px; display: inline-block; margin-right: 4px; vertical-align: middle;}
+.nm-controls {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+  align-items: center;
+}
+.nm-tabs { display: flex; gap: 6px; flex-wrap: wrap;}
+.nm-tab {
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: #ffffff;
+  border: 1px solid var(--border);
+  font-size: 13px;
+  cursor: pointer;
+  color: #475569;
+  transition: all 0.15s;
+}
+.nm-tab:hover { border-color: var(--accent); color: var(--accent); }
+.nm-tab.active { background: linear-gradient(135deg, #0ea5e9, #6366f1); color: white; border-color: transparent; font-weight: 600; }
+.nm-search {
+  flex: 1;
+  min-width: 180px;
+  max-width: 280px;
+  padding: 7px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  font-size: 13px;
+  background: white;
+}
+.nm-search:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(14,165,233,0.15); }
+.nm-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.nm-stat {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 14px;
+}
+.nm-stat .label { font-size: 11px; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px;}
+.nm-stat .value { font-size: 22px; font-weight: 700; color: #0f172a; margin-top: 2px;}
+.nm-stat .sub { font-size: 12px; color: #94a3b8; margin-top: 2px;}
+.nm-table-wrap {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+table.nm-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+table.nm-table thead { background: #f8fafc; }
+table.nm-table th {
+  text-align: left;
+  padding: 10px 12px;
+  font-weight: 600;
+  color: #475569;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+}
+table.nm-table th:hover { background: #f1f5f9; }
+table.nm-table th .arrow { font-size: 10px; color: #94a3b8; margin-left: 4px;}
+table.nm-table td { padding: 12px; border-bottom: 1px solid #f1f5f9; vertical-align: middle; }
+table.nm-table tbody tr { cursor: pointer; transition: background 0.12s; }
+table.nm-table tbody tr:hover { background: #f8fafc; }
+table.nm-table tbody tr.expanded { background: #f0f9ff; }
+.city-cell { display: flex; align-items: center; gap: 10px; }
+.city-flag { font-size: 20px; line-height: 1; }
+.city-name { font-weight: 600; color: #0f172a; }
+.city-country { font-size: 11px; color: #64748b; }
+.nm-bar {
+  width: 70px;
+  height: 6px;
+  background: #e5e7eb;
+  border-radius: 3px;
+  overflow: hidden;
+  position: relative;
+}
+.nm-bar > span { display: block; height: 100%; border-radius: 3px; }
+.nm-bar.g > span { background: linear-gradient(90deg, #10b981, #34d399); }
+.nm-bar.m > span { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
+.nm-bar.b > span { background: linear-gradient(90deg, #ef4444, #f87171); }
+.score-num { font-size: 12px; color: #475569; margin-left: 6px; font-variant-numeric: tabular-nums; }
+.cost-low { color: #10b981; font-weight: 600; }
+.cost-mid { color: #f59e0b; font-weight: 600; }
+.cost-high { color: #ef4444; font-weight: 600; }
+.nm-pill { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 11px; font-weight: 600; }
+.nm-pill.region-Asia { background: #fef3c7; color: #92400e; }
+.nm-pill.region-Europe { background: #dbeafe; color: #1e40af; }
+.nm-pill.region-LATAM { background: #fce7f3; color: #9d174d; }
+.nm-pill.region-Africa { background: #d1fae5; color: #065f46; }
+.nm-pill.region-MiddleEast { background: #ede9fe; color: #5b21b6; }
+.nm-detail-row { background: #f0f9ff; }
+.nm-detail-cell { padding: 18px 22px !important; }
+.nm-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+}
+.nm-metric-card {
+  background: white;
+  border: 1px solid #e0f2fe;
+  border-radius: 10px;
+  padding: 10px 12px;
+}
+.nm-metric-card .mlabel { font-size: 11px; color: #64748b; text-transform: uppercase; letter-spacing: 0.3px; }
+.nm-metric-card .mvalue { font-size: 18px; font-weight: 700; color: #0f172a; margin-top: 2px;}
+.nm-metric-card .mbar { margin-top: 6px; }
+.nm-metric-card .mdesc { font-size: 11px; color: #64748b; margin-top: 4px; line-height: 1.4;}
+.nm-empty { text-align: center; padding: 30px; color: #94a3b8; font-size: 14px;}
+.nm-footer { font-size: 11px; color: #94a3b8; margin-top: 14px; line-height: 1.6; }
+@media (max-width: 760px) {
+  .nm-table-wrap { overflow-x: auto; }
+  table.nm-table { min-width: 700px; }
+  .nm-stat .value { font-size: 18px; }
+}
+</style>
+
+<div class="nm-header">
+  <div>
+    <div class="nm-title">🌍 世界数字游民城市全览</div>
+    <div class="nm-subtitle">数据综合自 Nomad List 等主流数字游民社区 · 数据更新于 2026 年 7 月</div>
+  </div>
+  <div class="nm-legend">
+    <span><span class="dot" style="background: #10b981"></span>优</span>
+    <span><span class="dot" style="background: #f59e0b"></span>中</span>
+    <span><span class="dot" style="background: #ef4444"></span>弱</span>
+  </div>
+</div>
+
+<div class="nm-summary">
+  <div class="nm-stat"><div class="label">收录城市</div><div class="value" id="stat-cities">52</div><div class="sub">跨 6 大区域</div></div>
+  <div class="nm-stat"><div class="label">最便宜城市</div><div class="value" id="stat-cheapest">—</div><div class="sub">月成本 (USD)</div></div>
+  <div class="nm-stat"><div class="label">最贵城市</div><div class="value" id="stat-priciest">—</div><div class="sub">月成本 (USD)</div></div>
+  <div class="nm-stat"><div class="label">最大社群</div><div class="value" id="stat-biggest">—</div><div class="sub">游民人数</div></div>
+  <div class="nm-stat"><div class="label">综合最高分</div><div class="value" id="stat-top">—</div><div class="sub">满分 10</div></div>
+</div>
+
+<div class="nm-controls">
+  <div class="nm-tabs" id="region-tabs"></div>
+  <input type="text" class="nm-search" id="nm-search" placeholder="🔍 搜索城市或国家…" />
+</div>
+
+<div class="nm-table-wrap">
+<table class="nm-table" id="nm-table">
+<thead>
+<tr>
+  <th data-sort="region">区域<span class="arrow">↕</span></th>
+  <th data-sort="city">城市 / 国家<span class="arrow">↕</span></th>
+  <th data-sort="nomads" style="text-align:right;">游民数<span class="arrow">↕</span></th>
+  <th data-sort="cost" style="text-align:right;">月成本<span class="arrow">↕</span></th>
+  <th data-sort="internet">网络<span class="arrow">↕</span></th>
+  <th data-sort="community">社群<span class="arrow">↕</span></th>
+  <th data-sort="fun">生活<span class="arrow">↕</span></th>
+  <th data-sort="safety">安全<span class="arrow">↕</span></th>
+  <th data-sort="english">英语<span class="arrow">↕</span></th>
+  <th data-sort="overall">综合<span class="arrow">↕</span></th>
+</tr>
+</thead>
+<tbody id="nm-tbody"></tbody>
+</table>
+</div>
+
+<div class="nm-footer">
+评分体系说明：除月成本外，所有维度按 0–10 分制。10 分代表最佳。综合分数为各维度的加权平均。月成本为单人月支出中位数（含房租、餐饮、基础交通），不同生活方式会有 ±30% 波动。游民数为各城市常驻的数字游民估算（含短期旅居者），来自 Nomad List、各国旅游局及社群调研。点击行可查看完整维度。
+</div>
+</div>
+
+<script>
+(function(){
+  const data = [
+    { city:"清迈", country:"泰国 Thailand", region:"Asia", flag:"🇹🇭", nomads:4500, cost:850, internet:7.5, community:9, fun:6, safety:8.5, english:4, walk:6, air:5, female:7, lgbt:6, nightlife:5, peace:7, racial:7, temp:25, best:"11月-2月", visa:"DTV 5年/教育签证" },
+    { city:"曼谷", country:"泰国 Thailand", region:"Asia", flag:"🇹🇭", nomads:3200, cost:1150, internet:8, community:8, fun:8, safety:7, english:5, walk:5, air:4, female:6, lgbt:7, nightlife:9, peace:5, racial:7, temp:29, best:"11月-2月", visa:"DTV/教育签证" },
+    { city:"普吉", country:"泰国 Thailand", region:"Asia", flag:"🇹🇭", nomads:1900, cost:1250, internet:6.5, community:7, fun:7, safety:8, english:5, walk:5, air:7, female:6, lgbt:7, nightlife:7, peace:6, racial:7, temp:28, best:"11月-4月", visa:"DTV 5年" },
+    { city:"苏梅岛", country:"泰国 Thailand", region:"Asia", flag:"🇹🇭", nomads:800, cost:1350, internet:6, community:6, fun:6, safety:8.5, english:5, walk:5, air:8, female:7, lgbt:7, nightlife:6, peace:7, racial:7, temp:28, best:"12月-4月", visa:"DTV 5年" },
+    { city:"巴厘岛 (长谷)", country:"印尼 Indonesia", region:"Asia", flag:"🇮🇩", nomads:5800, cost:1400, internet:6, community:9.5, fun:7, safety:8, english:6, walk:4, air:7, female:7, lgbt:7, nightlife:6, peace:6, racial:6, temp:27, best:"4月-10月", visa:"B211A 6月/VOA" },
+    { city:"雅加达", country:"印尼 Indonesia", region:"Asia", flag:"🇮🇩", nomads:1500, cost:1100, internet:7, community:6, fun:7, safety:6, english:5, walk:6, air:3, female:5, lgbt:4, nightlife:7, peace:4, racial:5, temp:28, best:"6月-9月", visa:"B211A" },
+    { city:"胡志明市", country:"越南 Vietnam", region:"Asia", flag:"🇻🇳", nomads:3800, cost:850, internet:7, community:8, fun:8, safety:7.5, english:4, walk:6, air:5, female:7, lgbt:6, nightlife:7, peace:5, racial:7, temp:28, best:"12月-4月", visa:"电子签/免签45天" },
+    { city:"河内", country:"越南 Vietnam", region:"Asia", flag:"🇻🇳", nomads:2500, cost:800, internet:6.5, community:8, fun:7, safety:8, english:4, walk:6, air:4, female:7, lgbt:5, nightlife:6, peace:6, racial:7, temp:24, best:"10月-12月", visa:"电子签" },
+    { city:"岘港", country:"越南 Vietnam", region:"Asia", flag:"🇻🇳", nomads:1500, cost:800, internet:7, community:7, fun:6, safety:8, english:4, walk:5, air:7, female:7, lgbt:5, nightlife:5, peace:7, racial:7, temp:26, best:"2月-5月", visa:"电子签" },
+    { city:"吉隆坡", country:"马来西亚 Malaysia", region:"Asia", flag:"🇲🇾", nomads:2200, cost:1100, internet:7, community:7, fun:7, safety:7, english:6, walk:6, air:5, female:6, lgbt:5, nightlife:6, peace:5, racial:7, temp:28, best:"5月-8月", visa:"DE R passes" },
+    { city:"槟城", country:"马来西亚 Malaysia", region:"Asia", flag:"🇲🇾", nomads:1300, cost:950, internet:6, community:7, fun:6, safety:8, english:6, walk:6, air:7, female:7, lgbt:5, nightlife:5, peace:7, racial:7, temp:28, best:"12月-2月", visa:"DE R passes" },
+    { city:"金边", country:"柬埔寨 Cambodia", region:"Asia", flag:"🇰🇭", nomads:1300, cost:900, internet:5.5, community:7, fun:6, safety:7, english:4, walk:5, air:4, female:6, lgbt:5, nightlife:5, peace:6, racial:6, temp:28, best:"11月-2月", visa:"E-visa/落地" },
+    { city:"暹粒", country:"柬埔寨 Cambodia", region:"Asia", flag:"🇰🇭", nomads:900, cost:800, internet:5, community:6, fun:5, safety:8, english:4, walk:5, air:5, female:6, lgbt:5, nightlife:4, peace:7, racial:7, temp:28, best:"11月-2月", visa:"落地签" },
+    { city:"东京", country:"日本 Japan", region:"Asia", flag:"🇯🇵", nomads:1800, cost:2600, internet:9.5, community:7, fun:9, safety:9.5, english:4, walk:9, air:8, female:6, lgbt:6, nightlife:8, peace:6, racial:7, temp:16, best:"3月-5月, 10月-11月", visa:"6月免签/经营管理" },
+    { city:"首尔", country:"韩国 South Korea", region:"Asia", flag:"🇰🇷", nomads:1300, cost:2200, internet:9.5, community:6, fun:8, safety:9, english:5, walk:8, air:6, female:6, lgbt:5, nightlife:8, peace:6, racial:7, temp:13, best:"4月-6月, 9月-10月", visa:"免签/创业签" },
+    { city:"台北", country:"台湾 Taiwan", region:"Asia", flag:"🇹🇼", nomads:1400, cost:1700, internet:9, community:7, fun:8, safety:9, english:6, walk:8, air:7, female:8, lgbt:7, nightlife:7, peace:7, racial:8, temp:23, best:"10月-12月", visa:"免签30天" },
+    { city:"班加罗尔", country:"印度 India", region:"Asia", flag:"🇮🇳", nomads:2500, cost:900, internet:6, community:8, fun:7, safety:7, english:7, walk:5, air:4, female:6, lgbt:5, nightlife:6, peace:5, racial:6, temp:24, best:"10月-2月", visa:"电子签" },
+    { city:"果阿", country:"印度 India", region:"Asia", flag:"🇮🇳", nomads:1800, cost:1000, internet:5, community:7, fun:6, safety:7, english:6, walk:4, air:7, female:6, lgbt:5, nightlife:5, peace:6, racial:6, temp:28, best:"11月-2月", visa:"电子签" },
+    { city:"宿务", country:"菲律宾 Philippines", region:"Asia", flag:"🇵🇭", nomads:1100, cost:900, internet:5.5, community:7, fun:6, safety:7, english:7, walk:4, air:7, female:7, lgbt:5, nightlife:5, peace:6, racial:7, temp:28, best:"12月-5月", visa:"免签30天" },
+    { city:"新加坡", country:"新加坡 Singapore", region:"Asia", flag:"🇸🇬", nomads:1600, cost:3500, internet:9.5, community:6, fun:8, safety:9.5, english:9, walk:9, air:5, female:6, lgbt:6, nightlife:8, peace:6, racial:7, temp:28, best:"全年", visa:"旅签/创业准证" },
+    { city:"马尼拉", country:"菲律宾 Philippines", region:"Asia", flag:"🇵🇭", nomads:1200, cost:1000, internet:6, community:6, fun:6, safety:5.5, english:8, walk:5, air:4, female:5, lgbt:5, nightlife:6, peace:4, racial:6, temp:29, best:"12月-2月", visa:"免签30天" },
+    { city:"里斯本", country:"葡萄牙 Portugal", region:"Europe", flag:"🇵🇹", nomads:2800, cost:2300, internet:7.5, community:8, fun:8, safety:8.5, english:7, walk:7, air:7, female:9, lgbt:9, nightlife:8, peace:7, racial:8, temp:18, best:"4月-6月, 9月-10月", visa:"D7/D8 数字游民签证" },
+    { city:"波尔图", country:"葡萄牙 Portugal", region:"Europe", flag:"🇵🇹", nomads:1300, cost:1900, internet:7, community:7, fun:7, safety:8.5, english:6, walk:7, air:8, female:9, lgbt:8, nightlife:6, peace:7, racial:8, temp:16, best:"5月-9月", visa:"D7/D8" },
+    { city:"马德拉", country:"葡萄牙 Portugal", region:"Europe", flag:"🇵🇹", nomads:1100, cost:1600, internet:6.5, community:7, fun:6, safety:9, english:7, walk:5, air:9, female:8, lgbt:8, nightlife:4, peace:8, racial:8, temp:20, best:"3月-10月", visa:"D7/D8" },
+    { city:"柏林", country:"德国 Germany", region:"Europe", flag:"🇩🇪", nomads:2200, cost:2700, internet:8, community:8, fun:9, safety:7, english:8, walk:9, air:6, female:8, lgbt:9, nightlife:9, peace:6, racial:7, temp:10, best:"5月-9月", visa:"自由职业者签证" },
+    { city:"巴塞罗那", country:"西班牙 Spain", region:"Europe", flag:"🇪🇸", nomads:2500, cost:2400, internet:7, community:8, fun:9, safety:7, english:7, walk:8, air:6, female:8, lgbt:9, nightlife:9, peace:5, racial:6, temp:17, best:"5月-6月, 9月-10月", visa:"西班牙数字游民签证" },
+    { city:"拉斯帕尔马斯", country:"西班牙 Spain", region:"Europe", flag:"🇪🇸", nomads:2200, cost:1700, internet:7, community:8, fun:7, safety:8, english:7, walk:7, air:8, female:8, lgbt:8, nightlife:7, peace:7, racial:7, temp:22, best:"全年", visa:"西班牙数字游民" },
+    { city:"特内里费", country:"西班牙 Spain", region:"Europe", flag:"🇪🇸", nomads:1300, cost:1600, internet:6.5, community:7, fun:6, safety:8, english:6, walk:6, air:8, female:8, lgbt:8, nightlife:5, peace:7, racial:7, temp:22, best:"全年", visa:"西班牙数字游民" },
+    { city:"塔林", country:"爱沙尼亚 Estonia", region:"Europe", flag:"🇪🇪", nomads:1200, cost:1800, internet:8, community:7, fun:6, safety:8.5, english:7, walk:8, air:8, female:8, lgbt:7, nightlife:6, peace:8, racial:8, temp:6, best:"6月-8月", visa:"数字游民签证" },
+    { city:"班斯科", country:"保加利亚 Bulgaria", region:"Europe", flag:"🇧🇬", nomads:1500, cost:900, internet:7, community:8, fun:5, safety:8, english:5, walk:6, air:8, female:7, lgbt:6, nightlife:4, peace:8, racial:6, temp:10, best:"6月-9月, 12月-3月滑雪", visa:"保加利亚游民签" },
+    { city:"索菲亚", country:"保加利亚 Bulgaria", region:"Europe", flag:"🇧🇬", nomads:800, cost:1200, internet:7.5, community:7, fun:6, safety:8, english:5, walk:6, air:6, female:7, lgbt:6, nightlife:5, peace:7, racial:6, temp:11, best:"5月-9月", visa:"保加利亚游民签" },
+    { city:"第比利斯", country:"格鲁吉亚 Georgia", region:"Europe", flag:"🇬🇪", nomads:2400, cost:1100, internet:7, community:8, fun:6, safety:8, english:5, walk:7, air:7, female:6, lgbt:6, nightlife:5, peace:7, racial:7, temp:13, best:"5月-10月", visa:"免签1年" },
+    { city:"布达佩斯", country:"匈牙利 Hungary", region:"Europe", flag:"🇭🇺", nomads:1700, cost:1400, internet:7.5, community:7, fun:8, safety:8, english:6, walk:8, air:7, female:8, lgbt:8, nightlife:8, peace:7, racial:7, temp:11, best:"4月-6月, 9月-10月", visa:"白卡/游民签" },
+    { city:"克拉科夫", country:"波兰 Poland", region:"Europe", flag:"🇵🇱", nomads:1400, cost:1300, internet:7.5, community:7, fun:7, safety:8, english:7, walk:8, air:7, female:8, lgbt:7, nightlife:7, peace:7, racial:7, temp:9, best:"5月-9月", visa:"波兰游民签" },
+    { city:"布拉格", country:"捷克 Czechia", region:"Europe", flag:"🇨🇿", nomads:1600, cost:1600, internet:7.5, community:7, fun:8, safety:8, english:7, walk:8, air:7, female:8, lgbt:7, nightlife:8, peace:7, racial:7, temp:9, best:"5月-9月", visa:"捷克游民签" },
+    { city:"伊斯坦布尔", country:"土耳其 Türkiye", region:"Europe", flag:"🇹🇷", nomads:2000, cost:1200, internet:6, community:7, fun:8, safety:7, english:5, walk:7, air:5, female:6, lgbt:6, nightlife:7, peace:5, racial:6, temp:14, best:"4月-5月, 9月-10月", visa:"免签/居留" },
+    { city:"雅典", country:"希腊 Greece", region:"Europe", flag:"🇬🇷", nomads:1300, cost:1700, internet:6.5, community:7, fun:7, safety:7, english:6, walk:6, air:6, female:7, lgbt:7, nightlife:6, peace:6, racial:7, temp:19, best:"4月-6月, 9月-10月", visa:"希腊游民签" },
+    { city:"斯普利特", country:"克罗地亚 Croatia", region:"Europe", flag:"🇭🇷", nomads:1100, cost:1500, internet:7, community:7, fun:6, safety:8, english:6, walk:7, air:8, female:8, lgbt:7, nightlife:5, peace:7, racial:7, temp:17, best:"5月-9月", visa:"Croatia游民签/申根" },
+    { city:"贝尔格莱德", country:"塞尔维亚 Serbia", region:"Europe", flag:"🇷🇸", nomads:900, cost:1300, internet:7, community:7, fun:7, safety:7, english:5, walk:6, air:6, female:6, lgbt:6, nightlife:7, peace:6, racial:6, temp:12, best:"5月-9月", visa:"免签30天" },
+    { city:"墨西哥城", country:"墨西哥 Mexico", region:"LATAM", flag:"🇲🇽", nomads:3500, cost:1500, internet:7, community:8, fun:9, safety:6, english:7, walk:7, air:5, female:7, lgbt:8, nightlife:8, peace:5, racial:7, temp:17, best:"3月-5月, 10月-11月", visa:"临时居留6月" },
+    { city:"图卢姆", country:"墨西哥 Mexico", region:"LATAM", flag:"🇲🇽", nomads:2400, cost:1700, internet:5, community:8, fun:6, safety:6, english:6, walk:4, air:7, female:6, lgbt:7, nightlife:5, peace:6, racial:6, temp:26, best:"11月-4月", visa:"临时居留" },
+    { city:"卡波圣卢卡斯", country:"墨西哥 Mexico", region:"LATAM", flag:"🇲🇽", nomads:900, cost:1700, internet:5.5, community:6, fun:7, safety:7, english:6, walk:5, air:7, female:6, lgbt:7, nightlife:7, peace:6, racial:6, temp:24, best:"11月-4月", visa:"临时居留" },
+    { city:"普拉亚德尔卡曼", country:"墨西哥 Mexico", region:"LATAM", flag:"🇲🇽", nomads:2000, cost:1500, internet:6, community:7, fun:7, safety:6, english:6, walk:6, air:7, female:6, lgbt:7, nightlife:7, peace:5, racial:6, temp:27, best:"11月-4月", visa:"临时居留" },
+    { city:"瓦哈卡", country:"墨西哥 Mexico", region:"LATAM", flag:"🇲🇽", nomads:1100, cost:1100, internet:5.5, community:7, fun:6, safety:7, english:5, walk:7, air:7, female:7, lgbt:7, nightlife:5, peace:7, racial:7, temp:20, best:"10月-5月", visa:"临时居留" },
+    { city:"圣米格尔", country:"墨西哥 Mexico", region:"LATAM", flag:"🇲🇽", nomads:1200, cost:1400, internet:5.5, community:7, fun:6, safety:7, english:6, walk:7, air:7, female:8, lgbt:7, nightlife:5, peace:7, racial:7, temp:18, best:"10月-5月", visa:"临时居留" },
+    { city:"巴拿马城", country:"巴拿马 Panama", region:"LATAM", flag:"🇵🇦", nomads:1600, cost:1800, internet:6, community:7, fun:7, safety:7, english:6, walk:5, air:6, female:7, lgbt:7, nightlife:6, peace:6, racial:7, temp:28, best:"12月-3月", visa:"游民签/短租友好" },
+    { city:"麦德林", country:"哥伦比亚 Colombia", region:"LATAM", flag:"🇨🇴", nomads:4200, cost:1200, internet:6.5, community:9, fun:8, safety:6, english:5, walk:6, air:6, female:7, lgbt:8, nightlife:7, peace:6, racial:7, temp:22, best:"12月-3月, 7月-8月", visa:"游民签M" },
+    { city:"卡塔赫纳", country:"哥伦比亚 Colombia", region:"LATAM", flag:"🇨🇴", nomads:1800, cost:1300, internet:6, community:7, fun:7, safety:5, english:4, walk:5, air:5, female:6, lgbt:7, nightlife:7, peace:5, racial:6, temp:28, best:"12月-3月", visa:"游民签M" },
+    { city:"布宜诺斯艾利斯", country:"阿根廷 Argentina", region:"LATAM", flag:"🇦🇷", nomads:3000, cost:1100, internet:6.5, community:8, fun:8, safety:7, english:6, walk:7, air:6, female:8, lgbt:8, nightlife:8, peace:6, racial:7, temp:18, best:"9月-12月, 3月-4月", visa:"数字游民签" },
+    { city:"里约", country:"巴西 Brazil", region:"LATAM", flag:"🇧🇷", nomads:1800, cost:1500, internet:6, community:7, fun:9, safety:5, english:5, walk:5, air:6, female:6, lgbt:8, nightlife:9, peace:5, racial:6, temp:25, best:"5月-8月", visa:"数字游民签" },
+    { city:"弗洛里亚诺波利斯", country:"巴西 Brazil", region:"LATAM", flag:"🇧🇷", nomads:1100, cost:1300, internet:5.5, community:7, fun:7, safety:7, english:5, walk:5, air:8, female:7, lgbt:8, nightlife:5, peace:7, racial:7, temp:21, best:"12月-3月", visa:"数字游民签" },
+    { city:"蒙得维的亚", country:"乌拉圭 Uruguay", region:"LATAM", flag:"🇺🇾", nomads:1000, cost:1400, internet:6, community:6, fun:6, safety:8, english:6, walk:7, air:7, female:8, lgbt:8, nightlife:5, peace:7, racial:8, temp:16, best:"11月-3月", visa:"游民友好" },
+    { city:"安提瓜", country:"危地马拉 Guatemala", region:"LATAM", flag:"🇬🇹", nomads:800, cost:1100, internet:5, community:6, fun:5, safety:6, english:5, walk:6, air:7, female:6, lgbt:5, nightlife:4, peace:6, racial:6, temp:19, best:"11月-4月", visa:"旅游签" },
+    { city:"利马", country:"秘鲁 Peru", region:"LATAM", flag:"🇵🇪", nomads:1400, cost:1300, internet:6, community:7, fun:7, safety:6, english:5, walk:6, air:5, female:6, lgbt:7, nightlife:6, peace:5, racial:6, temp:20, best:"12月-4月", visa:"旅游签183天" },
+    { city:"开普敦", country:"南非 South Africa", region:"Africa", flag:"🇿🇦", nomads:1800, cost:1600, internet:5.5, community:7, fun:7, safety:5, english:8, walk:5, air:7, female:7, lgbt:8, nightlife:6, peace:6, racial:6, temp:17, best:"11月-3月", visa:"游民签/旅游" },
+    { city:"约翰内斯堡", country:"南非 South Africa", region:"Africa", flag:"🇿🇦", nomads:1100, cost:1300, internet:5.5, community:6, fun:6, safety:4, english:8, walk:5, air:5, female:6, lgbt:5, nightlife:6, peace:5, racial:5, temp:16, best:"9月-11月, 3月-5月", visa:"游民签/旅游" },
+    { city:"内罗毕", country:"肯尼亚 Kenya", region:"Africa", flag:"🇰🇪", nomads:1200, cost:1200, internet:5, community:7, fun:6, safety:5, english:7, walk:5, air:5, female:6, lgbt:6, nightlife:6, peace:5, racial:6, temp:22, best:"7月-9月, 1月-2月", visa:"游民签" },
+    { city:"基加利", country:"卢旺达 Rwanda", region:"Africa", flag:"🇷🇼", nomads:600, cost:1100, internet:5, community:5, fun:5, safety:8, english:6, walk:6, air:7, female:6, lgbt:4, nightlife:4, peace:8, racial:7, temp:21, best:"6月-9月", visa:"游民签/旅游" },
+    { city:"马拉喀什", country:"摩洛哥 Morocco", region:"Africa", flag:"🇲🇦", nomads:800, cost:900, internet:5, community:6, fun:6, safety:6, english:5, walk:4, air:6, female:5, lgbt:5, nightlife:5, peace:6, racial:5, temp:21, best:"3月-5月, 9月-11月", visa:"旅游签90天" },
+    { city:"塔加祖特", country:"摩洛哥 Morocco", region:"Africa", flag:"🇲🇦", nomads:700, cost:900, internet:5, community:6, fun:5, safety:7, english:5, walk:4, air:8, female:6, lgbt:5, nightlife:4, peace:7, racial:6, temp:20, best:"4月-10月冲浪", visa:"旅游签" },
+    { city:"开罗", country:"埃及 Egypt", region:"Africa", flag:"🇪🇬", nomads:700, cost:800, internet:5, community:5, fun:6, safety:6, english:5, walk:5, air:4, female:4, lgbt:3, nightlife:5, peace:5, racial:5, temp:22, best:"10月-4月", visa:"旅游签" },
+    { city:"迪拜", country:"阿联酋 UAE", region:"MiddleEast", flag:"🇦🇪", nomads:1900, cost:3200, internet:9, community:6, fun:8, safety:9, english:9, walk:6, air:6, female:5, lgbt:5, nightlife:8, peace:7, racial:6, temp:30, best:"11月-3月", visa:"旅游签/虚拟办公" },
+    { city:"阿布扎比", country:"阿联酋 UAE", region:"MiddleEast", flag:"🇦🇪", nomads:700, cost:3100, internet:8.5, community:5, fun:7, safety:9, english:9, walk:5, air:6, female:5, lgbt:5, nightlife:6, peace:7, racial:6, temp:30, best:"11月-3月", visa:"旅游签" },
+    { city:"多哈", country:"卡塔尔 Qatar", region:"MiddleEast", flag:"🇶🇦", nomads:500, cost:2800, internet:8, community:5, fun:6, safety:9, english:8, walk:5, air:6, female:5, lgbt:4, nightlife:5, peace:7, racial:6, temp:30, best:"11月-3月", visa:"旅游签/卡星" },
+    { city:"伊斯坦布尔", country:"土耳其 Türkiye", region:"MiddleEast", flag:"🇹🇷", nomads:2000, cost:1200, internet:6, community:7, fun:8, safety:7, english:5, walk:7, air:5, female:6, lgbt:6, nightlife:7, peace:5, racial:6, temp:14, best:"4月-5月, 9月-10月", visa:"免签/居留" }
+  ];
+
+  // Region labels
+  const regionMap = {
+    "All": "全部",
+    "Asia": "亚洲",
+    "Europe": "欧洲",
+    "LATAM": "拉美",
+    "Africa": "非洲",
+    "MiddleEast": "中东"
+  };
+  const regionPillClass = { "Asia":"region-Asia", "Europe":"region-Europe", "LATAM":"region-LATAM", "Africa":"region-Africa", "MiddleEast":"region-MiddleEast" };
+
+  // Deduplicate (Istanbul appears twice for cross-region perspective)
+  const seen = new Set();
+  const unique = data.filter(d => { const k = d.city+d.country; if(seen.has(k)) return false; seen.add(k); return true; });
+
+  // Compute overall score
+  unique.forEach(d => {
+    d.overall = +( (d.internet*1.0 + d.community*1.2 + d.fun*1.0 + d.safety*1.2 + d.english*0.9 + d.air*0.7 + d.female*0.8 + d.lgbt*0.6 + d.walk*0.7 + d.nightlife*0.5 + d.peace*0.6 + d.racial*0.6) / 11.8 ).toFixed(1);
+  });
+
+  let currentRegion = "All";
+  let currentSearch = "";
+  let sortKey = "nomads";
+  let sortDir = -1;
+  let expanded = null;
+
+  function tierClass(v){ if(v>=7) return 'g'; if(v>=5.5) return 'm'; return 'b'; }
+  function costClass(c){ if(c<=1100) return 'cost-low'; if(c<=2000) return 'cost-mid'; return 'cost-high'; }
+  function fmt(n){ return n.toLocaleString(); }
+
+  function filtered(){
+    let list = unique;
+    if(currentRegion !== "All") list = list.filter(d => d.region === currentRegion);
+    if(currentSearch){
+      const q = currentSearch.toLowerCase();
+      list = list.filter(d => d.city.toLowerCase().includes(q) || d.country.toLowerCase().includes(q));
+    }
+    list.sort((a,b) => {
+      let av = a[sortKey], bv = b[sortKey];
+      if(typeof av === 'string') { av = av.toLowerCase(); bv = bv.toLowerCase(); }
+      if(av < bv) return -1 * sortDir;
+      if(av > bv) return 1 * sortDir;
+      return 0;
+    });
+    return list;
+  }
+
+  function renderStats(){
+    document.getElementById('stat-cities').textContent = unique.length;
+    const cheapest = [...unique].sort((a,b)=>a.cost-b.cost)[0];
+    const priciest = [...unique].sort((a,b)=>b.cost-a.cost)[0];
+    const biggest = [...unique].sort((a,b)=>b.nomads-a.nomads)[0];
+    const top = [...unique].sort((a,b)=>b.overall-a.overall)[0];
+    document.getElementById('stat-cheapest').textContent = '$'+cheapest.cost;
+    document.getElementById('stat-priciest').textContent = '$'+priciest.cost;
+    document.getElementById('stat-biggest').textContent = fmt(biggest.nomads);
+    document.getElementById('stat-top').textContent = top.overall;
+  }
+
+  function barHTML(value, max){
+    const pct = Math.min(100, (value/max)*100);
+    const cls = tierClass(value);
+    return `<div class="nm-bar ${cls}"><span style="width:${pct}%"></span></div><span class="score-num">${value}</span>`;
+  }
+
+  function rowHTML(d, i){
+    const expandedAttr = (expanded === i) ? 'expanded' : '';
+    const detailRow = (expanded === i) ? `
+      <tr class="nm-detail-row"><td colspan="10" class="nm-detail-cell">
+        <div class="nm-detail-grid">
+          <div class="nm-metric-card"><div class="mlabel">网络速度</div><div class="mvalue">${d.internet}/10</div><div class="mbar">${barHTML(d.internet,10).replace(/<span class="score-num">.*?<\/span>/,'')}</div><div class="mdesc">5G/Wi-Fi 普及与稳定性</div></div>
+          <div class="nm-metric-card"><div class="mlabel">社群活跃</div><div class="mvalue">${d.community}/10</div><div class="mbar">${barHTML(d.community,10).replace(/<span class="score-num">.*?<\/span>/,'')}</div><div class="mdesc">Meetup/Coworking/线下活动</div></div>
+          <div class="nm-metric-card"><div class="mlabel">生活品质</div><div class="mvalue">${d.fun}/10</div><div class="mbar">${barHTML(d.fun,10).replace(/<span class="score-num">.*?<\/span>/,'')}</div><div class="mdesc">餐厅/娱乐/文化体验</div></div>
+          <div class="nm-metric-card"><div class="mlabel">安全</div><div class="mvalue">${d.safety}/10</div><div class="mbar">${barHTML(d.safety,10).replace(/<span class="score-num">.*?<\/span>/,'')}</div><div class="mdesc">治安与夜间安全感</div></div>
+          <div class="nm-metric-card"><div class="mlabel">英语环境</div><div class="mvalue">${d.english}/10</div><div class="mbar">${barHTML(d.english,10).replace(/<span class="score-num">.*?<\/span>/,'')}</div><div class="mdesc">日常英语沟通便利度</div></div>
+          <div class="nm-metric-card"><div class="mlabel">步行友好</div><div class="mvalue">${d.walk}/10</div><div class="mbar">${barHTML(d.walk,10).replace(/<span class="score-num">.*?<\/span>/,'')}</div><div class="mdesc">步道/基础设施/便利</div></div>
+          <div class="nm-metric-card"><div class="mlabel">空气质量</div><div class="mvalue">${d.air}/10</div><div class="mbar">${barHTML(d.air,10).replace(/<span class="score-num">.*?<\/span>/,'')}</div><div class="mdesc">PM2.5 / 综合污染指数</div></div>
+          <div class="nm-metric-card"><div class="mlabel">女性友好</div><div class="mvalue">${d.female}/10</div><div class="mbar">${barHTML(d.female,10).replace(/<span class="score-num">.*?<\/span>/,'')}</div><div class="mdesc">性别平等与安全性</div></div>
+          <div class="nm-metric-card"><div class="mlabel">LGBTQ+</div><div class="mvalue">${d.lgbt}/10</div><div class="mbar">${barHTML(d.lgbt,10).replace(/<span class="score-num">.*?<\/span>/,'')}</div><div class="mdesc">多元包容与社会氛围</div></div>
+          <div class="nm-metric-card"><div class="mlabel">夜生活</div><div class="mvalue">${d.nightlife}/10</div><div class="mbar">${barHTML(d.nightlife,10).replace(/<span class="score-num">.*?<\/span>/,'')}</div><div class="mdesc">酒吧/俱乐部/夜间活力</div></div>
+          <div class="nm-metric-card"><div class="mlabel">安静指数</div><div class="mvalue">${d.peace}/10</div><div class="mbar">${barHTML(d.peace,10).replace(/<span class="score-num">.*?<\/span>/,'')}</div><div class="mdesc">噪音/拥挤度/可专注性</div></div>
+          <div class="nm-metric-card"><div class="mlabel">种族包容</div><div class="mvalue">${d.racial}/10</div><div class="mbar">${barHTML(d.racial,10).replace(/<span class="score-num">.*?<\/span>/,'')}</div><div class="mdesc">对外来人口接受度</div></div>
+          <div class="nm-metric-card"><div class="mlabel">年均气温</div><div class="mvalue">${d.temp}°C</div><div class="mdesc">最佳月份：${d.best}</div></div>
+          <div class="nm-metric-card"><div class="mlabel">签证提示</div><div class="mvalue" style="font-size:13px; font-weight:600;">${d.visa}</div></div>
+        </div>
+      </td></tr>` : '';
+    return `
+      <tr class="${expandedAttr}" data-i="${i}">
+        <td><span class="nm-pill ${regionPillClass[d.region]}">${regionMap[d.region]}</span></td>
+        <td><div class="city-cell"><div class="city-flag">${d.flag}</div><div><div class="city-name">${d.city}</div><div class="city-country">${d.country}</div></div></div></td>
+        <td style="text-align:right; font-weight:600;">${fmt(d.nomads)}</td>
+        <td style="text-align:right;" class="${costClass(d.cost)}">$${fmt(d.cost)}</td>
+        <td>${barHTML(d.internet,10)}</td>
+        <td>${barHTML(d.community,10)}</td>
+        <td>${barHTML(d.fun,10)}</td>
+        <td>${barHTML(d.safety,10)}</td>
+        <td>${barHTML(d.english,10)}</td>
+        <td><strong style="color:#0ea5e9">${d.overall}</strong></td>
+      </tr>
+      ${detailRow}`;
+  }
+
+  function render(){
+    const list = filtered();
+    const tbody = document.getElementById('nm-tbody');
+    if(!list.length){
+      tbody.innerHTML = `<tr><td colspan="10"><div class="nm-empty">没有匹配的城市</div></td></tr>`;
+      return;
+    }
+    tbody.innerHTML = list.map(rowHTML).join('');
+    tbody.querySelectorAll('tr[data-i]').forEach(tr => {
+      tr.addEventListener('click', () => {
+        const i = parseInt(tr.getAttribute('data-i'));
+        expanded = (expanded === i) ? null : i;
+        render();
+      });
+    });
+    // Update sort arrows
+    document.querySelectorAll('th[data-sort]').forEach(th => {
+      const arrow = th.querySelector('.arrow');
+      if(th.getAttribute('data-sort') === sortKey){
+        arrow.textContent = sortDir > 0 ? '↑' : '↓';
+      } else {
+        arrow.textContent = '↕';
+      }
+    });
+  }
+
+  function renderTabs(){
+    const tabsEl = document.getElementById('region-tabs');
+    const regions = ["All","Asia","Europe","LATAM","Africa","MiddleEast"];
+    tabsEl.innerHTML = regions.map(r => `<button class="nm-tab ${currentRegion===r?'active':''}" data-region="${r}">${regionMap[r]}</button>`).join('');
+    tabsEl.querySelectorAll('button').forEach(b => {
+      b.addEventListener('click', () => { currentRegion = b.getAttribute('data-region'); expanded = null; renderTabs(); render(); });
+    });
+  }
+
+  function bindSort(){
+    document.querySelectorAll('th[data-sort]').forEach(th => {
+      th.addEventListener('click', () => {
+        const k = th.getAttribute('data-sort');
+        if(sortKey === k) sortDir *= -1;
+        else { sortKey = k; sortDir = (k === 'city' || k === 'region') ? 1 : -1; }
+        render();
+      });
+    });
+  }
+
+  document.getElementById('nm-search').addEventListener('input', e => {
+    currentSearch = e.target.value;
+    expanded = null;
+    render();
+  });
+
+  renderStats();
+  renderTabs();
+  bindSort();
+  render();
+})();
+</script>
