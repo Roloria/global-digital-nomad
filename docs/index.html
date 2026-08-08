@@ -1,0 +1,769 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>🌍 全球数字游民城市榜 · Global Digital Nomad Cities</title>
+<meta name="description" content="开源的数字游民城市榜单 · 64 个城市 · 12 维度评分 · 支持匿名提交更新">
+<meta name="theme-color" content="#0ea5e9">
+<style>
+:root {
+  --bg: #fafbfc;
+  --bg-2: #f1f5f9;
+  --card: #ffffff;
+  --border: #e5e7eb;
+  --text: #0f172a;
+  --text-2: #475569;
+  --text-3: #94a3b8;
+  --accent: #0ea5e9;
+  --accent-2: #6366f1;
+  --good: #10b981;
+  --mid: #f59e0b;
+  --bad: #ef4444;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0b1220;
+    --bg-2: #111a2e;
+    --card: #1a2438;
+    --border: #2a3654;
+    --text: #f1f5f9;
+    --text-2: #cbd5e1;
+    --text-3: #64748b;
+    --accent: #38bdf8;
+    --accent-2: #818cf8;
+  }
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  color: var(--text);
+  background: linear-gradient(135deg, var(--bg) 0%, var(--bg-2) 100%);
+  line-height: 1.5;
+  min-height: 100vh;
+}
+.container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+header {
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  color: white;
+  padding: 28px 20px;
+  border-radius: 14px;
+  margin-bottom: 20px;
+  box-shadow: 0 6px 24px rgba(14, 165, 233, 0.18);
+}
+header h1 { margin: 0 0 6px; font-size: 26px; font-weight: 700; }
+header .tagline { font-size: 14px; opacity: 0.92; }
+header .links { margin-top: 12px; display: flex; gap: 12px; flex-wrap: wrap; font-size: 13px; }
+header .links a { color: white; text-decoration: none; padding: 4px 10px; background: rgba(255,255,255,0.18); border-radius: 999px; transition: background 0.15s; }
+header .links a:hover { background: rgba(255,255,255,0.3); }
+
+.tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
+.tab { padding: 7px 14px; border-radius: 999px; background: var(--card); border: 1px solid var(--border); font-size: 13px; cursor: pointer; color: var(--text-2); transition: all 0.15s; user-select: none; }
+.tab:hover { border-color: var(--accent); color: var(--accent); }
+.tab.active { background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: white; border-color: transparent; font-weight: 600; }
+
+.controls { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 16px; align-items: center; }
+.search {
+  flex: 1; min-width: 180px; max-width: 320px; padding: 8px 14px;
+  border-radius: 10px; border: 1px solid var(--border);
+  background: var(--card); color: var(--text); font-size: 14px;
+}
+.search:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(14,165,233,0.18); }
+.select, .range-input {
+  padding: 8px 12px; border-radius: 10px; border: 1px solid var(--border);
+  background: var(--card); color: var(--text); font-size: 14px;
+}
+.range-input { width: 100px; }
+.btn {
+  padding: 8px 16px; border-radius: 10px; border: none;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  color: white; font-size: 14px; font-weight: 600;
+  cursor: pointer; transition: transform 0.1s, box-shadow 0.15s;
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.btn:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(14,165,233,0.3); }
+.btn:active { transform: translateY(0); }
+.btn-secondary { background: var(--card); color: var(--accent); border: 1px solid var(--accent); }
+.btn-secondary:hover { background: var(--accent); color: white; }
+
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-bottom: 18px; }
+.stat { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 12px 14px; }
+.stat .l { font-size: 11px; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.5px; }
+.stat .v { font-size: 22px; font-weight: 700; color: var(--text); margin-top: 4px; }
+.stat .s { font-size: 12px; color: var(--text-3); margin-top: 2px; }
+
+.table-wrap { background: var(--card); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+thead { background: var(--bg-2); }
+th { text-align: left; padding: 10px 12px; font-weight: 600; color: var(--text-2); font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid var(--border); cursor: pointer; user-select: none; white-space: nowrap; }
+th:hover { background: var(--bg-2); filter: brightness(0.95); }
+th .arrow { font-size: 10px; color: var(--text-3); margin-left: 4px; }
+td { padding: 11px 12px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+tbody tr { cursor: pointer; transition: background 0.12s; }
+tbody tr:hover { background: var(--bg-2); }
+tbody tr.expanded { background: rgba(14,165,233,0.06); }
+tbody tr:nth-child(even) { background: rgba(0,0,0,0.015); }
+tbody tr:nth-child(even):hover { background: var(--bg-2); }
+
+.city-cell { display: flex; align-items: center; gap: 10px; }
+.city-flag { font-size: 22px; line-height: 1; }
+.city-name { font-weight: 600; color: var(--text); }
+.city-country { font-size: 11px; color: var(--text-3); }
+.num { font-variant-numeric: tabular-nums; text-align: right; font-weight: 500; }
+.rank { font-weight: 700; color: var(--accent); width: 36px; }
+.bar { width: 70px; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; display: inline-block; vertical-align: middle; margin-right: 6px; }
+.bar > span { display: block; height: 100%; border-radius: 3px; }
+.bar.g > span { background: linear-gradient(90deg, var(--good), #34d399); }
+.bar.m > span { background: linear-gradient(90deg, var(--mid), #fbbf24); }
+.bar.b > span { background: linear-gradient(90deg, var(--bad), #f87171); }
+
+.pill { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 11px; font-weight: 600; }
+.pill.亚洲 { background: #fef3c7; color: #92400e; }
+.pill.欧洲 { background: #dbeafe; color: #1e40af; }
+.pill.拉美 { background: #fce7f3; color: #9d174d; }
+.pill.非洲 { background: #d1fae5; color: #065f46; }
+.pill.中东 { background: #ede9fe; color: #5b21b6; }
+
+.detail-row td { background: var(--bg-2); padding: 18px 22px; }
+.detail-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 10px; }
+.metric-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; }
+.metric-card .ml { font-size: 11px; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.3px; }
+.metric-card .mv { font-size: 17px; font-weight: 700; color: var(--text); margin-top: 2px; }
+.metric-card .md { font-size: 11px; color: var(--text-2); margin-top: 4px; line-height: 1.4; }
+
+.cost-low { color: var(--good); font-weight: 600; }
+.cost-mid { color: var(--mid); font-weight: 600; }
+.cost-high { color: var(--bad); font-weight: 600; }
+
+.empty { text-align: center; padding: 40px; color: var(--text-3); font-size: 14px; }
+
+footer { margin-top: 30px; padding: 20px 0; font-size: 12px; color: var(--text-3); text-align: center; line-height: 1.7; }
+footer a { color: var(--accent); text-decoration: none; }
+
+/* ==== Modal ==== */
+.modal-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 100;
+  display: none; align-items: center; justify-content: center;
+  padding: 20px;
+}
+.modal-overlay.open { display: flex; }
+.modal {
+  background: var(--card); border-radius: 14px; max-width: 760px; width: 100%;
+  max-height: 90vh; overflow-y: auto; box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+.modal-header {
+  padding: 20px 24px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  position: sticky; top: 0; background: var(--card); z-index: 1;
+}
+.modal-header h2 { margin: 0; font-size: 18px; }
+.modal-header .close {
+  width: 32px; height: 32px; border-radius: 8px; border: none;
+  background: var(--bg-2); color: var(--text-2); cursor: pointer;
+  font-size: 18px; line-height: 1;
+}
+.modal-body { padding: 20px 24px; }
+.guide-box {
+  background: linear-gradient(135deg, rgba(14,165,233,0.08), rgba(99,102,241,0.08));
+  border: 1px solid rgba(14,165,233,0.2);
+  border-radius: 10px; padding: 14px 16px; margin-bottom: 18px;
+  font-size: 13px; color: var(--text-2);
+}
+.guide-box h3 { margin: 0 0 8px; color: var(--text); font-size: 14px; }
+.guide-box ul { margin: 6px 0 0; padding-left: 20px; }
+.guide-box li { margin: 3px 0; }
+.form-section { margin-bottom: 22px; }
+.form-section h3 {
+  margin: 0 0 12px; font-size: 14px; color: var(--text);
+  padding-bottom: 6px; border-bottom: 1px solid var(--border);
+}
+.form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+.form-row { display: flex; flex-direction: column; gap: 4px; margin-bottom: 12px; }
+.form-row label { font-size: 12px; color: var(--text-2); font-weight: 600; }
+.form-row label .required { color: var(--bad); }
+.form-row .hint { font-size: 11px; color: var(--text-3); line-height: 1.4; margin-top: 2px; }
+.form-row input, .form-row select, .form-row textarea {
+  padding: 8px 12px; border-radius: 8px; border: 1px solid var(--border);
+  background: var(--bg); color: var(--text); font-size: 14px;
+  font-family: inherit;
+}
+.form-row input:focus, .form-row select:focus, .form-row textarea:focus {
+  outline: none; border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(14,165,233,0.15);
+}
+.form-row textarea { resize: vertical; min-height: 80px; line-height: 1.5; }
+
+.score-row {
+  display: grid; grid-template-columns: 110px 1fr 60px; gap: 10px;
+  align-items: center; padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+}
+.score-row:last-child { border-bottom: none; }
+.score-row .score-label { font-size: 13px; font-weight: 600; color: var(--text); }
+.score-row .score-help { font-size: 11px; color: var(--text-3); margin-top: 2px; }
+.score-row .score-input { display: flex; flex-direction: column; gap: 2px; }
+.score-row .score-input .lbl { font-size: 11px; color: var(--text-3); font-weight: 600; }
+.score-row input[type="range"] { width: 100%; }
+.score-row .score-val {
+  font-weight: 700; text-align: center; font-variant-numeric: tabular-nums;
+  padding: 4px 0; border-radius: 6px;
+}
+
+.modal-footer {
+  padding: 16px 24px; border-top: 1px solid var(--border);
+  display: flex; gap: 10px; justify-content: flex-end;
+  position: sticky; bottom: 0; background: var(--card);
+}
+
+.success-box {
+  background: linear-gradient(135deg, rgba(16,185,129,0.1), rgba(16,185,129,0.04));
+  border: 1px solid rgba(16,185,129,0.3);
+  border-radius: 10px; padding: 16px; margin-bottom: 14px;
+}
+.success-box h4 { margin: 0 0 8px; color: var(--good); }
+.action-buttons { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+
+@media (max-width: 720px) {
+  .container { padding: 12px; }
+  header { padding: 20px 16px; }
+  header h1 { font-size: 20px; }
+  .table-wrap { overflow-x: auto; }
+  table { min-width: 680px; }
+  .form-grid { grid-template-columns: 1fr; }
+  .score-row { grid-template-columns: 90px 1fr 50px; font-size: 12px; }
+  .stat .v { font-size: 18px; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <h1>🌍 全球数字游民城市榜</h1>
+  <div class="tagline">开源社区维护 · 64 个城市 · 12 维度评分 · 欢迎匿名提交更新</div>
+  <div class="links">
+    <a href="#submit" id="link-submit">📤 提交评分</a>
+    <a href="#methodology">📐 评分标准</a>
+    <a href="https://github.com/Roloria/global-digital-nomad" target="_blank" rel="noopener">📦 GitHub</a>
+    <a href="https://github.com/Roloria/global-digital-nomad/discussions" target="_blank" rel="noopener">💬 讨论</a>
+  </div>
+</header>
+
+<div class="stats" id="stats"></div>
+
+<div class="tabs" id="tabs"></div>
+
+<div class="controls">
+  <input type="search" class="search" id="search" placeholder="🔍 搜索城市或国家…">
+  <select class="select" id="country-filter">
+    <option value="">全部国家</option>
+  </select>
+  <select class="select" id="rank-filter">
+    <option value="all">全部排名</option>
+    <option value="10">TOP 10</option>
+    <option value="20">TOP 20</option>
+    <option value="30">TOP 30</option>
+    <option value="50">TOP 50</option>
+  </select>
+  <button class="btn" id="btn-submit">📤 提交评分</button>
+</div>
+
+<div class="table-wrap">
+<table id="main-table">
+<thead>
+<tr>
+  <th data-sort="排名" style="width:50px;">排名<span class="arrow">↕</span></th>
+  <th data-sort="城市">城市 / 国家<span class="arrow">↕</span></th>
+  <th data-sort="游民数" class="num">游民数<span class="arrow">↕</span></th>
+  <th data-sort="月成本 (USD)" class="num">月成本<span class="arrow">↕</span></th>
+  <th data-sort="网络">网络<span class="arrow">↕</span></th>
+  <th data-sort="社群">社群<span class="arrow">↕</span></th>
+  <th data-sort="生活">生活<span class="arrow">↕</span></th>
+  <th data-sort="安全">安全<span class="arrow">↕</span></th>
+  <th data-sort="英语">英语<span class="arrow">↕</span></th>
+  <th data-sort="综合分">综合<span class="arrow">↕</span></th>
+</tr>
+</thead>
+<tbody id="tbody"></tbody>
+</table>
+</div>
+
+<div id="methodology" style="margin-top:30px; background:var(--card); border:1px solid var(--border); border-radius:12px; padding:20px 24px;">
+  <h2 style="margin:0 0 12px; font-size:18px;">📐 评分标准说明</h2>
+  <p style="margin:0 0 14px; color:var(--text-2); font-size:13px;">所有评分采用 0–10 分制（10 最佳）。综合分由加权平均计算。</p>
+  <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap:10px;" id="methodology-grid"></div>
+</div>
+
+<footer>
+  <p>📊 数据综合自 Nomad List、各国旅游局及社区调研 · 评分仅供参考</p>
+  <p>🌟 项目开源：<a href="https://github.com/Roloria/global-digital-nomad">github.com/Roloria/global-digital-nomad</a> · 欢迎 PR / Issue / Discussion</p>
+  <p style="opacity:0.7;">数据更新：2026-07 · 评分口径详见 <a href="https://github.com/Roloria/global-digital-nomad/blob/main/docs/methodology.md" target="_blank" rel="noopener">methodology.md</a></p>
+</footer>
+
+</div>
+
+<!-- Submission Modal -->
+<div class="modal-overlay" id="modal-overlay">
+<div class="modal">
+  <div class="modal-header">
+    <h2>📤 提交城市评分（匿名）</h2>
+    <button class="close" id="modal-close">×</button>
+  </div>
+  <div class="modal-body" id="modal-body">
+
+    <div class="guide-box">
+      <h3>💡 提交指南</h3>
+      <p style="margin:4px 0 8px;">本表单支持两种用途：</p>
+      <ul>
+        <li><strong>更新现有城市</strong>：基于你的实地经历修正某项评分</li>
+        <li><strong>添加新城市</strong>：填写你认为值得加入榜单的目的地</li>
+      </ul>
+      <p style="margin:8px 0 4px;"><strong>📋 必填内容：</strong></p>
+      <ul>
+        <li>城市名 + 国家（必填，否则无法定位）</li>
+        <li><strong>经历描述</strong>：你在这里居住/工作的时长、季节、实际花费、社区参与情况等</li>
+        <li><strong>数据来源</strong>：你的判断依据（Nomad List、Numbeo、个人经验等）</li>
+      </ul>
+      <p style="margin:8px 0 0; font-size:12px; opacity:0.85;">💾 提交后数据保存在你的浏览器本地，可一键导出为 JSON 或直接通过 GitHub Issue 上报到开源项目。</p>
+    </div>
+
+    <div id="submit-success" style="display:none;"></div>
+
+    <form id="submit-form">
+
+    <div class="form-section">
+      <h3>📍 城市信息</h3>
+      <div class="form-grid">
+        <div class="form-row">
+          <label>城市名 <span class="required">*</span></label>
+          <input type="text" name="city" required placeholder="例：巴塞罗那">
+        </div>
+        <div class="form-row">
+          <label>国家 <span class="required">*</span></label>
+          <input type="text" name="country" required placeholder="例：西班牙">
+        </div>
+        <div class="form-row">
+          <label>区域 <span class="required">*</span></label>
+          <select name="region" required>
+            <option value="">选择区域</option>
+            <option value="亚洲">亚洲</option>
+            <option value="欧洲">欧洲</option>
+            <option value="拉美">拉美</option>
+            <option value="非洲">非洲</option>
+            <option value="中东">中东</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <h3>📝 经历描述与数据来源 <span class="required">*</span></h3>
+      <div class="form-row">
+        <label>经历描述</label>
+        <textarea name="description" required placeholder="例：2024年11月在巴塞罗那居住3个月，每月花费约 2400 USD（含房租），住在 Gràcia 区，参加了多次 Nomad List Meetup 和 CoWorking Hub的活动。冬天 8°C 比较冷但阳光充足..."></textarea>
+        <div class="hint">📌 请包含：居住时长 / 季节 / 实际成本 / 社区参与 / 主要优缺点</div>
+      </div>
+      <div class="form-row">
+        <label>数据来源</label>
+        <textarea name="sources" placeholder="例：个人经验 + Numbeo 2024 Q4 + Nomad List 评分"></textarea>
+        <div class="hint">📌 列出你的判断依据（至少 1 项，可多行）</div>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <h3>📊 12 维度评分（0–10 分）</h3>
+      <div id="score-rows"></div>
+      <div class="hint" style="margin-top:10px;">
+        📐 <strong>评分标准</strong>：9–10 世界级 / 7.5–8.9 优秀 / 6.0–7.4 良好 / 4.5–5.9 一般 / &lt;4.5 偏差。详见 <a href="https://github.com/Roloria/global-digital-nomad/blob/main/docs/methodology.md" target="_blank" rel="noopener">methodology.md</a>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" id="btn-cancel">取消</button>
+      <button type="submit" class="btn">💾 保存到本地</button>
+    </div>
+
+    </form>
+
+  </div>
+</div>
+</div>
+
+<script>
+// ====== Data ======
+const CITIES_DATA = [{"排名":1,"区域":"欧洲","城市":"里斯本","国家":"葡萄牙","国家(英)":"Portugal","国旗":"🇵🇹","游民数":2800,"月成本 (USD)":2300,"网络":7.5,"社群":8.0,"生活":8.0,"安全":8.5,"英语":7.0,"步行":7.0,"空气":7.0,"女性友好":9.0,"LGBTQ+":9.0,"夜生活":8.0,"安静指数":7.0,"种族包容":8.0,"年均气温 (°C)":18,"最佳季节":"4月-6月, 9月-10月","签证":"D7/D8 数字游民签证","综合分":7.9},{"排名":2,"区域":"欧洲","城市":"柏林","国家":"德国","国家(英)":"Germany","国旗":"🇩🇪","游民数":2200,"月成本 (USD)":2700,"网络":8.0,"社群":8.0,"生活":9.0,"安全":7.0,"英语":8.0,"步行":9.0,"空气":6.0,"女性友好":8.0,"LGBTQ+":9.0,"夜生活":9.0,"安静指数":6.0,"种族包容":7.0,"年均气温 (°C)":10,"最佳季节":"5月-9月","签证":"自由职业者签证","综合分":7.8},{"排名":3,"区域":"亚洲","城市":"台北","国家":"台湾","国家(英)":"Taiwan","国旗":"🇹🇼","游民数":1400,"月成本 (USD)":1700,"网络":9.0,"社群":7.0,"生活":8.0,"安全":9.0,"英语":6.0,"步行":8.0,"空气":7.0,"女性友好":8.0,"LGBTQ+":7.0,"夜生活":7.0,"安静指数":7.0,"种族包容":8.0,"年均气温 (°C)":23,"最佳季节":"10月-12月","签证":"免签30天","综合分":7.7},{"排名":4,"区域":"亚洲","城市":"东京","国家":"日本","国家(英)":"Japan","国旗":"🇯🇵","游民数":1800,"月成本 (USD)":2600,"网络":9.5,"社群":7.0,"生活":9.0,"安全":9.5,"英语":4.0,"步行":9.0,"空气":8.0,"女性友好":6.0,"LGBTQ+":6.0,"夜生活":8.0,"安静指数":6.0,"种族包容":7.0,"年均气温 (°C)":16,"最佳季节":"3月-5月, 10月-11月","签证":"6月免签/经营管理","综合分":7.6},{"排名":5,"区域":"亚洲","城市":"新加坡","国家":"新加坡","国家(英)":"Singapore","国旗":"🇸🇬","游民数":1600,"月成本 (USD)":3500,"网络":9.5,"社群":6.0,"生活":8.0,"安全":9.5,"英语":9.0,"步行":9.0,"空气":5.0,"女性友好":6.0,"LGBTQ+":6.0,"夜生活":8.0,"安静指数":6.0,"种族包容":7.0,"年均气温 (°C)":28,"最佳季节":"全年","签证":"旅签/创业准证","综合分":7.6},{"排名":6,"区域":"欧洲","城市":"拉斯帕尔马斯","国家":"西班牙","国家(英)":"Spain","国旗":"🇪🇸","游民数":2200,"月成本 (USD)":1700,"网络":7.0,"社群":8.0,"生活":7.0,"安全":8.0,"英语":7.0,"步行":7.0,"空气":8.0,"女性友好":8.0,"LGBTQ+":8.0,"夜生活":7.0,"安静指数":7.0,"种族包容":7.0,"年均气温 (°C)":22,"最佳季节":"全年","签证":"西班牙数字游民","综合分":7.5},{"排名":7,"区域":"欧洲","城市":"塔林","国家":"爱沙尼亚","国家(英)":"Estonia","国旗":"🇪🇪","游民数":1200,"月成本 (USD)":1800,"网络":8.0,"社群":7.0,"生活":6.0,"安全":8.5,"英语":7.0,"步行":8.0,"空气":8.0,"女性友好":8.0,"LGBTQ+":7.0,"夜生活":6.0,"安静指数":8.0,"种族包容":8.0,"年均气温 (°C)":6,"最佳季节":"6月-8月","签证":"数字游民签证","综合分":7.5},{"排名":8,"区域":"欧洲","城市":"布拉格","国家":"捷克","国家(英)":"Czechia","国旗":"🇨🇿","游民数":1600,"月成本 (USD)":1600,"网络":7.5,"社群":7.0,"生活":8.0,"安全":8.0,"英语":7.0,"步行":8.0,"空气":7.0,"女性友好":8.0,"LGBTQ+":7.0,"夜生活":8.0,"安静指数":7.0,"种族包容":7.0,"年均气温 (°C)":9,"最佳季节":"5月-9月","签证":"捷克游民签","综合分":7.5},{"排名":9,"区域":"欧洲","城市":"波尔图","国家":"葡萄牙","国家(英)":"Portugal","国旗":"🇵🇹","游民数":1300,"月成本 (USD)":1900,"网络":7.0,"社群":7.0,"生活":7.0,"安全":8.5,"英语":6.0,"步行":7.0,"空气":8.0,"女性友好":9.0,"LGBTQ+":8.0,"夜生活":6.0,"安静指数":7.0,"种族包容":8.0,"年均气温 (°C)":16,"最佳季节":"5月-9月","签证":"D7/D8","综合分":7.4},{"排名":10,"区域":"欧洲","城市":"巴塞罗那","国家":"西班牙","国家(英)":"Spain","国旗":"🇪🇸","游民数":2500,"月成本 (USD)":2400,"网络":7.0,"社群":8.0,"生活":9.0,"安全":7.0,"英语":7.0,"步行":8.0,"空气":6.0,"女性友好":8.0,"LGBTQ+":9.0,"夜生活":9.0,"安静指数":5.0,"种族包容":6.0,"年均气温 (°C)":17,"最佳季节":"5月-6月, 9月-10月","签证":"西班牙数字游民签证","综合分":7.4},{"排名":11,"区域":"欧洲","城市":"布达佩斯","国家":"匈牙利","国家(英)":"Hungary","国旗":"🇭🇺","游民数":1700,"月成本 (USD)":1400,"网络":7.5,"社群":7.0,"生活":8.0,"安全":8.0,"英语":6.0,"步行":8.0,"空气":7.0,"女性友好":8.0,"LGBTQ+":8.0,"夜生活":8.0,"安静指数":7.0,"种族包容":7.0,"年均气温 (°C)":11,"最佳季节":"4月-6月, 9月-10月","签证":"白卡/游民签","综合分":7.4},{"排名":12,"区域":"欧洲","城市":"克拉科夫","国家":"波兰","国家(英)":"Poland","国旗":"🇵🇱","游民数":1400,"月成本 (USD)":1300,"网络":7.5,"社群":7.0,"生活":7.0,"安全":8.0,"英语":7.0,"步行":8.0,"空气":7.0,"女性友好":8.0,"LGBTQ+":7.0,"夜生活":7.0,"安静指数":7.0,"种族包容":7.0,"年均气温 (°C)":9,"最佳季节":"5月-9月","签证":"波兰游民签","综合分":7.3},{"排名":13,"区域":"欧洲","城市":"马德拉","国家":"葡萄牙","国家(英)":"Portugal","国旗":"🇵🇹","游民数":1100,"月成本 (USD)":1600,"网络":6.5,"社群":7.0,"生活":6.0,"安全":9.0,"英语":7.0,"步行":5.0,"空气":9.0,"女性友好":8.0,"LGBTQ+":8.0,"夜生活":4.0,"安静指数":8.0,"种族包容":8.0,"年均气温 (°C)":20,"最佳季节":"3月-10月","签证":"D7/D8","综合分":7.2},{"排名":14,"区域":"中东","城市":"迪拜","国家":"阿联酋","国家(英)":"UAE","国旗":"🇦🇪","游民数":1900,"月成本 (USD)":3200,"网络":9.0,"社群":6.0,"生活":8.0,"安全":9.0,"英语":9.0,"步行":6.0,"空气":6.0,"女性友好":5.0,"LGBTQ+":5.0,"夜生活":8.0,"安静指数":7.0,"种族包容":6.0,"年均气温 (°C)":30,"最佳季节":"11月-3月","签证":"旅游签/虚拟办公","综合分":7.2},{"排名":15,"区域":"亚洲","城市":"首尔","国家":"韩国","国家(英)":"South Korea","国旗":"🇰🇷","游民数":1300,"月成本 (USD)":2200,"网络":9.5,"社群":6.0,"生活":8.0,"安全":9.0,"英语":5.0,"步行":8.0,"空气":6.0,"女性友好":6.0,"LGBTQ+":5.0,"夜生活":8.0,"安静指数":6.0,"种族包容":7.0,"年均气温 (°C)":13,"最佳季节":"4月-6月, 9月-10月","签证":"免签/创业签","综合分":7.1},{"排名":16,"区域":"拉美","城市":"墨西哥城","国家":"墨西哥","国家(英)":"Mexico","国旗":"🇲🇽","游民数":3500,"月成本 (USD)":1500,"网络":7.0,"社群":8.0,"生活":9.0,"安全":6.0,"英语":7.0,"步行":7.0,"空气":5.0,"女性友好":7.0,"LGBTQ+":8.0,"夜生活":8.0,"安静指数":5.0,"种族包容":7.0,"年均气温 (°C)":17,"最佳季节":"3月-5月, 10月-11月","签证":"临时居留6月","综合分":7.1},{"排名":17,"区域":"拉美","城市":"布宜诺斯艾利斯","国家":"阿根廷","国家(英)":"Argentina","国旗":"🇦🇷","游民数":3000,"月成本 (USD)":1100,"网络":6.5,"社群":8.0,"生活":8.0,"安全":7.0,"英语":6.0,"步行":7.0,"空气":6.0,"女性友好":8.0,"LGBTQ+":8.0,"夜生活":8.0,"安静指数":6.0,"种族包容":7.0,"年均气温 (°C)":18,"最佳季节":"9月-12月, 3月-4月","签证":"数字游民签","综合分":7.1},{"排名":18,"区域":"欧洲","城市":"斯普利特","国家":"克罗地亚","国家(英)":"Croatia","国旗":"🇭🇷","游民数":1100,"月成本 (USD)":1500,"网络":7.0,"社群":7.0,"生活":6.0,"安全":8.0,"英语":6.0,"步行":7.0,"空气":8.0,"女性友好":8.0,"LGBTQ+":7.0,"夜生活":5.0,"安静指数":7.0,"种族包容":7.0,"年均气温 (°C)":17,"最佳季节":"5月-9月","签证":"Croatia游民签/申根","综合分":7.0},{"排名":19,"区域":"欧洲","城市":"特内里费","国家":"西班牙","国家(英)":"Spain","国旗":"🇪🇸","游民数":1300,"月成本 (USD)":1600,"网络":6.5,"社群":7.0,"生活":6.0,"安全":8.0,"英语":6.0,"步行":6.0,"空气":8.0,"女性友好":8.0,"LGBTQ+":8.0,"夜生活":5.0,"安静指数":7.0,"种族包容":7.0,"年均气温 (°C)":22,"最佳季节":"全年","签证":"西班牙数字游民","综合分":6.9},{"排名":20,"区域":"亚洲","城市":"巴厘岛 (长谷)","国家":"印尼","国家(英)":"Indonesia","国旗":"🇮🇩","游民数":5800,"月成本 (USD)":1400,"网络":6.0,"社群":9.5,"生活":7.0,"安全":8.0,"英语":6.0,"步行":4.0,"空气":7.0,"女性友好":7.0,"LGBTQ+":7.0,"夜生活":6.0,"安静指数":6.0,"种族包容":6.0,"年均气温 (°C)":27,"最佳季节":"4月-10月","签证":"B211A 6月/VOA","综合分":6.8},{"排名":21,"区域":"拉美","城市":"麦德林","国家":"哥伦比亚","国家(英)":"Colombia","国旗":"🇨🇴","游民数":4200,"月成本 (USD)":1200,"网络":6.5,"社群":9.0,"生活":8.0,"安全":6.0,"英语":5.0,"步行":6.0,"空气":6.0,"女性友好":7.0,"LGBTQ+":8.0,"夜生活":7.0,"安静指数":6.0,"种族包容":7.0,"年均气温 (°C)":22,"最佳季节":"12月-3月, 7月-8月","签证":"游民签M","综合分":6.8},{"排名":22,"区域":"拉美","城市":"蒙得维的亚","国家":"乌拉圭","国家(英)":"Uruguay","国旗":"🇺🇾","游民数":1000,"月成本 (USD)":1400,"网络":6.0,"社群":6.0,"生活":6.0,"安全":8.0,"英语":6.0,"步行":7.0,"空气":7.0,"女性友好":8.0,"LGBTQ+":8.0,"夜生活":5.0,"安静指数":7.0,"种族包容":8.0,"年均气温 (°C)":16,"最佳季节":"11月-3月","签证":"游民友好","综合分":6.8},{"排名":23,"区域":"亚洲","城市":"清迈","国家":"泰国","国家(英)":"Thailand","国旗":"🇹🇭","游民数":4500,"月成本 (USD)":850,"网络":7.5,"社群":9.0,"生活":6.0,"安全":8.5,"英语":4.0,"步行":6.0,"空气":5.0,"女性友好":7.0,"LGBTQ+":6.0,"夜生活":5.0,"安静指数":7.0,"种族包容":7.0,"年均气温 (°C)":25,"最佳季节":"11月-2月","签证":"DTV 5年/教育签证","综合分":6.7},{"排名":24,"区域":"亚洲","城市":"曼谷","国家":"泰国","国家(英)":"Thailand","国旗":"🇹🇭","游民数":3200,"月成本 (USD)":1150,"网络":8.0,"社群":8.0,"生活":8.0,"安全":7.0,"英语":5.0,"步行":5.0,"空气":4.0,"女性友好":6.0,"LGBTQ+":7.0,"夜生活":9.0,"安静指数":5.0,"种族包容":7.0,"年均气温 (°C)":29,"最佳季节":"11月-2月","签证":"DTV/教育签证","综合分":6.7},{"排名":25,"区域":"欧洲","城市":"第比利斯","国家":"格鲁吉亚","国家(英)":"Georgia","国旗":"🇬🇪","游民数":2400,"月成本 (USD)":1100,"网络":7.0,"社群":8.0,"生活":6.0,"安全":8.0,"英语":5.0,"步行":7.0,"空气":7.0,"女性友好":6.0,"LGBTQ+":6.0,"夜生活":5.0,"安静指数":7.0,"种族包容":7.0,"年均气温 (°C)":13,"最佳季节":"5月-10月","签证":"免签1年","综合分":6.7},{"排名":26,"区域":"中东","城市":"阿布扎比","国家":"阿联酋","国家(英)":"UAE","国旗":"🇦🇪","游民数":700,"月成本 (USD)":3100,"网络":8.5,"社群":5.0,"生活":7.0,"安全":9.0,"英语":9.0,"步行":5.0,"空气":6.0,"女性友好":5.0,"LGBTQ+":5.0,"夜生活":6.0,"安静指数":7.0,"种族包容":6.0,"年均气温 (°C)":30,"最佳季节":"11月-3月","签证":"旅游签","综合分":6.7},{"排名":27,"区域":"亚洲","城市":"普吉","国家":"泰国","国家(英)":"Thailand","国旗":"🇹🇭","游民数":1900,"月成本 (USD)":1250,"网络":6.5,"社群":7.0,"生活":7.0,"安全":8.0,"英语":5.0,"步行":5.0,"空气":7.0,"女性友好":6.0,"LGBTQ+":7.0,"夜生活":7.0,"安静指数":6.0,"种族包容":7.0,"年均气温 (°C)":28,"最佳季节":"11月-4月","签证":"DTV 5年","综合分":6.6},{"排名":28,"区域":"亚洲","城市":"苏梅岛","国家":"泰国","国家(英)":"Thailand","国旗":"🇹🇭","游民数":800,"月成本 (USD)":1350,"网络":6.0,"社群":6.0,"生活":6.0,"安全":8.5,"英语":5.0,"步行":5.0,"空气":8.0,"女性友好":7.0,"LGBTQ+":7.0,"夜生活":6.0,"安静指数":7.0,"种族包容":7.0,"年均气温 (°C)":28,"最佳季节":"12月-4月","签证":"DTV 5年","综合分":6.6},{"排名":29,"区域":"亚洲","城市":"胡志明市","国家":"越南","国家(英)":"Vietnam","国旗":"🇻🇳","游民数":3800,"月成本 (USD)":850,"网络":7.0,"社群":8.0,"生活":8.0,"安全":7.5,"英语":4.0,"步行":6.0,"空气":5.0,"女性友好":7.0,"LGBTQ+":6.0,"夜生活":7.0,"安静指数":5.0,"种族包容":7.0,"年均气温 (°C)":28,"最佳季节":"12月-4月","签证":"电子签/免签45天","综合分":6.6},{"排名":30,"区域":"欧洲","城市":"班斯科","国家":"保加利亚","国家(英)":"Bulgaria","国旗":"🇧🇬","游民数":1500,"月成本 (USD)":900,"网络":7.0,"社群":8.0,"生活":5.0,"安全":8.0,"英语":5.0,"步行":6.0,"空气":8.0,"女性友好":7.0,"LGBTQ+":6.0,"夜生活":4.0,"安静指数":8.0,"种族包容":6.0,"年均气温 (°C)":10,"最佳季节":"6月-9月, 12月-3月滑雪","签证":"保加利亚游民签","综合分":6.6},{"排名":31,"区域":"欧洲","城市":"雅典","国家":"希腊","国家(英)":"Greece","国旗":"🇬🇷","游民数":1300,"月成本 (USD)":1700,"网络":6.5,"社群":7.0,"生活":7.0,"安全":7.0,"英语":6.0,"步行":6.0,"空气":6.0,"女性友好":7.0,"LGBTQ+":7.0,"夜生活":6.0,"安静指数":6.0,"种族包容":7.0,"年均气温 (°C)":19,"最佳季节":"4月-6月, 9月-10月","签证":"希腊游民签","综合分":6.6},{"排名":32,"区域":"拉美","城市":"圣米格尔","国家":"墨西哥","国家(英)":"Mexico","国旗":"🇲🇽","游民数":1200,"月成本 (USD)":1400,"网络":5.5,"社群":7.0,"生活":6.0,"安全":7.0,"英语":6.0,"步行":7.0,"空气":7.0,"女性友好":8.0,"LGBTQ+":7.0,"夜生活":5.0,"安静指数":7.0,"种族包容":7.0,"年均气温 (°C)":18,"最佳季节":"10月-5月","签证":"临时居留","综合分":6.6},{"排名":33,"区域":"拉美","城市":"弗洛里亚诺波利斯","国家":"巴西","国家(英)":"Brazil","国旗":"🇧🇷","游民数":1100,"月成本 (USD)":1300,"网络":5.5,"社群":7.0,"生活":7.0,"安全":7.0,"英语":5.0,"步行":5.0,"空气":8.0,"女性友好":7.0,"LGBTQ+":8.0,"夜生活":5.0,"安静指数":7.0,"种族包容":7.0,"年均气温 (°C)":21,"最佳季节":"12月-3月","签证":"数字游民签","综合分":6.6},{"排名":34,"区域":"亚洲","城市":"槟城","国家":"马来西亚","国家(英)":"Malaysia","国旗":"🇲🇾","游民数":1300,"月成本 (USD)":950,"网络":6.0,"社群":7.0,"生活":6.0,"安全":8.0,"英语":6.0,"步行":6.0,"空气":7.0,"女性友好":7.0,"LGBTQ+":5.0,"夜生活":5.0,"安静指数":7.0,"种族包容":7.0,"年均气温 (°C)":28,"最佳季节":"12月-2月","签证":"DE R passes","综合分":6.5},{"排名":35,"区域":"欧洲","城市":"索菲亚","国家":"保加利亚","国家(英)":"Bulgaria","国旗":"🇧🇬","游民数":800,"月成本 (USD)":1200,"网络":7.5,"社群":7.0,"生活":6.0,"安全":8.0,"英语":5.0,"步行":6.0,"空气":6.0,"女性友好":7.0,"LGBTQ+":6.0,"夜生活":5.0,"安静指数":7.0,"种族包容":6.0,"年均气温 (°C)":11,"最佳季节":"5月-9月","签证":"保加利亚游民签","综合分":6.5},{"排名":36,"区域":"拉美","城市":"瓦哈卡","国家":"墨西哥","国家(英)":"Mexico","国旗":"🇲🇽","游民数":1100,"月成本 (USD)":1100,"网络":5.5,"社群":7.0,"生活":6.0,"安全":7.0,"英语":5.0,"步行":7.0,"空气":7.0,"女性友好":7.0,"LGBTQ+":7.0,"夜生活":5.0,"安静指数":7.0,"种族包容":7.0,"年均气温 (°C)":20,"最佳季节":"10月-5月","签证":"临时居留","综合分":6.5},{"排名":37,"区域":"拉美","城市":"巴拿马城","国家":"巴拿马","国家(英)":"Panama","国旗":"🇵🇦","游民数":1600,"月成本 (USD)":1800,"网络":6.0,"社群":7.0,"生活":7.0,"安全":7.0,"英语":6.0,"步行":5.0,"空气":6.0,"女性友好":7.0,"LGBTQ+":7.0,"夜生活":6.0,"安静指数":6.0,"种族包容":7.0,"年均气温 (°C)":28,"最佳季节":"12月-3月","签证":"游民签/短租友好","综合分":6.5},{"排名":38,"区域":"亚洲","城市":"河内","国家":"越南","国家(英)":"Vietnam","国旗":"🇻🇳","游民数":2500,"月成本 (USD)":800,"网络":6.5,"社群":8.0,"生活":7.0,"安全":8.0,"英语":4.0,"步行":6.0,"空气":4.0,"女性友好":7.0,"LGBTQ+":5.0,"夜生活":6.0,"安静指数":6.0,"种族包容":7.0,"年均气温 (°C)":24,"最佳季节":"10月-12月","签证":"电子签","综合分":6.4},{"排名":39,"区域":"亚洲","城市":"岘港","国家":"越南","国家(英)":"Vietnam","国旗":"🇻🇳","游民数":1500,"月成本 (USD)":800,"网络":7.0,"社群":7.0,"生活":6.0,"安全":8.0,"英语":4.0,"步行":5.0,"空气":7.0,"女性友好":7.0,"LGBTQ+":5.0,"夜生活":5.0,"安静指数":7.0,"种族包容":7.0,"年均气温 (°C)":26,"最佳季节":"2月-5月","签证":"电子签","综合分":6.4},{"排名":40,"区域":"欧洲","城市":"贝尔格莱德","国家":"塞尔维亚","国家(英)":"Serbia","国旗":"🇷🇸","游民数":900,"月成本 (USD)":1300,"网络":7.0,"社群":7.0,"生活":7.0,"安全":7.0,"英语":5.0,"步行":6.0,"空气":6.0,"女性友好":6.0,"LGBTQ+":6.0,"夜生活":7.0,"安静指数":6.0,"种族包容":6.0,"年均气温 (°C)":12,"最佳季节":"5月-9月","签证":"免签30天","综合分":6.4},{"排名":41,"区域":"拉美","城市":"里约","国家":"巴西","国家(英)":"Brazil","国旗":"🇧🇷","游民数":1800,"月成本 (USD)":1500,"网络":6.0,"社群":7.0,"生活":9.0,"安全":5.0,"英语":5.0,"步行":5.0,"空气":6.0,"女性友好":6.0,"LGBTQ+":8.0,"夜生活":9.0,"安静指数":5.0,"种族包容":6.0,"年均气温 (°C)":25,"最佳季节":"5月-8月","签证":"数字游民签","综合分":6.4},{"排名":42,"区域":"非洲","城市":"开普敦","国家":"南非","国家(英)":"South Africa","国旗":"🇿🇦","游民数":1800,"月成本 (USD)":1600,"网络":5.5,"社群":7.0,"生活":7.0,"安全":5.0,"英语":8.0,"步行":5.0,"空气":7.0,"女性友好":7.0,"LGBTQ+":8.0,"夜生活":6.0,"安静指数":6.0,"种族包容":6.0,"年均气温 (°C)":17,"最佳季节":"11月-3月","签证":"游民签/旅游","综合分":6.4},{"排名":43,"区域":"中东","城市":"多哈","国家":"卡塔尔","国家(英)":"Qatar","国旗":"🇶🇦","游民数":500,"月成本 (USD)":2800,"网络":8.0,"社群":5.0,"生活":6.0,"安全":9.0,"英语":8.0,"步行":5.0,"空气":6.0,"女性友好":5.0,"LGBTQ+":4.0,"夜生活":5.0,"安静指数":7.0,"种族包容":6.0,"年均气温 (°C)":30,"最佳季节":"11月-3月","签证":"旅游签/卡星","综合分":6.4},{"排名":44,"区域":"亚洲","城市":"吉隆坡","国家":"马来西亚","国家(英)":"Malaysia","国旗":"🇲🇾","游民数":2200,"月成本 (USD)":1100,"网络":7.0,"社群":7.0,"生活":7.0,"安全":7.0,"英语":6.0,"步行":6.0,"空气":5.0,"女性友好":6.0,"LGBTQ+":5.0,"夜生活":6.0,"安静指数":5.0,"种族包容":7.0,"年均气温 (°C)":28,"最佳季节":"5月-8月","签证":"DE R passes","综合分":6.3},{"排名":45,"区域":"欧洲","城市":"伊斯坦布尔","国家":"土耳其","国家(英)":"Türkiye","国旗":"🇹🇷","游民数":2000,"月成本 (USD)":1200,"网络":6.0,"社群":7.0,"生活":8.0,"安全":7.0,"英语":5.0,"步行":7.0,"空气":5.0,"女性友好":6.0,"LGBTQ+":6.0,"夜生活":7.0,"安静指数":5.0,"种族包容":6.0,"年均气温 (°C)":14,"最佳季节":"4月-5月, 9月-10月","签证":"免签/居留","综合分":6.3},{"排名":46,"区域":"拉美","城市":"卡波圣卢卡斯","国家":"墨西哥","国家(英)":"Mexico","国旗":"🇲🇽","游民数":900,"月成本 (USD)":1700,"网络":5.5,"社群":6.0,"生活":7.0,"安全":7.0,"英语":6.0,"步行":5.0,"空气":7.0,"女性友好":6.0,"LGBTQ+":7.0,"夜生活":7.0,"安静指数":6.0,"种族包容":6.0,"年均气温 (°C)":24,"最佳季节":"11月-4月","签证":"临时居留","综合分":6.3},{"排名":47,"区域":"拉美","城市":"普拉亚德尔卡曼","国家":"墨西哥","国家(英)":"Mexico","国旗":"🇲🇽","游民数":2000,"月成本 (USD)":1500,"网络":6.0,"社群":7.0,"生活":7.0,"安全":6.0,"英语":6.0,"步行":6.0,"空气":7.0,"女性友好":6.0,"LGBTQ+":7.0,"夜生活":7.0,"安静指数":5.0,"种族包容":6.0,"年均气温 (°C)":27,"最佳季节":"11月-4月","签证":"临时居留","综合分":6.3},{"排名":48,"区域":"亚洲","城市":"班加罗尔","国家":"印度","国家(英)":"India","国旗":"🇮🇳","游民数":2500,"月成本 (USD)":900,"网络":6.0,"社群":8.0,"生活":7.0,"安全":7.0,"英语":7.0,"步行":5.0,"空气":4.0,"女性友好":6.0,"LGBTQ+":5.0,"夜生活":6.0,"安静指数":5.0,"种族包容":6.0,"年均气温 (°C)":24,"最佳季节":"10月-2月","签证":"电子签","综合分":6.2},{"排名":49,"区域":"亚洲","城市":"宿务","国家":"菲律宾","国家(英)":"Philippines","国旗":"🇵🇭","游民数":1100,"月成本 (USD)":900,"网络":5.5,"社群":7.0,"生活":6.0,"安全":7.0,"英语":7.0,"步行":4.0,"空气":7.0,"女性友好":7.0,"LGBTQ+":5.0,"夜生活":5.0,"安静指数":6.0,"种族包容":7.0,"年均气温 (°C)":28,"最佳季节":"12月-5月","签证":"免签30天","综合分":6.2},{"排名":50,"区域":"拉美","城市":"图卢姆","国家":"墨西哥","国家(英)":"Mexico","国旗":"🇲🇽","游民数":2400,"月成本 (USD)":1700,"网络":5.0,"社群":8.0,"生活":6.0,"安全":6.0,"英语":6.0,"步行":4.0,"空气":7.0,"女性友好":6.0,"LGBTQ+":7.0,"夜生活":5.0,"安静指数":6.0,"种族包容":6.0,"年均气温 (°C)":26,"最佳季节":"11月-4月","签证":"临时居留","综合分":6.1},{"排名":51,"区域":"拉美","城市":"利马","国家":"秘鲁","国家(英)":"Peru","国旗":"🇵🇪","游民数":1400,"月成本 (USD)":1300,"网络":6.0,"社群":7.0,"生活":7.0,"安全":6.0,"英语":5.0,"步行":6.0,"空气":5.0,"女性友好":6.0,"LGBTQ+":7.0,"夜生活":6.0,"安静指数":5.0,"种族包容":6.0,"年均气温 (°C)":20,"最佳季节":"12月-4月","签证":"旅游签183天","综合分":6.1},{"排名":52,"区域":"亚洲","城市":"果阿","国家":"印度","国家(英)":"India","国旗":"🇮🇳","游民数":1800,"月成本 (USD)":1000,"网络":5.0,"社群":7.0,"生活":6.0,"安全":7.0,"英语":6.0,"步行":4.0,"空气":7.0,"女性友好":6.0,"LGBTQ+":5.0,"夜生活":5.0,"安静指数":6.0,"种族包容":6.0,"年均气温 (°C)":28,"最佳季节":"11月-2月","签证":"电子签","综合分":6.0},{"排名":53,"区域":"非洲","城市":"基加利","国家":"卢旺达","国家(英)":"Rwanda","国旗":"🇷🇼","游民数":600,"月成本 (USD)":1100,"网络":5.0,"社群":5.0,"生活":5.0,"安全":8.0,"英语":6.0,"步行":6.0,"空气":7.0,"女性友好":6.0,"LGBTQ+":4.0,"夜生活":4.0,"安静指数":8.0,"种族包容":7.0,"年均气温 (°C)":21,"最佳季节":"6月-9月","签证":"游民签/旅游","综合分":5.9},{"排名":54,"区域":"拉美","城市":"卡塔赫纳","国家":"哥伦比亚","国家(英)":"Colombia","国旗":"🇨🇴","游民数":1800,"月成本 (USD)":1300,"网络":6.0,"社群":7.0,"生活":7.0,"安全":5.0,"英语":4.0,"步行":5.0,"空气":5.0,"女性友好":6.0,"LGBTQ+":7.0,"夜生活":7.0,"安静指数":5.0,"种族包容":6.0,"年均气温 (°C)":28,"最佳季节":"12月-3月","签证":"游民签M","综合分":5.8},{"排名":55,"区域":"非洲","城市":"内罗毕","国家":"肯尼亚","国家(英)":"Kenya","国旗":"🇰🇪","游民数":1200,"月成本 (USD)":1200,"网络":5.0,"社群":7.0,"生活":6.0,"安全":5.0,"英语":7.0,"步行":5.0,"空气":5.0,"女性友好":6.0,"LGBTQ+":6.0,"夜生活":6.0,"安静指数":5.0,"种族包容":6.0,"年均气温 (°C)":22,"最佳季节":"7月-9月, 1月-2月","签证":"游民签","综合分":5.8},{"排名":56,"区域":"亚洲","城市":"金边","国家":"柬埔寨","国家(英)":"Cambodia","国旗":"🇰🇭","游民数":1300,"月成本 (USD)":900,"网络":5.5,"社群":7.0,"生活":6.0,"安全":7.0,"英语":4.0,"步行":5.0,"空气":4.0,"女性友好":6.0,"LGBTQ+":5.0,"夜生活":5.0,"安静指数":6.0,"种族包容":6.0,"年均气温 (°C)":28,"最佳季节":"11月-2月","签证":"E-visa/落地","综合分":5.7},{"排名":57,"区域":"亚洲","城市":"暹粒","国家":"柬埔寨","国家(英)":"Cambodia","国旗":"🇰🇭","游民数":900,"月成本 (USD)":800,"网络":5.0,"社群":6.0,"生活":5.0,"安全":8.0,"英语":4.0,"步行":5.0,"空气":5.0,"女性友好":6.0,"LGBTQ+":5.0,"夜生活":4.0,"安静指数":7.0,"种族包容":7.0,"年均气温 (°C)":28,"最佳季节":"11月-2月","签证":"落地签","综合分":5.7},{"排名":58,"区域":"非洲","城市":"塔加祖特","国家":"摩洛哥","国家(英)":"Morocco","国旗":"🇲🇦","游民数":700,"月成本 (USD)":900,"网络":5.0,"社群":6.0,"生活":5.0,"安全":7.0,"英语":5.0,"步行":4.0,"空气":8.0,"女性友好":6.0,"LGBTQ+":5.0,"夜生活":4.0,"安静指数":7.0,"种族包容":6.0,"年均气温 (°C)":20,"最佳季节":"4月-10月冲浪","签证":"旅游签","综合分":5.7},{"排名":59,"区域":"亚洲","城市":"雅加达","国家":"印尼","国家(英)":"Indonesia","国旗":"🇮🇩","游民数":1500,"月成本 (USD)":1100,"网络":7.0,"社群":6.0,"生活":7.0,"安全":6.0,"英语":5.0,"步行":6.0,"空气":3.0,"女性友好":5.0,"LGBTQ+":4.0,"夜生活":7.0,"安静指数":4.0,"种族包容":5.0,"年均气温 (°C)":28,"最佳季节":"6月-9月","签证":"B211A","综合分":5.6},{"排名":60,"区域":"亚洲","城市":"马尼拉","国家":"菲律宾","国家(英)":"Philippines","国旗":"🇵🇭","游民数":1200,"月成本 (USD)":1000,"网络":6.0,"社群":6.0,"生活":6.0,"安全":5.5,"英语":8.0,"步行":5.0,"空气":4.0,"女性友好":5.0,"LGBTQ+":5.0,"夜生活":6.0,"安静指数":4.0,"种族包容":6.0,"年均气温 (°C)":29,"最佳季节":"12月-2月","签证":"免签30天","综合分":5.6},{"排名":61,"区域":"拉美","城市":"安提瓜","国家":"危地马拉","国家(英)":"Guatemala","国旗":"🇬🇹","游民数":800,"月成本 (USD)":1100,"网络":5.0,"社群":6.0,"生活":5.0,"安全":6.0,"英语":5.0,"步行":6.0,"空气":7.0,"女性友好":6.0,"LGBTQ+":5.0,"夜生活":4.0,"安静指数":6.0,"种族包容":6.0,"年均气温 (°C)":19,"最佳季节":"11月-4月","签证":"旅游签","综合分":5.6},{"排名":62,"区域":"非洲","城市":"约翰内斯堡","国家":"南非","国家(英)":"South Africa","国旗":"🇿🇦","游民数":1100,"月成本 (USD)":1300,"网络":5.5,"社群":6.0,"生活":6.0,"安全":4.0,"英语":8.0,"步行":5.0,"空气":5.0,"女性友好":6.0,"LGBTQ+":5.0,"夜生活":6.0,"安静指数":5.0,"种族包容":5.0,"年均气温 (°C)":16,"最佳季节":"9月-11月, 3月-5月","签证":"游民签/旅游","综合分":5.6},{"排名":63,"区域":"非洲","城市":"马拉喀什","国家":"摩洛哥","国家(英)":"Morocco","国旗":"🇲🇦","游民数":800,"月成本 (USD)":900,"网络":5.0,"社群":6.0,"生活":6.0,"安全":6.0,"英语":5.0,"步行":4.0,"空气":6.0,"女性友好":5.0,"LGBTQ+":5.0,"夜生活":5.0,"安静指数":6.0,"种族包容":5.0,"年均气温 (°C)":21,"最佳季节":"3月-5月, 9月-11月","签证":"旅游签90天","综合分":5.4},{"排名":64,"区域":"非洲","城市":"开罗","国家":"埃及","国家(英)":"Egypt","国旗":"🇪🇬","游民数":700,"月成本 (USD)":800,"网络":5.0,"社群":5.0,"生活":6.0,"安全":6.0,"英语":5.0,"步行":5.0,"空气":4.0,"女性友好":4.0,"LGBTQ+":3.0,"夜生活":5.0,"安静指数":5.0,"种族包容":5.0,"年均气温 (°C)":22,"最佳季节":"10月-4月","签证":"旅游签","综合分":4.9}];
+
+// ====== Configuration ======
+const SCORE_FIELDS = [
+  {key:"网络", weight:1.0, label:"🌐 网络", help:"5G/光纤普及度、办公 Wi-Fi 速度"},
+  {key:"社群", weight:1.2, label:"👥 社群", help:"Meetup/Coworking/线下活动密度"},
+  {key:"生活", weight:1.0, label:"🎉 生活", help:"餐厅/娱乐/文化体验丰富度"},
+  {key:"安全", weight:1.2, label:"🛡️ 安全", help:"治安、夜间外出安全感"},
+  {key:"英语", weight:0.9, label:"🗣️ 英语", help:"日常英语沟通便利度"},
+  {key:"步行", weight:0.7, label:"🚶 步行", help:"步道/基础设施/便利"},
+  {key:"空气", weight:0.7, label:"🌬️ 空气", help:"PM2.5 / 综合污染指数"},
+  {key:"女性友好", weight:0.8, label:"👩 女性友好", help:"性别平等与女性安全感"},
+  {key:"LGBTQ+", weight:0.6, label:"🌈 LGBTQ+", help:"多元包容与社会氛围"},
+  {key:"夜生活", weight:0.5, label:"🌃 夜生活", help:"酒吧/俱乐部/夜间活力"},
+  {key:"安静指数", weight:0.6, label:"🤫 安静", help:"噪音/拥挤度/可专注性"},
+  {key:"种族包容", weight:0.6, label:"🤝 种族包容", help:"对外来人口接受度"}
+];
+
+const REGION_LIST = ["全部","亚洲","欧洲","拉美","非洲","中东"];
+
+// ====== State ======
+let currentRegion = "全部";
+let currentCountry = "";
+let currentSearch = "";
+let currentRank = "all";
+let sortKey = "综合分";
+let sortDir = -1;
+let expanded = null;
+
+// ====== Helpers ======
+function tier(v){ return v>=7?"g":v>=5.5?"m":"b"; }
+function costClass(c){ return c<=1100?"cost-low":c<=2000?"cost-mid":"cost-high"; }
+function num(n){ return n.toLocaleString(); }
+function tierScore(score){
+  if(score>=9) return ["世界级","#065f46"];
+  if(score>=7.5) return ["优秀","#047857"];
+  if(score>=6) return ["良好","#92400e"];
+  if(score>=4.5) return ["一般","#9a3412"];
+  return ["偏差","#991b1b"];
+}
+
+function filtered(){
+  let list = [...CITIES_DATA];
+  if(currentRegion !== "全部") list = list.filter(d => d["区域"] === currentRegion);
+  if(currentCountry) list = list.filter(d => d["国家"] === currentCountry);
+  if(currentRank !== "all") list = list.filter(d => d["排名"] <= parseInt(currentRank));
+  if(currentSearch){
+    const q = currentSearch.toLowerCase();
+    list = list.filter(d => d["城市"].toLowerCase().includes(q) || d["国家"].toLowerCase().includes(q) || (d["国家(英)"]||"").toLowerCase().includes(q));
+  }
+  list.sort((a,b) => {
+    const av = a[sortKey], bv = b[sortKey];
+    if(typeof av === "string"){
+      return av.localeCompare(bv) * sortDir;
+    }
+    return (av - bv) * sortDir;
+  });
+  return list;
+}
+
+function renderStats(){
+  const stats = document.getElementById("stats");
+  const cheapest = [...CITIES_DATA].sort((a,b) => a["月成本 (USD)"] - b["月成本 (USD)"])[0];
+  const priciest = [...CITIES_DATA].sort((a,b) => b["月成本 (USD)"] - a["月成本 (USD)"])[0];
+  const biggest = [...CITIES_DATA].sort((a,b) => b["游民数"] - a["游民数"])[0];
+  const top = [...CITIES_DATA].sort((a,b) => b["综合分"] - a["综合分"])[0];
+  stats.innerHTML = `
+    <div class="stat"><div class="l">收录城市</div><div class="v">${CITIES_DATA.length}</div><div class="s">5 大区域</div></div>
+    <div class="stat"><div class="l">最便宜</div><div class="v">$${cheapest["月成本 (USD)"]}</div><div class="s">${cheapest["城市"]} 🇺🇳</div></div>
+    <div class="stat"><div class="l">最贵</div><div class="v">$${priciest["月成本 (USD)"]}</div><div class="s">${priciest["城市"]} 🇺🇳</div></div>
+    <div class="stat"><div class="l">最大社群</div><div class="v">${num(biggest["游民数"])}</div><div class="s">${biggest["城市"]} 🇺🇳</div></div>
+    <div class="stat"><div class="l">综合最高分</div><div class="v">${top["综合分"]}</div><div class="s">${top["城市"]} 🇺🇳</div></div>
+  `;
+}
+
+function renderTabs(){
+  const tabs = document.getElementById("tabs");
+  tabs.innerHTML = REGION_LIST.map(r => `<div class="tab ${currentRegion===r?"active":""}" data-region="${r}">${r}</div>`).join("");
+  tabs.querySelectorAll(".tab").forEach(t => {
+    t.addEventListener("click", () => {
+      currentRegion = t.getAttribute("data-region");
+      currentCountry = "";
+      document.getElementById("country-filter").value = "";
+      expanded = null;
+      renderTabs();
+      renderCountryFilter();
+      render();
+    });
+  });
+}
+
+function renderCountryFilter(){
+  const sel = document.getElementById("country-filter");
+  let pool = CITIES_DATA;
+  if(currentRegion !== "全部") pool = pool.filter(d => d["区域"] === currentRegion);
+  const countries = [...new Set(pool.map(d => d["国家"]))].sort();
+  sel.innerHTML = `<option value="">全部国家（${countries.length}）</option>` + countries.map(c => `<option value="${c}" ${currentCountry===c?"selected":""}>${c}</option>`).join("");
+}
+
+function renderMethodology(){
+  const grid = document.getElementById("methodology-grid");
+  grid.innerHTML = SCORE_FIELDS.map(f => `
+    <div style="padding:10px 12px; background:var(--bg-2); border-radius:8px;">
+      <div style="font-size:13px; font-weight:600;">${f.label} <span style="color:var(--text-3); font-weight:400;">权重 ${f.weight}</span></div>
+      <div style="font-size:11px; color:var(--text-2); margin-top:2px;">${f.help}</div>
+    </div>
+  `).join("") + `
+    <div style="padding:10px 12px; background:linear-gradient(135deg, rgba(14,165,233,0.08), rgba(99,102,241,0.08)); border-radius:8px; grid-column: 1/-1;">
+      <div style="font-size:13px; font-weight:600;">🎯 综合分计算公式</div>
+      <div style="font-size:11px; color:var(--text-2); margin-top:4px; font-family:monospace; line-height:1.6;">
+        overall = (网络×1.0 + 社群×1.2 + 生活×1.0 + 安全×1.2 + 英语×0.9 + 步行×0.7 + 空气×0.7 + 女性友好×0.8 + LGBTQ+×0.6 + 夜生活×0.5 + 安静×0.6 + 种族包容×0.6) / 9.8
+      </div>
+    </div>
+  `;
+}
+
+function barHTML(v){
+  const pct = Math.min(100, v*10);
+  const cls = tier(v);
+  return `<span class="bar ${cls}"><span style="width:${pct}%"></span></span>${v}`;
+}
+
+function rowHTML(d, i){
+  const isExp = expanded === i;
+  return `
+    <tr class="${isExp?"expanded":""}" data-i="${i}">
+      <td class="rank">${d["排名"]}</td>
+      <td><div class="city-cell"><div class="city-flag">${d["国旗"]}</div><div><div class="city-name">${d["城市"]}</div><div class="city-country">${d["国家"]} · <span class="pill ${d["区域"]}">${d["区域"]}</span></div></div></div></td>
+      <td class="num">${num(d["游民数"])}</td>
+      <td class="num ${costClass(d["月成本 (USD)"])}">$${num(d["月成本 (USD)"])}</td>
+      <td>${barHTML(d["网络"])}</td>
+      <td>${barHTML(d["社群"])}</td>
+      <td>${barHTML(d["生活"])}</td>
+      <td>${barHTML(d["安全"])}</td>
+      <td>${barHTML(d["英语"])}</td>
+      <td class="num" style="font-weight:700; color:var(--accent);">${d["综合分"]}</td>
+    </tr>
+    ${isExp ? `
+    <tr class="detail-row"><td colspan="10">
+      <div style="display:flex; flex-wrap:wrap; gap:14px; margin-bottom:12px; font-size:12px; color:var(--text-2);">
+        <div><strong>游民数：</strong>${num(d["游民数"])} 人</div>
+        <div><strong>月成本：</strong>$${num(d["月成本 (USD)"])}</div>
+        <div><strong>年均气温：</strong>${d["年均气温 (°C)"]}°C</div>
+        <div><strong>最佳季节：</strong>${d["最佳季节"]}</div>
+        <div><strong>签证：</strong>${d["签证"]}</div>
+      </div>
+      <div class="detail-grid">
+        ${SCORE_FIELDS.map(f => {
+          const v = d[f.key];
+          const [t, color] = tierScore(v);
+          return `<div class="metric-card"><div class="ml">${f.label}</div><div class="mv" style="color:${color};">${v} <span style="font-size:11px; font-weight:400; color:var(--text-3);">/ ${t}</span></div><div class="md">${f.help}</div></div>`;
+        }).join("")}
+      </div>
+    </td></tr>` : ""}
+  `;
+}
+
+function render(){
+  const list = filtered();
+  const tbody = document.getElementById("tbody");
+  if(!list.length){
+    tbody.innerHTML = `<tr><td colspan="10"><div class="empty">没有匹配的城市</div></td></tr>`;
+    return;
+  }
+  tbody.innerHTML = list.map(rowHTML).join("");
+  tbody.querySelectorAll("tr[data-i]").forEach(tr => {
+    tr.addEventListener("click", () => {
+      const i = parseInt(tr.getAttribute("data-i"));
+      expanded = (expanded === i) ? null : i;
+      render();
+    });
+  });
+  // Update sort arrows
+  document.querySelectorAll("th[data-sort]").forEach(th => {
+    const arrow = th.querySelector(".arrow");
+    if(th.getAttribute("data-sort") === sortKey){
+      arrow.textContent = sortDir > 0 ? "↑" : "↓";
+    } else {
+      arrow.textContent = "↕";
+    }
+  });
+}
+
+// ====== Filters ======
+document.getElementById("search").addEventListener("input", e => {
+  currentSearch = e.target.value;
+  expanded = null;
+  render();
+});
+document.getElementById("country-filter").addEventListener("change", e => {
+  currentCountry = e.target.value;
+  expanded = null;
+  render();
+});
+document.getElementById("rank-filter").addEventListener("change", e => {
+  currentRank = e.target.value;
+  expanded = null;
+  render();
+});
+document.querySelectorAll("th[data-sort]").forEach(th => {
+  th.addEventListener("click", () => {
+    const k = th.getAttribute("data-sort");
+    if(sortKey === k) sortDir *= -1;
+    else { sortKey = k; sortDir = (k === "城市") ? 1 : -1; }
+    render();
+  });
+});
+
+// ====== Submit Modal ======
+const overlay = document.getElementById("modal-overlay");
+function openModal(){ overlay.classList.add("open"); buildScoreRows(); }
+function closeModal(){ overlay.classList.remove("open"); }
+document.getElementById("btn-submit").addEventListener("click", openModal);
+document.getElementById("modal-close").addEventListener("click", closeModal);
+document.getElementById("btn-cancel").addEventListener("click", closeModal);
+document.getElementById("link-submit").addEventListener("click", e => {
+  e.preventDefault();
+  openModal();
+  document.getElementById("modal-body").scrollTop = 0;
+});
+overlay.addEventListener("click", e => {
+  if(e.target === overlay) closeModal();
+});
+
+function buildScoreRows(){
+  const wrap = document.getElementById("score-rows");
+  wrap.innerHTML = SCORE_FIELDS.map(f => `
+    <div class="score-row" data-key="${f.key}">
+      <div>
+        <div class="score-label">${f.label}</div>
+        <div class="score-help">${f.help}</div>
+      </div>
+      <div class="score-input">
+        <input type="range" min="0" max="10" step="0.5" value="5" data-key="${f.key}" class="score-range">
+      </div>
+      <div class="score-val" data-val="${f.key}" style="background:var(--bg-2);">5.0</div>
+    </div>
+  `).join("");
+  wrap.querySelectorAll(".score-range").forEach(r => {
+    r.addEventListener("input", () => {
+      const k = r.getAttribute("data-key");
+      const v = parseFloat(r.value);
+      const cell = wrap.querySelector(`.score-val[data-val="${k}"]`);
+      cell.textContent = v.toFixed(1);
+      const cls = v>=7?"g":v>=5.5?"m":"b";
+      const colors = {g:"rgba(16,185,129,0.18)", m:"rgba(245,158,11,0.18)", b:"rgba(239,68,68,0.18)"};
+      cell.style.background = colors[cls];
+    });
+  });
+}
+
+function collectForm(){
+  const form = document.getElementById("submit-form");
+  const fd = new FormData(form);
+  const data = {
+    type: "submission",
+    timestamp: new Date().toISOString(),
+    city: fd.get("city"),
+    country: fd.get("country"),
+    region: fd.get("region"),
+    description: fd.get("description"),
+    sources: fd.get("sources"),
+    scores: {}
+  };
+  document.querySelectorAll(".score-range").forEach(r => {
+    data.scores[r.getAttribute("data-key")] = parseFloat(r.value);
+  });
+  return data;
+}
+
+document.getElementById("submit-form").addEventListener("submit", e => {
+  e.preventDefault();
+  const data = collectForm();
+  
+  // Save to localStorage
+  const KEY = "nomad_submissions";
+  const existing = JSON.parse(localStorage.getItem(KEY) || "[]");
+  existing.push(data);
+  localStorage.setItem(KEY, JSON.stringify(existing));
+  
+  showSuccess(data);
+});
+
+function showSuccess(data){
+  const form = document.getElementById("submit-form");
+  const box = document.getElementById("submit-success");
+  form.style.display = "none";
+  
+  // Compute overall
+  const wsum = SCORE_FIELDS.reduce((s,f) => s + f.weight, 0);
+  const overall = (Object.entries(data.scores).reduce((s,[k,v]) => {
+    const f = SCORE_FIELDS.find(x => x.key === k);
+    return s + v * (f ? f.weight : 0);
+  }, 0) / wsum).toFixed(1);
+  
+  // GitHub Issue URL with prefilled body
+  const issueTitle = `[数据提交] ${data.city} (${data.country})`;
+  const issueBody = `## 数据提交
+
+**城市**：${data.city}
+**国家**：${data.country}
+**区域**：${data.region}
+
+### 描述
+${data.description || '(无)'}
+
+### 数据来源
+${data.sources || '(无)'}
+
+### 评分（满分 10）
+${SCORE_FIELDS.map(f => `- **${f.label}** (${f.key})：${data.scores[f.key]}`).join('\n')}
+
+### 综合分（自动计算）
+${overall}
+
+---
+提交时间：${data.timestamp}
+提交方式：网页表单（匿名）
+`;
+  const issueURL = `https://github.com/Roloria/global-digital-nomad/issues/new?title=${encodeURIComponent(issueTitle)}&body=${encodeURIComponent(issueBody)}&labels=data,community`;
+  
+  box.innerHTML = `
+    <div class="success-box">
+      <h4>✅ 提交已保存到你的浏览器</h4>
+      <p style="margin:6px 0; color:var(--text-2); font-size:13px;">
+        本次提交的综合分为 <strong style="color:var(--accent);">${overall}</strong>。
+        数据已保存到本地存储（<code>localStorage.nomad_submissions</code>）。
+      </p>
+      <p style="margin:8px 0 4px; font-size:13px;">🚀 <strong>想要让这份数据进入公开榜单？三步走：</strong></p>
+      <ol style="margin:6px 0; padding-left:24px; font-size:13px; line-height:1.8;">
+        <li>点击下方「提交 GitHub Issue」按钮 → 在 GitHub 上自动创建数据提交工单</li>
+        <li>维护者审核后会合并到 <code>data/digital-nomad-cities.csv</code></li>
+        <li>下一个版本发布时你就能看到它了 🎉</li>
+      </ol>
+      <div class="action-buttons">
+        <a href="${issueURL}" target="_blank" rel="noopener" class="btn">📤 提交 GitHub Issue</a>
+        <button class="btn btn-secondary" id="btn-export">💾 导出 JSON</button>
+        <button class="btn btn-secondary" id="btn-another">➕ 再提交一条</button>
+        <button class="btn btn-secondary" id="btn-close-success">关闭</button>
+      </div>
+      <p style="margin:10px 0 0; font-size:11px; color:var(--text-3);">
+        💡 提示：已保存 <span id="saved-count">0</span> 条提交。在浏览器开发者工具的 Application → Local Storage 可以看到全部。
+      </p>
+    </div>
+  `;
+  box.style.display = "block";
+  document.getElementById("saved-count").textContent = JSON.parse(localStorage.getItem("nomad_submissions") || "[]").length;
+  
+  document.getElementById("btn-export").addEventListener("click", () => {
+    const all = JSON.parse(localStorage.getItem("nomad_submissions") || "[]");
+    const blob = new Blob([JSON.stringify(all, null, 2)], {type: "application/json"});
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = `nomad-submissions-${new Date().toISOString().slice(0,10)}.json`;
+    a.click();
+  });
+  document.getElementById("btn-another").addEventListener("click", () => {
+    form.reset();
+    form.style.display = "block";
+    box.style.display = "none";
+    buildScoreRows();
+    document.getElementById("modal-body").scrollTop = 0;
+  });
+  document.getElementById("btn-close-success").addEventListener("click", closeModal);
+}
+
+// ====== Init ======
+renderStats();
+renderTabs();
+renderCountryFilter();
+renderMethodology();
+render();
+</script>
+</body>
+</html>
