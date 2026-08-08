@@ -8,7 +8,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 [![GitHub stars](https://img.shields.io/github/stars/Roloria/global-digital-nomad)](https://github.com/Roloria/global-digital-nomad/stargazers)
-[![Data: 2026](https://img.shields.io/badge/Data-2026--07-blue)](data/)
+[![Data: 2026](https://img.shields.io/badge/Data-2026--08-blue)](data/)
 [![🌐 Website](https://img.shields.io/badge/🌐_Website-Live-success?style=flat-square)](https://roloria.github.io/global-digital-nomad/)
 [![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Deployed-blueviolet?logo=github)](https://roloria.github.io/global-digital-nomad/)
 
@@ -24,7 +24,7 @@
 - Airbnb / Numbeo / CoWorker 等公开统计
 - 实地调研与社区贡献
 
-**覆盖范围**：5 大区域 · 39 国/地区 · 64 个主流数字游民城市
+**覆盖范围**：5 大区域 · 40 国/地区 · 80 个主流数字游民城市（含中国大陆 16 城）
 
 ---
 
@@ -42,7 +42,7 @@
 
 | 功能 | 说明 |
 |---|---|
-| 🔍 **多维筛选** | 按区域（5 大区）/ 国家（39 国）/ 排名（TOP 10/20/30/50/全部）/ 关键词搜索 |
+| 🔍 **多维筛选** | 按区域（5 大区）/ 国家（40 国）/ 排名（TOP 10/20/30/50/全部）/ 关键词搜索 |
 | 📊 **可视化榜单** | 表格 + 评分条形图，点击行展开 12 维度完整详情 |
 | 📤 **匿名提交** | 浏览器本地保存评分，附 GitHub Issue 模板一键上报 |
 | 📐 **评分标准内置** | 页面底部完整展示 12 项评分口径与综合分计算公式 |
@@ -157,7 +157,7 @@ global-digital-nomad/
 ## ❓ 常见问题
 
 **Q: 什么是数字游民城市排名?**
-A: 本榜单从月成本、网络、社群、生活、安全、英语、步行、空气、女性友好、LGBTQ+、夜生活、安静指数、种族包容共 12 个维度,对全球 64 个城市加权评分,综合分越高越适合长期数字游民生活。
+A: 本榜单从月成本、网络、社群、生活、安全、英语、步行、空气、女性友好、LGBTQ+、夜生活、安静指数、种族包容共 12 个维度,对全球 80 个城市加权评分,综合分越高越适合长期数字游民生活。
 
 **Q: 排名前十的数字游民城市有哪些?**
 A: 里斯本、柏林、台北、东京、新加坡、拉斯帕尔马斯、塔林、布拉格、波尔图、巴塞罗那。完整榜单见[在线网站](https://roloria.github.io/global-digital-nomad/)。
@@ -190,6 +190,7 @@ A: 开源社区维护,无强制更新周期。任何人都可以匿名提交更�
 
 ## 📅 更新日志
 
+- **2026-08**：新增中国大陆 16 城数据并合并入主榜单（全球 80 城 / 40 国），新增中国专项数据表 `data/digital-nomad-cities-china.csv` 与报告 `reports/digital-nomad-cities-china-report.md`。
 - **2026-08**：网站新增「关于 / 数据更新频率」区块、底部数据状态改为动态统计、城市行加 `📅 最后更新` 徽章、新增 FAQ 可视化区块、为 SEO 补齐 Open Graph / Twitter Card / JSON-LD / sitemap / robots / favicon、SVG 结构化数据。
 - **2026-07**：首版发布,覆盖 64 个城市 / 39 个国家(亚洲 21 / 欧洲 18 / 拉美 15 / 非洲 7 / 中东 3)
 
