@@ -110,12 +110,30 @@
       }
     },
     {
+      &quot;@type&quot;: &quot;Dataset&quot;,
+      &quot;@id&quot;: &quot;https://roloria.github.io/global-digital-nomad/#dataset-communities&quot;,
+      &quot;name&quot;: &quot;全球数字游民社区数据集&quot;,
+      &quot;description&quot;: &quot;60 个数字游民社区(联合办公 45 / 联合生活 9 / 度假村 3 / 在线 2 / 聚会 1)的结构化资料,含位置 / 介绍 / 政策 / 月费 / 联系方式 / 综合分。用户可通过匿名提交 API 共享真实体验。&quot;,
+      &quot;url&quot;: &quot;https://github.com/Roloria/global-digital-nomad/blob/main/data/digital-nomad-communities.csv&quot;,
+      &quot;creator&quot;: {&quot;@id&quot;: &quot;https://roloria.github.io/global-digital-nomad/#org&quot;},
+      &quot;license&quot;: &quot;https://opensource.org/licenses/MIT&quot;,
+      &quot;keywords&quot;: &quot;数字游民社区,联合办公,联合生活,coworking,coliving,digital nomad community&quot;,
+      &quot;spatialCoverage&quot;: [&quot;亚洲&quot;,&quot;欧洲&quot;,&quot;拉美&quot;,&quot;非洲&quot;,&quot;中东&quot;,&quot;全球&quot;],
+      &quot;temporalCoverage&quot;: &quot;2026/2026&quot;,
+      &quot;distribution&quot;: {
+        &quot;@type&quot;: &quot;DataDownload&quot;,
+        &quot;encodingFormat&quot;: &quot;text/csv&quot;,
+        &quot;contentUrl&quot;: &quot;https://raw.githubusercontent.com/Roloria/global-digital-nomad/main/data/digital-nomad-communities.csv&quot;
+      }
+    },
+    {
       &quot;@type&quot;: &quot;BreadcrumbList&quot;,
       &quot;itemListElement&quot;: [
         {&quot;@type&quot;:&quot;ListItem&quot;,&quot;position&quot;:1,&quot;name&quot;:&quot;首页&quot;,&quot;item&quot;:&quot;https://roloria.github.io/global-digital-nomad/&quot;},
         {&quot;@type&quot;:&quot;ListItem&quot;,&quot;position&quot;:2,&quot;name&quot;:&quot;城市榜单&quot;},
-        {&quot;@type&quot;:&quot;ListItem&quot;,&quot;position&quot;:3,&quot;name&quot;:&quot;评分标准&quot;},
-        {&quot;@type&quot;:&quot;ListItem&quot;,&quot;position&quot;:4,&quot;name&quot;:&quot;关于 / 更新频率&quot;}
+        {&quot;@type&quot;:&quot;ListItem&quot;,&quot;position&quot;:3,&quot;name&quot;:&quot;🌐 数字游民社区&quot;,&quot;item&quot;:&quot;https://roloria.github.io/global-digital-nomad/#communities&quot;},
+        {&quot;@type&quot;:&quot;ListItem&quot;,&quot;position&quot;:4,&quot;name&quot;:&quot;评分标准&quot;},
+        {&quot;@type&quot;:&quot;ListItem&quot;,&quot;position&quot;:5,&quot;name&quot;:&quot;关于 / 更新频率&quot;}
       ]
     },
     {
@@ -789,8 +807,9 @@ footer a { color: var(--accent); text-decoration: none; }
     &lt;p style=&quot;margin:10px 0 0; font-size:13px; color:var(--text-2); line-height:1.6;&quot;&gt;本项目由开源社区维护,没有强制更新周期。任何用户都可以通过页面顶部的「📤 提交城市评分(匿名)」按钮提交更新,PR 合并后对应城市「最后更新」字段会自动刷新。&lt;/p&gt;
   &lt;/details&gt;
   &lt;details style=&quot;margin-top:8px; padding:10px 14px; background:var(--bg-2); border-radius:8px;&quot;&gt;
-    &lt;summary style=&quot;cursor:pointer; font-weight:600; font-size:14px;&quot;&gt;🌐 怎么找到数字游民社区?&lt;/summary&gt;
-    &lt;p style=&quot;margin:10px 0 0; font-size:13px; color:var(--text-2); line-height:1.6;&quot;&gt;下方的 &lt;b&gt;🌐 数字游民社区地图&lt;/b&gt;板块收录了全球 60 个热门社区(联合办公 45 / 联合生活 9 / 度假村 3 / 聚会 1 / 在线 2),可按区域 / 类型筛选。所有社区的位置、月费、政策、官网、联系邮箱都已结构化整理。点击页面内任意社区的「📤 分享社区体验(匿名)」按钮即可匿名提交你的真实体验 — 数据保存在你浏览器本地,也可一键导出 JSON 或跳 GitHub Issue 上报共建。&lt;/p&gt;
+    &lt;summary style=&quot;cursor:pointer; font-weight:600; font-size:14px;&quot;&gt;🌐 怎么找到数字游民社区?怎么匿名分享体验?&lt;/summary&gt;
+    &lt;p style=&quot;margin:10px 0 0; font-size:13px; color:var(--text-2); line-height:1.6;&quot;&gt;下方的 &lt;b&gt;🌐 数字游民社区地图&lt;/b&gt;板块收录了全球 60 个热门社区(联合办公 45 / 联合生活 9 / 度假村 3 / 聚会 1 / 在线 2),可按区域 / 类型筛选。所有社区的位置、月费、政策、官网、联系邮箱都已结构化整理。&lt;/p&gt;
+    &lt;p style=&quot;margin:8px 0 0; font-size:13px; color:var(--text-2); line-height:1.6;&quot;&gt;点「📤 分享社区体验(匿名)」按钮即可提交你的真实体验:&lt;b&gt;无需 GitHub 账号 / 无需本地存储&lt;/b&gt; — 提交直接 POST 到服务端 Cloudflare Worker,自动创建 GitHub Issue,完成后你拿到的就是真实的 Issue 链接。&lt;/p&gt;
   &lt;/details&gt;
 &lt;/div&gt;
 
