@@ -1,8 +1,8 @@
 {
   "base": "USD",
   "target": "CNY",
-  "rate": 7.20,
+  "rate": 6.759674,
   "updated_at": "2026-08-08",
   "source": "open.er-api.com",
-  "note": "initial manual baseline; auto-updated monthly by .github/workflows/update-exchange-rate.yml"
+  "note": "auto-updated by GitHub Action · schedule: monthly (0 0 1 * *)"
 }
