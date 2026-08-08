@@ -464,7 +464,7 @@ footer a { color: var(--accent); text-decoration: none; }
   <div class="currency-toggle" title="切换货币显示(默认美元)">
     <div class="seg" data-currency="USD" id="seg-usd">💲 USD</div>
     <div class="seg" data-currency="CNY" id="seg-cny">¥ CNY</div>
-    <span class="rate">· 1 USD ≈ <b id="rate-value" title="双击可自定义汇率">7.20</b> CNY</span>
+    <span class="rate">· 1 USD ≈ <b id="rate-value" title="双击可自定义汇率,Shift+双击恢复自动">7.20</b> CNY <span id="rate-meta" style="opacity:0.85;"></span></span>
   </div>
   <button class="btn" id="btn-submit">📤 提交城市评分(匿名)</button>
 </div>
@@ -693,27 +693,101 @@ let expanded = null;
 
 // ====== Currency State ======
 let currentCurrency = (typeof localStorage !== "undefined" && localStorage.getItem("nomad_currency")) || "USD";
-let customRate = parseFloat((typeof localStorage !== "undefined" && localStorage.getItem("nomad_rate")) || "7.20");
 const DEFAULT_RATE = 7.20;
+let customRate = DEFAULT_RATE;
+let rateSource = "auto";          // "auto" | "manual"
+let rateUpdatedAt = null;         // ISO date string when auto-fetched
+let rateSourceUrl = "";           // origin of the auto data, e.g. open.er-api.com
+let rateAutoFetchDone = false;     // whether the last auto-fetch attempt completed (true even on failure)
+
+(function restoreStoredRate(){
+  try {
+    const src = localStorage.getItem("nomad_rate_source");
+    if (src === "manual") {
+      const v = parseFloat(localStorage.getItem("nomad_rate"));
+      if (isFinite(v) && v > 0) { customRate = Math.round(v * 100) / 100; rateSource = "manual"; }
+    } else {
+      rateSource = "auto";
+    }
+  } catch(e) {}
+})();
 
 function setCurrency(c){
   if(c !== "USD" && c !== "CNY") c = "USD";
   currentCurrency = c;
   try { localStorage.setItem("nomad_currency", c); } catch(e){}
-  renderCurrency();
-  render();
-  renderStats();
+  refreshAll();
 }
 function setRate(r){
   const v = parseFloat(r);
   if(!isFinite(v) || v <= 0) return;
   customRate = Math.round(v * 100) / 100;
-  try { localStorage.setItem("nomad_rate", String(customRate)); } catch(e){}
-  renderCurrency();
-  render();
-  renderStats();
+  rateSource = "manual";
+  rateUpdatedAt = null;
+  rateSourceUrl = "";
+  try {
+    localStorage.setItem("nomad_rate_source", "manual");
+    localStorage.setItem("nomad_rate", String(customRate));
+  } catch(e){}
+  refreshAll();
+}
+function resetRateToAuto(){
+  rateSource = "auto";
+  rateUpdatedAt = null;
+  rateSourceUrl = "";
+  try { localStorage.setItem("nomad_rate_source", "auto"); } catch(e){}
+  fetchAndApplyRate();
 }
 function effectiveRate(){ return customRate || DEFAULT_RATE; }
+function refreshAll(){
+  renderCurrency();
+  renderStats();
+  render();
+  renderRateIndicator();
+}
+async function fetchAndApplyRate(){
+  try {
+    const res = await fetch("data/exchange-rate.json", { cache: "no-store" });
+    if(!res.ok) throw new Error("HTTP " + res.status);
+    const data = await res.json();
+    const r = parseFloat(data.rate);
+    const updated = new Date(data.updated_at);
+    if(!isFinite(r) || r <= 0 || isNaN(updated.getTime())) throw new Error("bad data");
+    // 只接受 45 天内的数据(防 stale)
+    const ageDays = (Date.now() - updated.getTime()) / 86400000;
+    if (ageDays > 45) throw new Error("data is " + Math.round(ageDays) + " days old");
+    customRate = Math.round(r * 100) / 100;
+    rateUpdatedAt = data.updated_at;
+    rateSourceUrl = data.source || "";
+  } catch(e){
+    console.warn("[nomad-rate] auto fetch failed:", e.message);
+    if (rateSource === "auto" && !rateUpdatedAt) {
+      // keep DEFAULT_RATE
+    }
+  }
+  rateAutoFetchDone = true;
+  refreshAll();
+}
+function renderRateIndicator(){
+  const el = document.getElementById("rate-meta");
+  if(!el) return;
+  if (rateSource === "auto" && rateUpdatedAt) {
+    el.innerHTML = `· 自动 <b style="color:var(--text-2); font-weight:600;">${rateUpdatedAt}</b> · <span style="opacity:0.85;">${rateSourceUrl}</span>`;
+    el.title = "汇率由 GitHub Action 每月自动从 " + rateSourceUrl + " 获取。双击数字可手动覆盖,Shift+双击恢复自动。";
+  } else if (rateSource === "manual") {
+    el.innerHTML = `· ✏️ <b style="color:var(--bad);">手动覆盖</b> · <a href="#" id="rate-reset" style="color:var(--accent); text-decoration:underline;">↻ 恢复自动</a>`;
+    el.title = "手动设置中。点击「恢复自动」让 GitHub Action 月度更新再次生效。";
+    const rl = document.getElementById("rate-reset");
+    if (rl) rl.addEventListener("click", e => { e.preventDefault(); resetRateToAuto(); });
+  } else if (rateSource === "auto" && !rateUpdatedAt && rateAutoFetchDone) {
+    el.innerHTML = `· <span style="opacity:0.7;">默认 ${DEFAULT_RATE.toFixed(2)} · 自动任务尚未运行</span>`;
+    el.title = "本地没有自动汇率数据,使用默认值。每月 1 号 0 点 UTC 的 GitHub Action 任务将自动填充最新汇率。";
+  } else {
+    // Loading or other transient state - keep silent
+    el.innerHTML = "";
+    el.title = "";
+  }
+}
 function costSymbol(){ return currentCurrency === "CNY" ? "¥" : "$"; }
 function formatCost(usd){
   const v = Number(usd) || 0;
@@ -743,6 +817,7 @@ function renderCurrency(){
     const arrow = th.querySelector('.arrow');
     th.innerHTML = (currentCurrency === "CNY" ? '月成本 <span style="opacity:0.65;">(¥)</span>' : '月成本 <span style="opacity:0.65;">($)</span>') + (arrow ? ` ${arrow.outerHTML}` : '<span class="arrow">↕</span>');
   }
+  renderRateIndicator();
 }
 
 // ====== Helpers ======
@@ -1148,12 +1223,19 @@ if (todayEl) {
 renderStats();
 renderAbout();
 renderCurrency();
+renderRateIndicator();
 
 document.getElementById("seg-usd").addEventListener("click", () => setCurrency("USD"));
 document.getElementById("seg-cny").addEventListener("click", () => setCurrency("CNY"));
-document.getElementById("rate-value").addEventListener("dblclick", () => {
+
+// 自动模式时,加载页面后异步拉一次最新汇率
+if (rateSource === "auto") {
+  fetchAndApplyRate();
+}
+document.getElementById("rate-value").addEventListener("dblclick", (e) => {
+  if(e.shiftKey) { resetRateToAuto(); return; }
   const cur = effectiveRate().toFixed(2);
-  const v = prompt("1 USD 等于多少 CNY?\n(留空恢复默认 " + DEFAULT_RATE + ")", cur);
+  const v = prompt("1 USD 等于多少 CNY?\n留空用默认 " + DEFAULT_RATE + "。Shift+双击恢复自动。", cur);
   if(v === null) return;
   if(v.trim() === "") setRate(DEFAULT_RATE);
   else setRate(v);

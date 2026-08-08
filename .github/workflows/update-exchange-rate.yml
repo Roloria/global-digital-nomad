@@ -1,0 +1,91 @@
+name: Update USD→CNY Exchange Rate
+
+on:
+  # 每月 1 号 00:00 UTC 跑一次
+  schedule:
+    - cron: '0 0 1 * *'
+  # 也支持手动触发(方便调试/补跑)
+  workflow_dispatch:
+  # 允许在工作流文件本身变动时立即跑一次(便于初次部署)
+  push:
+    paths:
+      - '.github/workflows/update-exchange-rate.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  update-rate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Query USD→CNY rate
+        id: fetch
+        env:
+          API_URL: https://open.er-api.com/v6/latest/USD
+        run: |
+          set -euo pipefail
+          TODAY=$(date -u +%Y-%m-%d)
+          echo "📅 today (UTC): $TODAY"
+          
+          # Try primary API
+          HTTP=$(curl -sS -o /tmp/rate.json -w "%{http_code}" --max-time 15 "$API_URL" || echo "000")
+          if [ "$HTTP" != "200" ]; then
+            echo "⚠️ primary API failed (HTTP $HTTP), trying fallback frankfurter.app"
+            HTTP2=$(curl -sS -o /tmp/rate.json -w "%{http_code}" --max-time 15 "https://api.frankfurter.app/latest?from=USD&to=CNY" || echo "000")
+            if [ "$HTTP2" != "200" ]; then
+              echo "❌ both APIs failed, aborting"
+              exit 1
+            fi
+            SOURCE="frankfurter.app"
+          else
+            SOURCE="open.er-api.com"
+          fi
+
+          # Primary API uses .rates.CNY, frankfurter uses .rates.CNY at top level
+          RATE=$(jq -r '.rates.CNY' /tmp/rate.json)
+          if [ "$RATE" = "null" ] || [ -z "$RATE" ]; then
+            echo "❌ cannot parse CNY rate from /tmp/rate.json"
+            cat /tmp/rate.json
+            exit 1
+          fi
+          echo "✅ $SOURCE reports 1 USD = $RATE CNY"
+          echo "rate=$RATE" >> $GITHUB_OUTPUT
+          echo "source=$SOURCE" >> $GITHUB_OUTPUT
+          echo "today=$TODAY" >> $GITHUB_OUTPUT
+
+      - name: Update exchange-rate.json
+        run: |
+          mkdir -p docs/data
+          cat > docs/data/exchange-rate.json <<JSON
+          {
+            "base": "USD",
+            "target": "CNY",
+            "rate": ${{ steps.fetch.outputs.rate }},
+            "updated_at": "${{ steps.fetch.outputs.today }}",
+            "source": "${{ steps.fetch.outputs.source }}",
+            "note": "auto-updated by GitHub Action · schedule: monthly (0 0 1 * *)"
+          }
+          JSON
+          echo "📝 wrote docs/data/exchange-rate.json:"
+          cat docs/data/exchange-rate.json
+
+      - name: Commit (only if changed)
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/data/exchange-rate.json
+          if git diff --cached --quiet; then
+            echo "ℹ️ no rate change this run, skipping commit"
+          else
+            OLD=$(git show HEAD:docs/data/exchange-rate.json 2>/dev/null | jq -r '.rate // "n/a"' || echo "n/a")
+            NEW=${{ steps.fetch.outputs.rate }}
+            git commit -m "chore(rate): USD→CNY $OLD → $NEW (auto-update ${{ steps.fetch.outputs.today }})"
+            git push
+            echo "✅ pushed"
+          fi
