@@ -6,10 +6,7 @@ on:
   pull_request:
     types: [opened, reopened, synchronize, closed]
     branches: [main]
-
-permissions:
-  contents: read
-  pull-requests: read
+  workflow_dispatch:
 
 jobs:
   update_release_draft:
@@ -18,16 +15,8 @@ jobs:
       contents: write
       pull-requests: write
     steps:
+      - uses: actions/checkout@v4
       - name: Release Drafter
         uses: release-drafter/release-drafter@v6
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          config-name: release-drafter.yml
-          tag-prefix: 'v'
-          disable-automatic-publish: false
-          publish-target: releases
-          version: ${{ github.ref }}
-          resolve-config: true
-          exclude_branches: []
-          exclude_pull_requests: []

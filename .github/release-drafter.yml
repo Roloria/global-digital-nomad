@@ -1,19 +1,15 @@
-# Release Drafter 配置
-# https://github.com/release-drafter/release-drafter
-
 name-template: '🌍 v$RESOLVED_VERSION'
 tag-template: 'v$RESOLVED_VERSION'
 version-resolver:
   major:
     labels: ['breaking', 'breaking-change', 'major']
   minor:
-    labels: ['feature', 'feat', 'enhancement', 'data']
+    labels: ['feature', 'feat', 'enhancement', 'data', 'new-city']
   patch:
-    labels: ['fix', 'bugfix', 'bug', 'chore', 'docs', 'ci', 'typo']
-  default: minor
+    labels: ['fix', 'bugfix', 'bug', 'chore', 'docs', 'ci', 'typo', 'dependencies']
+  default: patch
 
 categories:
-  # 🚀 新功能 / 数据更新
   - title: '🚀 新功能 & 数据更新'
     labels:
       - 'feature'
@@ -24,7 +20,6 @@ categories:
       - 'new-feature'
     collapse-after: 30
 
-  # 🐛 Bug 修复
   - title: '🐛 Bug 修复'
     labels:
       - 'fix'
@@ -32,14 +27,12 @@ categories:
       - 'bugfix'
     collapse-after: 30
 
-  # 📚 文档
   - title: '📚 文档'
     labels:
       - 'docs'
       - 'documentation'
     collapse-after: 30
 
-  # 🔧 维护 & CI
   - title: '🔧 维护 & CI'
     labels:
       - 'chore'
@@ -48,7 +41,6 @@ categories:
       - 'dependencies'
     collapse-after: 30
 
-  # ⚠️ 重大变更
   - title: '⚠️ 重大变更'
     labels:
       - 'breaking'
@@ -56,7 +48,6 @@ categories:
       - 'major'
     collapse-after: 0
 
-  # ❓ 其他
   - title: '❓ 其他改动'
     labels:
       - '*'
@@ -76,11 +67,6 @@ template: |
   $CHANGES
 
   ---
-
-  **📊 当前数据规模**：
-  - 🏙️ 城市数：${{ env.CITY_COUNT }}
-  - 🌏 国家数：${{ env.COUNTRY_COUNT }}
-  - 🗺️ 区域数：${{ env.REGION_COUNT }}
 
   **🔗 相关链接**：
   - [完整变更历史]($REPO_URL/compare/v$PREVIOUS_TAG...v$RESOLVED_VERSION)
