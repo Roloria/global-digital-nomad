@@ -8,10 +8,11 @@
 |---|---|---|
 | `digital-nomad-cities.csv` | 主数据，UTF-8，逗号分隔 | **首选** — 便于 PR diff、版本控制、代码处理 |
 | `digital-nomad-cities.xlsx` | Excel 多 sheet 版本 | 人工浏览、对比分析 |
+| `digital-nomad-cities-china.csv` | 中国大陆补充数据（16 城，26 列与主表一致） | 中国境内数字游民城市专项分析 |
 
 两份文件内容一致，CSV 是 source of truth，Excel 由脚本生成。
 
-## 字段说明（24 列）
+## 字段说明（26 列）
 
 | # | 字段 | 英文 | 类型 | 单位 | 示例 |
 |---:|---|---|---|---|---|
@@ -23,23 +24,24 @@
 | 6 | 国旗 | flag | string (emoji) | — | 🇵🇹 |
 | 7 | 游民数 | nomads | int | 人 | 2800 |
 | 8 | 月成本 (USD) | cost_usd | int | USD/月 | 2300 |
-| 9 | 网络 | internet | float | 0–10 | 7.5 |
-| 10 | 社群 | community | float | 0–10 | 8.0 |
-| 11 | 生活 | fun | float | 0–10 | 8.0 |
-| 12 | 安全 | safety | float | 0–10 | 8.5 |
-| 13 | 英语 | english | float | 0–10 | 7.0 |
-| 14 | 步行 | walk | float | 0–10 | 7.0 |
-| 15 | 空气 | air | float | 0–10 | 7.0 |
-| 16 | 女性友好 | female | float | 0–10 | 9.0 |
-| 17 | LGBTQ+ | lgbt | float | 0–10 | 9.0 |
-| 18 | 夜生活 | nightlife | float | 0–10 | 8.0 |
-| 19 | 安静指数 | peace | float | 0–10 | 7.0 |
-| 20 | 种族包容 | racial | float | 0–10 | 8.0 |
-| 21 | 年均气温 (°C) | temp_c | int | °C | 18 |
-| 22 | 最佳季节 | best_season | string | — | 4月-6月, 9月-10月 |
-| 23 | 签证 | visa | string | — | D7/D8 数字游民签证 |
-| 24 | 综合分 | overall | float | 0–10 | 7.9 |
-| 25 | 最后更新 | last_updated | string (date) | YYYY-MM-DD | 2026-08-08 |
+| 9 | 货币类型 | currency | string | — | 美元 / 人民币 |
+| 10 | 网络 | internet | float | 0–10 | 7.5 |
+| 11 | 社群 | community | float | 0–10 | 8.0 |
+| 12 | 生活 | fun | float | 0–10 | 8.0 |
+| 13 | 安全 | safety | float | 0–10 | 8.5 |
+| 14 | 英语 | english | float | 0–10 | 7.0 |
+| 15 | 步行 | walk | float | 0–10 | 7.0 |
+| 16 | 空气 | air | float | 0–10 | 7.0 |
+| 17 | 女性友好 | female | float | 0–10 | 9.0 |
+| 18 | LGBTQ+ | lgbt | float | 0–10 | 9.0 |
+| 19 | 夜生活 | nightlife | float | 0–10 | 8.0 |
+| 20 | 安静指数 | peace | float | 0–10 | 7.0 |
+| 21 | 种族包容 | racial | float | 0–10 | 8.0 |
+| 22 | 年均气温 (°C) | temp_c | int | °C | 18 |
+| 23 | 最佳季节 | best_season | string | — | 4月-6月, 9月-10月 |
+| 24 | 签证 | visa | string | — | D7/D8 数字游民签证 |
+| 25 | 综合分 | overall | float | 0–10 | 7.9 |
+| 26 | 最后更新 | last_updated | string (date) | YYYY-MM-DD | 2026-08-08 |
 
 ## 评分口径
 
@@ -92,7 +94,7 @@ overall = (
 ## 数据更新规范
 
 - 单一字段修改：在 Issue 或 PR 中注明 1–2 个数据来源
-- 新增城市：必须填全 24 个字段，至少提供 3 个数据来源
+- 新增城市：必须填全 26 个字段，至少提供 3 个数据来源
 - 重大重构（修改权重、删除/新增维度）：先开 Issue 讨论 ≥ 1 周
 
 ## 数据来源

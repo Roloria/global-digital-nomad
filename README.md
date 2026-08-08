@@ -73,10 +73,12 @@ global-digital-nomad/
 ├── data/                            ← 原始数据集
 │   ├── digital-nomad-cities.xlsx    ← 主数据集（Excel）
 │   ├── digital-nomad-cities.csv     ← 主数据集（CSV · 推荐用于 PR）
+│   ├── digital-nomad-cities-china.csv ← 中国境内补充数据（16 城）
 │   └── README.md                    ← 数据字典与字段说明
 │
 ├── reports/                         ← 调研报告
-│   └── digital-nomad-cities-report.md
+│   ├── digital-nomad-cities-report.md
+│   └── digital-nomad-cities-china-report.md ← 中国境内专项
 │
 ├── visualizations/                  ← 可视化页面
 │   ├── digital-nomad-cities.html              ← 内嵌片段
@@ -103,6 +105,8 @@ global-digital-nomad/
 直接下载：
 - `data/digital-nomad-cities.xlsx`（Excel 多 sheet 版）
 - `data/digital-nomad-cities.csv`（纯数据，便于代码处理）
+- `data/digital-nomad-cities-china.csv`（中国境内 16 城补充数据）
+- `reports/digital-nomad-cities-china-report.md`（中国境内专项报告）
 
 ---
 

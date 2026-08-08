@@ -38,6 +38,13 @@
 ### 8. 各国数字游民签证官方页面
 - 已收录 27 国 / 地区的官方签证说明
 
+### 9. 中国境内专项数据源
+- **Nomad Watch 中国页**：nomad.watch/countries/CN/cities — 33 城评分/成本基线
+- **nomads.com**：逐城实测（月成本、网速 Mbps、空气质量 AQI）
+- **RemoteAI-Nomads（GitHub cubxxw）**：25+ 国内数字游民基地名录（安吉 DNA、大理 NCC/CYC、资阳 DNβ 等）与地方政策补贴清单
+- **xuf-95/digital-nomad**：国内数字游民社区名录（DNA 安吉、DNCN 余村、NCC 大理、上海漕泾国际村、北京中关村国际社区）
+- **政策来源**：国家移民管理局（240h 过境免签、45 国免签、海南 59 国 30 天免签）、云南日报/云岭先锋（大理旅居人口）、安吉/杭州日报、GIS 政策文件
+
 ## 辅助来源
 
 - GitHub Awesome 数字游民列表
