@@ -1,0 +1,91 @@
+# Release Drafter 配置
+# https://github.com/release-drafter/release-drafter
+
+name-template: '🌍 v$RESOLVED_VERSION'
+tag-template: 'v$RESOLVED_VERSION'
+version-resolver:
+  major:
+    labels: ['breaking', 'breaking-change', 'major']
+  minor:
+    labels: ['feature', 'feat', 'enhancement', 'data']
+  patch:
+    labels: ['fix', 'bugfix', 'bug', 'chore', 'docs', 'ci', 'typo']
+  default: minor
+
+categories:
+  # 🚀 新功能 / 数据更新
+  - title: '🚀 新功能 & 数据更新'
+    labels:
+      - 'feature'
+      - 'feat'
+      - 'enhancement'
+      - 'data'
+      - 'new-city'
+      - 'new-feature'
+    collapse-after: 30
+
+  # 🐛 Bug 修复
+  - title: '🐛 Bug 修复'
+    labels:
+      - 'fix'
+      - 'bug'
+      - 'bugfix'
+    collapse-after: 30
+
+  # 📚 文档
+  - title: '📚 文档'
+    labels:
+      - 'docs'
+      - 'documentation'
+    collapse-after: 30
+
+  # 🔧 维护 & CI
+  - title: '🔧 维护 & CI'
+    labels:
+      - 'chore'
+      - 'ci'
+      - 'maintenance'
+      - 'dependencies'
+    collapse-after: 30
+
+  # ⚠️ 重大变更
+  - title: '⚠️ 重大变更'
+    labels:
+      - 'breaking'
+      - 'breaking-change'
+      - 'major'
+    collapse-after: 0
+
+  # ❓ 其他
+  - title: '❓ 其他改动'
+    labels:
+      - '*'
+    collapse-after: 50
+
+exclude-labels:
+  - 'skip-changelog'
+  - 'duplicate'
+  - 'invalid'
+
+change-template: '- $TITLE (#$NUMBER) @$AUTHOR'
+template: |
+  ## 🌍 全球数字游民计划 — v$RESOLVED_VERSION
+
+  > 自动生成的发布说明。最近一次更新：$DATE
+
+  $CHANGES
+
+  ---
+
+  **📊 当前数据规模**：
+  - 🏙️ 城市数：${{ env.CITY_COUNT }}
+  - 🌏 国家数：${{ env.COUNTRY_COUNT }}
+  - 🗺️ 区域数：${{ env.REGION_COUNT }}
+
+  **🔗 相关链接**：
+  - [完整变更历史]($REPO_URL/compare/v$PREVIOUS_TAG...v$RESOLVED_VERSION)
+  - [查看 release]($REPO_URL/releases/tag/v$RESOLVED_VERSION)
+
+  ---
+
+  🤖 *本 release 由 [release-drafter](https://github.com/release-drafter/release-drafter) 自动生成*
