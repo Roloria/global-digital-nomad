@@ -35,7 +35,21 @@
   </url>
 
   <url>
+    <loc>https://roloria.github.io/global-digital-nomad/#communities</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
     <loc>https://github.com/Roloria/global-digital-nomad/blob/main/data/digital-nomad-cities.csv</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://github.com/Roloria/global-digital-nomad/blob/main/data/digital-nomad-communities.csv</loc>
     <lastmod>2026-08-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -61,6 +75,13 @@
 
   <url>
     <loc>https://github.com/Roloria/global-digital-nomad/blob/main/reports/digital-nomad-cities-report.md</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://github.com/Roloria/global-digital-nomad/blob/main/reports/digital-nomad-communities-report.md</loc>
+    <lastmod>2026-08-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>

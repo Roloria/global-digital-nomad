@@ -116,3 +116,83 @@ df.to_excel("digital-nomad-cities.xlsx", index=False)
 ```
 
 更多脚本见 [`docs/methodology.md`](../docs/methodology.md)。
+
+---
+
+## 数字游民社区数据集 / Digital Nomad Communities
+
+> 📍 第二份核心数据集 · `digital-nomad-communities.csv`
+> 全网 60 个热门数字游民社区的结构化资料（位置/介绍/政策/联系方式）+ 匿名体验共建
+
+### 文件清单
+
+| 文件 | 用途 |
+|---|---|
+| `digital-nomad-communities.csv` | 社区主数据 · UTF-8 · 逗号分隔 · 18 列 · **首选用于 PR diff** |
+| `digital-nomad-communities.xlsx` | Excel 多 sheet 版（含分布与 TOP10 透视） |
+
+### 字段说明（18 列）
+
+| # | 字段 | 英文 | 类型 | 示例 |
+|---:|---|---|---|---|
+| 1 | 排名 | rank | int | 1 |
+| 2 | 区域 | region | string | 亚洲 / 欧洲 / 拉美 / 非洲 / 中东 / 全球 |
+| 3 | 城市 | city | string | 巴厘岛 (乌布) |
+| 4 | 国家 | country | string | 印尼 |
+| 5 | 国旗 | flag | emoji | 🇮🇩 |
+| 6 | 社区名称 | name | string | Hubud |
+| 7 | 社区名称(英) | name_en | string | Hubud Bali |
+| 8 | 类型 | type | enum | 联合办公 / 联合生活 / 聚会 / 度假村 / 在线社群 |
+| 9 | 简介 | intro | string | 巴厘岛最早的联合办公空间… |
+| 10 | 月费(USD) | price | string | $130–220/月 |
+| 11 | 容量 | capacity | int | 80 |
+| 12 | 政策摘要 | policy | string | 日票可用 / 周月票灵活 |
+| 13 | 网址 | url | string | https://hubud.org |
+| 14 | 联系邮箱 | email | string | hello@hubud.org |
+| 15 | 社群链接 | social | string | https://facebook.com/HubudBali |
+| 16 | 综合分 | overall | float | 8.4 |
+| 17 | 来源 | source | string | hubud.org/about |
+| 18 | 最后更新 | last_updated | YYYY-MM-DD | 2026-08-08 |
+
+### 社区类型
+
+| 类型 | 中文 | 含义 |
+|---|---|---|
+| Coworking | 联合办公 | 提供工位 / 会议室的共享办公空间 |
+| Coliving | 联合生活 | 提供住宿 + 工作 + 餐饮的精品小院 |
+| Meetup | 聚会 | 线下定期聚会 / 社团组织 |
+| Resort | 度假村 | 酒店型混合住宿 + 工作空间 |
+| Online | 在线社群 | 纯在线社群 / 平台 |
+
+### 综合分计算口径
+
+社区综合分（0–10）综合考虑以下因子（无固定权重，由维护者根据社区调研定期评分）：
+
+- 游民友好度（英语通用度 / 24×7 开放 / 接受访客）
+- 社群活跃度（周聚会 / 创业者氛围 / 新人欢迎）
+- 价格透明度（月费公开 / 无隐藏费用 / 灵活月票）
+- 设施完善度（高速 WiFi / 会议室 / 餐饮）
+- 安全与包容（女性友好 / LGBTQ+ 友好 / 多元文化）
+
+> 与城市榜单不同，社区没有公式化的自动综合分计算。评分由维护者根据实际走访或社区调研给出，**最后更新日期通过 Git 历史自动追溯**。
+
+### 隐私与匿名提交
+
+- 匿名体验表单保存在**浏览器本地**（localStorage），**不会**自动上传
+- 一键导出 JSON 或通过 GitHub Issue 上报到开源仓库
+- 提交指南见 [`docs/index.html`](../docs/index.html) 页面顶部的「📤 分享社区体验」按钮
+
+### 添加新社区
+
+新社区建议包含：
+
+- 官方网址（首选 `https://`）
+- 当前月费区间
+- 至少 1 条政策亮点（如接受访客、24×7 开放等）
+- 简介 < 80 字
+
+可在 [`Issues`](https://github.com/Roloria/global-digital-nomad/issues) 中提议或在 PR 中直接编辑 CSV。
+
+---
+
+**最后修订**：2026-08-08
