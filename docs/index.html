@@ -219,6 +219,15 @@ header .links a:hover { background: rgba(255,255,255,0.3); }
 .btn-secondary { background: var(--card); color: var(--accent); border: 1px solid var(--accent); }
 .btn-secondary:hover { background: var(--accent); color: white; }
 
+/* Currency segmented toggle */
+.currency-toggle { display: inline-flex; align-items: center; gap: 6px; padding: 4px 6px 4px 12px; background: var(--card); border: 1px solid var(--border); border-radius: 999px; font-size: 12px; color: var(--text-2); }
+.currency-toggle .seg { display: inline-flex; align-items: center; gap: 4px; padding: 4px 10px; border-radius: 999px; cursor: pointer; color: var(--text-2); transition: all 0.15s; user-select: none; font-weight: 500; font-size: 12px; }
+.currency-toggle .seg:hover { color: var(--accent); }
+.currency-toggle .seg.active { background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: white; font-weight: 600; }
+.currency-toggle .rate { color: var(--text-3); font-variant-numeric: tabular-nums; margin-left:4px; }
+.currency-toggle .rate b { color: var(--text-2); font-weight: 600; cursor: help; }
+@media (max-width: 720px) { .currency-toggle { padding: 3px 4px 3px 8px; font-size: 11px; } .currency-toggle .seg { padding: 3px 7px; } }
+
 .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-bottom: 18px; }
 .stat { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 12px 14px; }
 .stat .l { font-size: 11px; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.5px; }
@@ -452,6 +461,11 @@ footer a { color: var(--accent); text-decoration: none; }
     <option value="30">TOP 30</option>
     <option value="50">TOP 50</option>
   </select>
+  <div class="currency-toggle" title="切换货币显示(默认美元)">
+    <div class="seg" data-currency="USD" id="seg-usd">💲 USD</div>
+    <div class="seg" data-currency="CNY" id="seg-cny">¥ CNY</div>
+    <span class="rate">· 1 USD ≈ <b id="rate-value" title="双击可自定义汇率">7.20</b> CNY</span>
+  </div>
   <button class="btn" id="btn-submit">📤 提交城市评分(匿名)</button>
 </div>
 
@@ -677,6 +691,60 @@ let sortKey = "综合分";
 let sortDir = -1;
 let expanded = null;
 
+// ====== Currency State ======
+let currentCurrency = (typeof localStorage !== "undefined" && localStorage.getItem("nomad_currency")) || "USD";
+let customRate = parseFloat((typeof localStorage !== "undefined" && localStorage.getItem("nomad_rate")) || "7.20");
+const DEFAULT_RATE = 7.20;
+
+function setCurrency(c){
+  if(c !== "USD" && c !== "CNY") c = "USD";
+  currentCurrency = c;
+  try { localStorage.setItem("nomad_currency", c); } catch(e){}
+  renderCurrency();
+  render();
+  renderStats();
+}
+function setRate(r){
+  const v = parseFloat(r);
+  if(!isFinite(v) || v <= 0) return;
+  customRate = Math.round(v * 100) / 100;
+  try { localStorage.setItem("nomad_rate", String(customRate)); } catch(e){}
+  renderCurrency();
+  render();
+  renderStats();
+}
+function effectiveRate(){ return customRate || DEFAULT_RATE; }
+function costSymbol(){ return currentCurrency === "CNY" ? "¥" : "$"; }
+function formatCost(usd){
+  const v = Number(usd) || 0;
+  if(currentCurrency === "CNY"){
+    return `${costSymbol()}${num(Math.round(v * effectiveRate()))}`;
+  }
+  return `${costSymbol()}${num(v)}`;
+}
+function formatDualCost(usd){
+  const v = Number(usd) || 0;
+  if(currentCurrency === "CNY"){
+    return `${costSymbol()}${num(Math.round(v * effectiveRate()))} <span style="color:var(--text-3); font-size:11px;">≈$${num(v)}</span>`;
+  }
+  return `${costSymbol()}${num(v)} <span style="color:var(--text-3); font-size:11px;">≈¥${num(Math.round(v * effectiveRate()))}</span>`;
+}
+
+function renderCurrency(){
+  const segUSD = document.getElementById("seg-usd");
+  const segCNY = document.getElementById("seg-cny");
+  const rv = document.getElementById("rate-value");
+  if(segUSD) segUSD.classList.toggle("active", currentCurrency === "USD");
+  if(segCNY) segCNY.classList.toggle("active", currentCurrency === "CNY");
+  if(rv) rv.textContent = effectiveRate().toFixed(2);
+  // Update table header label
+  const th = document.querySelector('th[data-sort="月成本 (USD)"]');
+  if(th){
+    const arrow = th.querySelector('.arrow');
+    th.innerHTML = (currentCurrency === "CNY" ? '月成本 <span style="opacity:0.65;">(¥)</span>' : '月成本 <span style="opacity:0.65;">($)</span>') + (arrow ? ` ${arrow.outerHTML}` : '<span class="arrow">↕</span>');
+  }
+}
+
 // ====== Helpers ======
 function tier(v){ return v>=7?"g":v>=5.5?"m":"b"; }
 function costClass(c){ return c<=1100?"cost-low":c<=2000?"cost-mid":"cost-high"; }
@@ -767,8 +835,8 @@ function renderStats(){
   const top = [...CITIES_DATA].sort((a,b) => b["综合分"] - a["综合分"])[0];
   stats.innerHTML = `
     <div class="stat"><div class="l">收录城市</div><div class="v">${CITIES_DATA.length}</div><div class="s">5 大区域</div></div>
-    <div class="stat"><div class="l">最便宜</div><div class="v">$${cheapest["月成本 (USD)"]}</div><div class="s">${cheapest["城市"]} 🇺🇳</div></div>
-    <div class="stat"><div class="l">最贵</div><div class="v">$${priciest["月成本 (USD)"]}</div><div class="s">${priciest["城市"]} 🇺🇳</div></div>
+    <div class="stat"><div class="l">最便宜(${costSymbol()})</div><div class="v">${formatCost(cheapest["月成本 (USD)"]).slice(1)}</div><div class="s">${cheapest["城市"]} · ${formatDualCost(cheapest["月成本 (USD)"])}</div></div>
+    <div class="stat"><div class="l">最贵(${costSymbol()})</div><div class="v">${formatCost(priciest["月成本 (USD)"]).slice(1)}</div><div class="s">${priciest["城市"]} · ${formatDualCost(priciest["月成本 (USD)"])}</div></div>
     <div class="stat"><div class="l">最大社群</div><div class="v">${num(biggest["游民数"])}</div><div class="s">${biggest["城市"]} 🇺🇳</div></div>
     <div class="stat"><div class="l">综合最高分</div><div class="v">${top["综合分"]}</div><div class="s">${top["城市"]} 🇺🇳</div></div>
   `;
@@ -828,7 +896,7 @@ function rowHTML(d, i){
       <td class="rank">${d["排名"]}</td>
       <td><div class="city-cell"><div class="city-flag">${d["国旗"]}</div><div><div class="city-name">${d["城市"]} <span style="font-size:10px; color:var(--text-3); font-weight:400; margin-left:4px;">📅 ${d["最后更新"]}</span></div><div class="city-country">${d["国家"]} · <span class="pill ${d["区域"]}">${d["区域"]}</span></div></div></div></td>
       <td class="num">${num(d["游民数"])}</td>
-      <td class="num ${costClass(d["月成本 (USD)"])}">$${num(d["月成本 (USD)"])}</td>
+      <td class="num ${costClass(d["月成本 (USD)"])}">${formatCost(d["月成本 (USD)"])}</td>
       <td>${barHTML(d["网络"])}</td>
       <td>${barHTML(d["社群"])}</td>
       <td>${barHTML(d["生活"])}</td>
@@ -841,7 +909,7 @@ function rowHTML(d, i){
     <tr class="detail-row"><td colspan="11">
       <div style="display:flex; flex-wrap:wrap; gap:14px; margin-bottom:12px; font-size:12px; color:var(--text-2);">
         <div><strong>游民数：</strong>${num(d["游民数"])} 人</div>
-        <div><strong>月成本：</strong>$${num(d["月成本 (USD)"])}</div>
+        <div><strong>月成本:</strong> <b>${formatCost(d["月成本 (USD)"])}</b> <span style="color:var(--text-3); font-size:11px; margin-left:4px;">${currentCurrency === "CNY" ? `≈$${num(d["月成本 (USD)"])} USD` : `≈¥${num(Math.round((d["月成本 (USD)"]||0) * effectiveRate()))} CNY`} · 1 USD ≈ ${effectiveRate().toFixed(2)} CNY</span></div>
         <div><strong>年均气温：</strong>${d["年均气温 (°C)"]}°C</div>
         <div><strong>最佳季节：</strong>${d["最佳季节"]}</div>
         <div><strong>签证：</strong>${d["签证"]}</div>
@@ -1079,6 +1147,17 @@ if (todayEl) {
 
 renderStats();
 renderAbout();
+renderCurrency();
+
+document.getElementById("seg-usd").addEventListener("click", () => setCurrency("USD"));
+document.getElementById("seg-cny").addEventListener("click", () => setCurrency("CNY"));
+document.getElementById("rate-value").addEventListener("dblclick", () => {
+  const cur = effectiveRate().toFixed(2);
+  const v = prompt("1 USD 等于多少 CNY?\n(留空恢复默认 " + DEFAULT_RATE + ")", cur);
+  if(v === null) return;
+  if(v.trim() === "") setRate(DEFAULT_RATE);
+  else setRate(v);
+});
 renderTabs();
 renderCountryFilter();
 renderMethodology();
