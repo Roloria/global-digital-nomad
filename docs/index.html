@@ -754,8 +754,8 @@ let currentRegion = "全部";
 let currentCountry = "";
 let currentSearch = "";
 let currentRank = "all";
-let sortKey = "综合分";
-let sortDir = -1;
+let sortKey = "排名";
+let sortDir = 1;  // 排名 asc: 1, 2, 3 … 在前
 let expanded = null;
 
 // ====== Currency State ======
@@ -1120,7 +1120,7 @@ document.querySelectorAll("th[data-sort]").forEach(th => {
   th.addEventListener("click", () => {
     const k = th.getAttribute("data-sort");
     if(sortKey === k) sortDir *= -1;
-    else { sortKey = k; sortDir = (k === "城市") ? 1 : -1; }
+    else { sortKey = k; sortDir = (k === "城市" || k === "排名") ? 1 : -1; }
     render();
   });
 });
