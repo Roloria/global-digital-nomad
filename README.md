@@ -7,6 +7,8 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 [![GitHub stars](https://img.shields.io/github/stars/Roloria/global-digital-nomad)](https://github.com/Roloria/global-digital-nomad/stargazers)
 [![Data: 2026](https://img.shields.io/badge/Data-2026--07-blue)](data/)
+[![🌐 Website](https://img.shields.io/badge/🌐_Website-Live-success?style=flat-square)](https://roloria.github.io/global-digital-nomad/)
+[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Deployed-blueviolet?logo=github)](https://roloria.github.io/global-digital-nomad/)
 
 ---
 
@@ -24,16 +26,38 @@
 
 ---
 
-## 🌐 在线查看
+## 🌐 在线网站
 
-👉 **访问在线网站**：https://roloria.github.io/global-digital-nomad/
+<div align="center">
 
-网站功能：
-- 🔍 按排名 / 国家 / 区域筛选
-- 📊 查看 12 维度评分
-- 📤 匿名提交城市评分（保存到本地，可一键导出或提交 GitHub Issue）
+### 👉 https://roloria.github.io/global-digital-nomad/
+
+</div>
+
+> 一个完全可交互的网页应用，无需登录、移动端友好。
+
+**核心功能**：
+
+| 功能 | 说明 |
+|---|---|
+| 🔍 **多维筛选** | 按区域（5 大区）/ 国家（39 国）/ 排名（TOP 10/20/30/50/全部）/ 关键词搜索 |
+| 📊 **可视化榜单** | 表格 + 评分条形图，点击行展开 12 维度完整详情 |
+| 📤 **匿名提交** | 浏览器本地保存评分，附 GitHub Issue 模板一键上报 |
+| 📐 **评分标准内置** | 页面底部完整展示 12 项评分口径与综合分计算公式 |
+| 📱 **响应式** | 适配桌面 / 平板 / 手机（375px 起） |
+| 🌙 **暗色模式** | 自动跟随系统主题 |
+
+**快速体验**：[打开网站](https://roloria.github.io/global-digital-nomad/) · [数据 CSV](data/digital-nomad-cities.csv) · [可视化报告](reports/digital-nomad-cities-report.md)
 
 
+
+## 📸 网站截图
+
+| 桌面端 | 移动端 |
+|---|---|
+| ![桌面端](assets/screenshot-desktop.png) | ![移动端](assets/screenshot-mobile.png) |
+
+> 截图说明：左侧为桌面端完整布局；右侧为 iPhone 14 尺寸下的自适应布局。
 
 ## 📂 仓库结构
 
