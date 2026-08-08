@@ -958,10 +958,13 @@ function renderMethodology(){
   `;
 }
 
-function barHTML(v){
-  const pct = Math.min(100, v*10);
+function tierLabel(c){ return c==="g" ? "高分" : c==="m" ? "中等" : "偏低"; }
+function dotHTML(v, opts){
   const cls = tier(v);
-  return `<span class="bar ${cls}"><span style="width:${pct}%"></span></span>${v}`;
+  const compact = opts && opts.compact;
+  return `<span class="score-cell${compact ? " compact" : ""}" title="${v} 分 / 10 · ${tierLabel(cls)}">
+    <span class="dot ${cls}" aria-hidden="true"></span><span class="v ${cls}">${v}</span>
+  </span>`;
 }
 
 function rowHTML(d, i){
@@ -972,11 +975,11 @@ function rowHTML(d, i){
       <td><div class="city-cell"><div class="city-flag">${d["国旗"]}</div><div><div class="city-name">${d["城市"]} <span style="font-size:10px; color:var(--text-3); font-weight:400; margin-left:4px;">📅 ${d["最后更新"]}</span></div><div class="city-country">${d["国家"]} · <span class="pill ${d["区域"]}">${d["区域"]}</span></div></div></div></td>
       <td class="num">${num(d["游民数"])}</td>
       <td class="num ${costClass(d["月成本 (USD)"])}">${formatCost(d["月成本 (USD)"])}</td>
-      <td>${barHTML(d["网络"])}</td>
-      <td>${barHTML(d["社群"])}</td>
-      <td>${barHTML(d["生活"])}</td>
-      <td>${barHTML(d["安全"])}</td>
-      <td>${barHTML(d["英语"])}</td>
+      <td>${dotHTML(d["网络"])}</td>
+      <td>${dotHTML(d["社群"])}</td>
+      <td>${dotHTML(d["生活"])}</td>
+      <td>${dotHTML(d["安全"])}</td>
+      <td>${dotHTML(d["英语"])}</td>
       <td class="num" style="font-weight:700; color:var(--accent);">${d["综合分"]}</td>
       <td style="font-size:11px; color:var(--text-3); white-space:nowrap;">${d["最后更新"]}</td>
     </tr>
@@ -994,7 +997,7 @@ function rowHTML(d, i){
         ${SCORE_FIELDS.map(f => {
           const v = d[f.key];
           const [t, color] = tierScore(v);
-          return `<div class="metric-card"><div class="ml">${f.label}</div><div class="mv" style="color:${color};">${v} <span style="font-size:11px; font-weight:400; color:var(--text-3);">/ ${t}</span></div><div class="md">${f.help}</div></div>`;
+          return `<div class="metric-card"><div class="ml">${f.label}</div><div class="mv"><span class="score-cell compact" style="vertical-align:middle;"><span class="dot ${tier(v)}"></span><span class="v ${tier(v)}">${v}</span></span> <span style="font-size:11px; font-weight:400; color:var(--text-3); white-space:nowrap;">/ ${t}</span></div><div class="md">${f.help}</div></div>`;
         }).join("")}
       </div>
     </td></tr>` : ""}
