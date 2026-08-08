@@ -22,6 +22,7 @@ EXPECTED_HEADERS = [
     "夜生活", "安静指数", "种族包容",
     "年均气温 (°C)", "最佳季节", "签证",
     "综合分",
+    "最后更新",
 ]
 
 SCORE_COLS = {
@@ -121,6 +122,16 @@ def validate_csv(path):
                 errors.append(
                     f"❌ 第 {i} 行 ({city}): '{col}' 不是整数: '{row[col]}'"
                 )
+
+        # Check last_updated is YYYY-MM-DD format
+        last_updated = row.get("最后更新", "").strip()
+        import re as _re
+        if not last_updated:
+            errors.append(f"❌ 第 {i} 行 ({city}): '最后更新' 为空")
+        elif not _re.match(r"^\d{4}-\d{2}-\d{2}$", last_updated):
+            errors.append(
+                f"❌ 第 {i} 行 ({city}): '最后更新' 格式错误: '{last_updated}' (应为 YYYY-MM-DD)"
+            )
 
         # Check overall score
         expected_overall = compute_overall(row)
