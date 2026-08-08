@@ -252,7 +252,14 @@ tbody tr:nth-child(even):hover { background: var(--bg-2); }
 .city-name { font-weight: 600; color: var(--text); }
 .city-country { font-size: 11px; color: var(--text-3); }
 .num { font-variant-numeric: tabular-nums; text-align: right; font-weight: 500; }
-.rank { font-weight: 700; color: var(--accent); width: 36px; }
+.rank { font-weight: 700; color: var(--accent); width: 36px; white-space: nowrap; }
+
+/* 气温列:数字 + 小号 °C 单位 */
+td.temp { font-variant-numeric: tabular-nums; font-weight: 500; }
+td.temp > span { margin-left: 1px; }
+
+/* 季节列:文本,可 nowrap 截断 */
+td.season { font-size: 12px; color: var(--text-2); max-width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .bar { width: 70px; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; display: inline-block; vertical-align: middle; margin-right: 6px; }
 .bar > span { display: block; height: 100%; border-radius: 3px; }
 .bar.g > span { background: linear-gradient(90deg, var(--good), #34d399); }
@@ -395,7 +402,7 @@ footer a { color: var(--accent); text-decoration: none; }
     background: var(--bg-2);
     border-top: 1px solid var(--border);
   }
-  table { min-width: 680px; font-size: 13px; }
+  table { min-width: 900px; font-size: 13px; }
   th, td { padding: 9px 10px; }
   .bar { width: 50px; }
   .form-grid { grid-template-columns: 1fr; }
@@ -418,7 +425,7 @@ footer a { color: var(--accent); text-decoration: none; }
   .stats { grid-template-columns: 1fr 1fr; gap: 10px; }
   .stat .v { font-size: 20px; }
   .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-  table { min-width: 720px; }
+  table { min-width: 900px; }
   .form-grid { grid-template-columns: 1fr 1fr; }
   .score-row .score-help { display: none; }
   .search { min-width: 0; flex: 1; }
@@ -481,7 +488,10 @@ footer a { color: var(--accent); text-decoration: none; }
   <th data-sort="社群">社群<span class="arrow">↕</span></th>
   <th data-sort="生活">生活<span class="arrow">↕</span></th>
   <th data-sort="安全">安全<span class="arrow">↕</span></th>
-  <th data-sort="英语">英语<span class="arrow">↕</span></th>
+  <th data-sort="空气">空气<span class="arrow">↕</span></th>
+  <th data-sort="夜生活">夜生活<span class="arrow">↕</span></th>
+  <th data-sort="年均气温 (°C)" class="num" title="年均气温 / 10℃ 以下偏冷,10-20 温和,20-28 温暖,28+ 炎热">气温<span class="arrow">↕</span></th>
+  <th data-sort="最佳季节">季节<span class="arrow">↕</span></th>
   <th data-sort="综合分">综合<span class="arrow">↕</span></th>
   <th data-sort="最后更新">最近更新<span class="arrow">↕</span></th>
 </tr>
@@ -979,12 +989,15 @@ function rowHTML(d, i){
       <td>${dotHTML(d["社群"])}</td>
       <td>${dotHTML(d["生活"])}</td>
       <td>${dotHTML(d["安全"])}</td>
-      <td>${dotHTML(d["英语"])}</td>
-      <td class="num" style="font-weight:700; color:var(--accent);">${d["综合分"]}</td>
+      <td>${dotHTML(d["空气"])}</td>
+      <td>${dotHTML(d["夜生活"])}</td>
+      <td class="num temp">${d["年均气温 (°C)"]}<span style="opacity:0.55; font-size:10px;">°C</span></td>
+      <td class="season" title="${d["最佳季节"]}">${d["最佳季节"]}</td>
+      <td class="num" style="font-weight:700; color:var(--accent); white-space:nowrap;">${d["综合分"]}</td>
       <td style="font-size:11px; color:var(--text-3); white-space:nowrap;">${d["最后更新"]}</td>
     </tr>
     ${isExp ? `
-    <tr class="detail-row"><td colspan="11">
+    <tr class="detail-row"><td colspan="14">
       <div style="display:flex; flex-wrap:wrap; gap:14px; margin-bottom:12px; font-size:12px; color:var(--text-2);">
         <div><strong>游民数：</strong>${num(d["游民数"])} 人</div>
         <div><strong>月成本:</strong> <b>${formatCost(d["月成本 (USD)"])}</b> <span style="color:var(--text-3); font-size:11px; margin-left:4px;">${currentCurrency === "CNY" ? `≈$${num(d["月成本 (USD)"])} USD` : `≈¥${num(Math.round((d["月成本 (USD)"]||0) * effectiveRate()))} CNY`} · 1 USD ≈ ${effectiveRate().toFixed(2)} CNY</span></div>
@@ -1008,7 +1021,7 @@ function render(){
   const list = filtered();
   const tbody = document.getElementById("tbody");
   if(!list.length){
-    tbody.innerHTML = `<tr><td colspan="11"><div class="empty">没有匹配的城市</div></td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="14"><div class="empty">没有匹配的城市</div></td></tr>`;
     return;
   }
   tbody.innerHTML = list.map(rowHTML).join("");
