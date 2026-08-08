@@ -75,17 +75,33 @@ jobs:
           echo "📝 wrote docs/data/exchange-rate.json:"
           cat docs/data/exchange-rate.json
 
-      - name: Commit (only if changed)
+      - name: Commit and push
         run: |
+          set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+
           git add docs/data/exchange-rate.json
+
           if git diff --cached --quiet; then
-            echo "ℹ️ no rate change this run, skipping commit"
+            echo "ℹ️ no rate change this run, skipping"
+            exit 0
+          fi
+
+          OLD=$(jq -r '.rate // "n/a"' docs/data/exchange-rate.json 2>/dev/null || echo "n/a")
+          NEW=${{ steps.fetch.outputs.rate }}
+          git commit -m "chore(rate): USD→CNY $OLD → $NEW (auto-update ${{ steps.fetch.outputs.today }})"
+
+          # 尝试直接 push;若分支保护拒绝(保护规则要求 PR review),
+          # 则 fallback 到 PR 流程,需要 maintainer 在 Settings → Branches 把
+          # github-actions[bot] 加到 "Allow specified actors to bypass" 中以实现完全自动。
+          if git push origin main 2>&1; then
+            echo "✅ direct push succeeded"
           else
-            OLD=$(git show HEAD:docs/data/exchange-rate.json 2>/dev/null | jq -r '.rate // "n/a"' || echo "n/a")
-            NEW=${{ steps.fetch.outputs.rate }}
-            git commit -m "chore(rate): USD→CNY $OLD → $NEW (auto-update ${{ steps.fetch.outputs.today }})"
-            git push
-            echo "✅ pushed"
+            echo "⚠️ direct push blocked by branch protection; falling back to PR"
+            BRANCH="auto/rate-${{ steps.fetch.outputs.today }}"
+            git branch -M main "$BRANCH" || git checkout -b "$BRANCH"
+            git push origin "$BRANCH" --force
+            BODY=$(printf "🤖 自动汇率更新\\n\\n- 1 USD = \`%s\` CNY (从 %s)\\n- 更新时间: %s\\n- 触发原因: scheduled / workflow_dispatch\\n\\n> 此 PR 由 GitHub Action 创建。如需完全自动化,请在 Settings → Branches → main → \"Allow specified actors to bypass\" 中将 \`github-actions[bot]\` 加进去。" "$NEW" "${{ steps.fetch.outputs.source }}" "${{ steps.fetch.outputs.today }}")
+            gh pr create --base main --head "$BRANCH" --title "🤖 自动汇率更新 ${{ steps.fetch.outputs.today }} · 1 USD = ¥$NEW" --body "$BODY" --label "automated,exchange-rate" 2>&1 || echo "PR create failed; please run gh pr create manually"
           fi
