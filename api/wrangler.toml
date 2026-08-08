@@ -1,0 +1,22 @@
+name = "global-digital-nomad-community-api"
+main = "src/index.js"
+compatibility_date = "2026-08-08"
+
+# 默认配置 - 可在 Cloudflare Dashboard 覆盖
+[vars]
+ALLOWED_ORIGIN = "https://roloria.github.io,http://localhost:8765"
+GITHUB_REPO = "Roloria/global-digital-nomad"
+GITHUB_LABELS = "community-experience,data,anonymous-submission"
+
+# 密钥 - 通过以下命令设置:
+#   npx wrangler secret put GITHUB_TOKEN
+# 它会要求输入一个 GitHub Personal Access Token (需要 repo:public_repo 权限,
+# 因为本仓库是 public)。**绝对不要** 把 token 提交到 git。
+
+[observability]
+enabled = true
+
+# 可选：自定义域名 / 路由
+# routes = [
+#   { pattern = "community-api.global-digital-nomad.workers.dev/*", custom_domain = true }
+# ]

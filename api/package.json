@@ -1,0 +1,21 @@
+{
+  "name": "global-digital-nomad-community-api",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Anonymous community experience submission API — POST endpoint that proxies to GitHub Issues API. Users never need to log in.",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "tail": "wrangler tail",
+    "secret:put": "wrangler secret put GITHUB_TOKEN",
+    "secret:list": "wrangler secret list"
+  },
+  "devDependencies": {
+    "wrangler": "^3.78.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

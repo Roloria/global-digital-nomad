@@ -186,14 +186,36 @@ git push origin feat/add-medellin-community
 
 ---
 
-## 八、隐私与匿名
+## 八、隐私与匿名（**无需登录 · 直传服务端**）
 
-- ✅ 体验表单**只在你浏览器**保存，不自动上传
-- ✅ 你可以选择不上传（仅本地），也可以一键上报
-- ✅ 上报走 GitHub Issue，**GitHub Issue 默认公开**，请勿包含姓名、邮箱、电话
-- ✅ 维护者定期合并 PR 到主 CSV，PR 标题与正文不包含个人信息
+- ✅ **无需 GitHub 账号**：站内「📤 分享社区体验」按钮 → POST 到 [`api/`](../api/)（Cloudflare Worker）
+- ✅ **不需要本地存储**：数据直接发到服务端，不写 localStorage
+- ✅ **token 不暴露**：GitHub PAT 存在 Cloudflare encrypted secret，用户端永远看不到
+- ✅ **服务端自动建 Issue**：拿到 GitHub Issue 链接后可点进去查看 / 追踪
+- ✅ **公开可追溯**：所有 Issue 在 GitHub 上可看，**默认公开** → 请勿填写真实姓名 / 邮箱 / 电话
+- 🛡️ **限流保护**：每 IP 每小时 10 条上限（生产可换 Cloudflare KV / Turnstile）
+- 🛟 **降级兜底**：若 API 暂时不可用，自动回退到「本地暂存 + 一键跳 GitHub Issue 直链」
 
-如果你的体验包含敏感内容（如社区负面新闻、欺诈投诉），请用 GitHub Issue 的私人方式联系维护者。
+### 完整提交流程
+
+```
+┌──────────┐  POST JSON   ┌──────────────┐  GitHub API   ┌────────────┐
+│ 浏览器    │ ──────────► │ Cloudflare    │ ────────────► │ GitHub      │
+│ (用户)    │              │ Worker (api/) │   PAT secret  │ Issues API  │
+│           │ ◄───────── │               │ ◄────────── │              │
+└──────────┘  Issue URL   └──────────────┘  Issue #N    └────────────┘
+                                                                │
+                                                                ▼
+                                                    ┌────────────────────┐
+                                                    │ Roloria/global-     │
+                                                    │ digital-nomad      │
+                                                    │ #issues            │
+                                                    └────────────────────┘
+```
+
+### 部署
+
+详见 [`api/README.md`](../api/README.md) — 5 分钟部署到 Cloudflare 免费层。
 
 ---
 

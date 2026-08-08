@@ -176,11 +176,14 @@ df.to_excel("digital-nomad-cities.xlsx", index=False)
 
 > 与城市榜单不同，社区没有公式化的自动综合分计算。评分由维护者根据实际走访或社区调研给出，**最后更新日期通过 Git 历史自动追溯**。
 
-### 隐私与匿名提交
+### 隐私与匿名提交（**无需登录 · 直传服务端**）
 
-- 匿名体验表单保存在**浏览器本地**（localStorage），**不会**自动上传
-- 一键导出 JSON 或通过 GitHub Issue 上报到开源仓库
-- 提交指南见 [`docs/index.html`](../docs/index.html) 页面顶部的「📤 分享社区体验」按钮
+- 站内「📤 分享社区体验」按钮 → 直接 POST 到 [`api/`](../api/)（Cloudflare Worker）
+- 服务端持有 GitHub PAT，**用户端永远不接触 token**
+- 服务端自动创建 GitHub Issue（label: `community-experience,data,anonymous-submission`），用户拿到 Issue 链接
+- 全程 **不需要 GitHub 账号 / 不需要本地存储 / 不需要邮箱注册**
+- 提交内容公开可追溯，请勿填写真实姓名 / 邮箱 / 电话
+- 部署 / 配置 / 限流策略详见 [`api/README.md`](../api/README.md)
 
 ### 添加新社区
 

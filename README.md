@@ -48,7 +48,7 @@
 | 📐 **评分标准内置** | 页面底部完整展示 12 项评分口径与综合分计算公式 |
 | 📱 **响应式** | 适配桌面 / 平板 / 手机（375px 起） |
 | 🌙 **暗色模式** | 自动跟随系统主题 |
-| 🌐 **数字游民社区** | 60 个联合办公 / 联合生活 / 度假村 / 聚会 / 在线社群的结构化资料，可筛选 / 可匿名共建 |
+| 🌐 **数字游民社区** | 60 个联合办公 / 联合生活 / 度假村 / 聚会 / 在线社群的结构化资料；可筛选；支持**匿名提交**社区体验 → Cloudflare Worker → GitHub Issue（无需登录） |
 
 **快速体验**：[打开网站](https://roloria.github.io/global-digital-nomad/) · [数据 CSV](data/digital-nomad-cities.csv) · [可视化报告](reports/digital-nomad-cities-report.md)
 
@@ -87,6 +87,12 @@ global-digital-nomad/
 ├── visualizations/                  ← 可视化页面
 │   ├── digital-nomad-cities.html              ← 内嵌片段
 │   └── digital-nomad-cities-standalone.html   ← 独立页面（可直接打开）
+│
+├── api/                             ← 🌐 匿名提交服务端（Cloudflare Worker）
+│   ├── src/index.js                         ← Worker 入口
+│   ├── wrangler.toml                        ← 部署配置
+│   ├── package.json
+│   └── README.md                            ← 部署指南
 │
 ├── docs/                            ← 方法论与数据来源
 │   ├── methodology.md
@@ -188,7 +194,7 @@ A: 开源社区维护,无强制更新周期。任何人都可以匿名提交更�
 - 🛂 更新签证政策
 - 🌍 添加新维度（税收、医疗、CoWorking 价格…）
 - 🌐 **新增数字游民社区**（编辑 `data/digital-nomad-communities.csv` · 18 字段）
-- ✍️ **匿名分享社区体验**（站内「📤 分享社区体验」按钮 · 自动生成 GitHub Issue）
+- ✍️ **匿名分享社区体验**（站内「📤 分享社区体验」按钮 → POST 到 `api/` 服务 → 自动创建 GitHub Issue · **无需登录**）
 - 📝 改进报告与可视化
 - 🌐 多语言翻译
 
@@ -198,7 +204,7 @@ A: 开源社区维护,无强制更新周期。任何人都可以匿名提交更�
 
 ## 📅 更新日志
 
-- **2026-08**：🌐 **新增数字游民社区板块**：60 个全球热门社区结构化数据（位置 / 介绍 / 政策 / 联系方式 / 综合分 5 字段），覆盖 6 大区域 + 5 类社区（联合办公 45 / 联合生活 9 / 度假村 3 / 在线 2 / 聚会 1）。站内 `docs/index.html` 新增「🌐 数字游民社区」section（含搜索 / 区域 / 类型筛选 · 卡片展示 · 「📤 分享社区体验(匿名)」modal 走 localStorage + GitHub Issue）。配套数据 `data/digital-nomad-communities.csv` + `.xlsx`、报告 `reports/digital-nomad-communities-report.md`、独立校验脚本 `.github/scripts/validate_communities.py`、GitHub Actions 新增 `validate-communities` job。
+- **2026-08**：🌐 **新增数字游民社区板块**：60 个全球热门社区结构化数据（位置 / 介绍 / 政策 / 联系方式 / 综合分），覆盖 6 大区域 + 5 类社区（联合办公 45 / 联合生活 9 / 度假村 3 / 在线 2 / 聚会 1）。站内 `docs/index.html` 新增「🌐 数字游民社区」section（卡片展示 + 搜索 / 区域 / 类型 / 排序 4 重筛选 · 「📤 分享社区体验(匿名)」modal 直接 POST 到 `api/` Cloudflare Worker → 自动创建 GitHub Issue · **用户无需登录 / 无需本地存储**）。配套数据 `data/digital-nomad-communities.csv` + `.xlsx`、报告 `reports/digital-nomad-communities-report.md`、独立校验脚本 `.github/scripts/validate_communities.py`、GitHub Actions 新增 `validate-communities` job、`api/` 服务端代理（用户匿名 → 服务端 PAT → GitHub Issue）。
 - **2026-08**：新增中国大陆 16 城数据并合并入主榜单（全球 80 城 / 40 国），新增中国专项数据表 `data/digital-nomad-cities-china.csv` 与报告 `reports/digital-nomad-cities-china-report.md`。
 - **2026-08**：网站新增「关于 / 数据更新频率」区块、底部数据状态改为动态统计、城市行加 `📅 最后更新` 徽章、新增 FAQ 可视化区块、为 SEO 补齐 Open Graph / Twitter Card / JSON-LD / sitemap / robots / favicon、SVG 结构化数据。
 - **2026-07**：首版发布,覆盖 64 个城市 / 39 个国家(亚洲 21 / 欧洲 18 / 拉美 15 / 非洲 7 / 中东 3)
