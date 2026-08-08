@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/"/>
+    <image:image>
+      <image:loc>https://roloria.github.io/global-digital-nomad/assets/screenshot-desktop.png</image:loc>
+      <image:title>全球数字游民城市榜 · 桌面端</image:title>
+      <image:caption>开源社区维护的全球 64 个数字游民城市 12 维评分榜单</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://roloria.github.io/global-digital-nomad/assets/screenshot-mobile.png</image:loc>
+      <image:title>全球数字游民城市榜 · 移动端</image:title>
+      <image:caption>移动端友好的响应式界面</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/#methodology</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/#about</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://github.com/Roloria/global-digital-nomad/blob/main/data/digital-nomad-cities.csv</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://github.com/Roloria/global-digital-nomad/blob/main/README.md</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://github.com/Roloria/global-digital-nomad/blob/main/docs/methodology.md</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://github.com/Roloria/global-digital-nomad/blob/main/docs/data-sources.md</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://github.com/Roloria/global-digital-nomad/blob/main/reports/digital-nomad-cities-report.md</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+</urlset>

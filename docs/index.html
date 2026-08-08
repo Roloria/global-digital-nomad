@@ -3,9 +3,141 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>🌍 全球数字游民城市榜 · Global Digital Nomad Cities</title>
-<meta name="description" content="开源的数字游民城市榜单 · 64 个城市 · 12 维度评分 · 支持匿名提交更新">
 <meta name="theme-color" content="#0ea5e9">
+<meta name="color-scheme" content="light dark">
+
+<title>🌍 全球数字游民城市排名 · 64 城 12 维评分 · 远程办公 & 游民签证指南</title>
+<meta name="description" content="全球数字游民城市排名 / 远程办公城市推荐 / 数字游民签证指南 · 覆盖 5 大区域 39 国 64 城,从月成本、网络、安全、夜生活到 LGBTQ+ 等 12 个维度加权评分,社区维护每周更新,支持匿名提交你的城市评分。">
+<meta name="keywords" content="数字游民,数字游民城市,数字游民签证,远程办公,远程工作,远程工作者,自由职业,自由职业者,跨国工作,海外工作,游民签证,慢生活,海外城市排名,出国工作,co-working,数字游民城市排名,远程办公城市,性价比城市,digital nomad,remote work,freelancer,nomad visa,best cities for digital nomads">
+<meta name="author" content="Roloria · Global Digital Nomad Project">
+<meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1">
+<meta name="googlebot" content="index,follow">
+<meta name="baiduspider" content="index,follow">
+<meta name="rating" content="general">
+<meta name="distribution" content="global">
+<meta name="application-name" content="全球数字游民城市榜">
+<meta name="apple-mobile-web-app-title" content="数字游民城市榜">
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+<link rel="canonical" href="https://roloria.github.io/global-digital-nomad/">
+<link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/">
+<link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/">
+<link rel="alternate" type="application/rss+xml" title="数据更新日志" href="https://github.com/Roloria/global-digital-nomad/commits/main.atom">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="apple-touch-icon" href="favicon.svg">
+<link rel="preconnect" href="https://github.com" crossorigin>
+<link rel="dns-prefetch" href="https://raw.githubusercontent.com">
+
+<!-- Open Graph / 微信 / 微博 / LINE / Telegram -->
+<meta property="og:site_name" content="全球数字游民城市榜">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:type" content="website">
+<meta property="og:title" content="🌍 全球数字游民城市排名 · 远程办公 & 游民签证指南">
+<meta property="og:description" content="5 大区域 · 39 国 · 64 城 · 12 维评分(月成本 / 网络 / 安全 / 夜生活 / LGBTQ+ 等)。开源社区维护,支持匿名提交。">
+<meta property="og:url" content="https://roloria.github.io/global-digital-nomad/">
+<meta property="og:image" content="https://roloria.github.io/global-digital-nomad/assets/screenshot-desktop.png">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="720">
+<meta property="og:image:alt" content="全球数字游民城市榜单 — 64 城 12 维评分可视化">
+
+<!-- Twitter / X -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="🌍 全球数字游民城市排名 · 64 城 12 维评分">
+<meta name="twitter:description" content="远程办公城市推荐 + 数字游民签证指南,开源社区维护每周更新。">
+<meta name="twitter:image" content="https://roloria.github.io/global-digital-nomad/assets/screenshot-desktop.png">
+<meta name="twitter:image:alt" content="全球数字游民城市榜单截图">
+
+<!-- Structured Data: WebSite + Dataset + FAQPage + BreadcrumbList -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://roloria.github.io/global-digital-nomad/#website",
+      "url": "https://roloria.github.io/global-digital-nomad/",
+      "name": "全球数字游民城市榜",
+      "alternateName": "Global Digital Nomad Cities",
+      "inLanguage": "zh-CN",
+      "description": "全球数字游民城市排名,5 大区域 39 国 64 城 12 维评分,开源社区维护每周更新。",
+      "publisher": {"@id": "https://roloria.github.io/global-digital-nomad/#org"},
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://roloria.github.io/global-digital-nomad/?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://roloria.github.io/global-digital-nomad/#org",
+      "name": "Global Digital Nomad Project",
+      "url": "https://github.com/Roloria/global-digital-nomad",
+      "logo": "https://roloria.github.io/global-digital-nomad/favicon.svg",
+      "sameAs": [
+        "https://github.com/Roloria/global-digital-nomad"
+      ]
+    },
+    {
+      "@type": "Dataset",
+      "@id": "https://roloria.github.io/global-digital-nomad/#dataset",
+      "name": "全球数字游民城市数据集",
+      "description": "64 个数字游民城市的 12 维评分(月成本/网络/社群/生活/安全/英语/步行/空气/女性友好/LGBTQ+/夜生活/安静/种族包容)。",
+      "url": "https://github.com/Roloria/global-digital-nomad/blob/main/data/digital-nomad-cities.csv",
+      "creator": {"@id": "https://roloria.github.io/global-digital-nomad/#org"},
+      "license": "https://opensource.org/licenses/MIT",
+      "keywords": "数字游民,远程办公,游民签证,freelancer,digital nomad cities,remote work",
+      "spatialCoverage": ["亚洲","欧洲","拉美","非洲","中东"],
+      "temporalCoverage": "2026/2026",
+      "distribution": {
+        "@type": "DataDownload",
+        "encodingFormat": "text/csv",
+        "contentUrl": "https://raw.githubusercontent.com/Roloria/global-digital-nomad/main/data/digital-nomad-cities.csv"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type":"ListItem","position":1,"name":"首页","item":"https://roloria.github.io/global-digital-nomad/"},
+        {"@type":"ListItem","position":2,"name":"城市榜单"},
+        {"@type":"ListItem","position":3,"name":"评分标准"},
+        {"@type":"ListItem","position":4,"name":"关于 / 更新频率"}
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "什么是数字游民城市排名?",
+          "acceptedAnswer": {"@type":"Answer","text":"本榜单从月成本、网络、社群、生活、安全、英语、步行、空气、女性友好、LGBTQ+、夜生活、安静指数、种族包容共 12 个维度对全球 64 个城市加权评分,综合分越高越适合数字游民长期居住。"}
+        },
+        {
+          "@type": "Question",
+          "name": "排名前十的数字游民城市有哪些?",
+          "acceptedAnswer": {"@type":"Answer","text":"综合分 TOP 10 包括:里斯本(葡萄牙)、柏林(德国)、台北(台湾)、东京(日本)、新加坡、拉斯帕尔马斯(西班牙)、塔林(爱沙尼亚)、布拉格(捷克)、波尔图(葡萄牙)、巴塞罗那(西班牙)。详见榜单页面。"}
+        },
+        {
+          "@type": "Question",
+          "name": "如何申请数字游民签证?",
+          "acceptedAnswer": {"@type":"Answer","text":"每个国家签证要求不同,常见条件包括月收入门槛(通常 2000-3500 USD)、健康保险、无犯罪记录证明等。葡萄牙 D7/D8、西班牙数字游民签证、爱沙尼亚数字游民签证、捷克游民签证是较热门选项。本榜单每个城市行末的「签证」字段会标注当前推荐签证类型,具体申请请以当地移民局官网为准。"}
+        },
+        {
+          "@type": "Question",
+          "name": "数字游民最便宜的城市是哪个?",
+          "acceptedAnswer": {"@type":"Answer","text":"本榜单中月成本最低的城市包括清迈(泰国)、胡志明(越南)、金边(柬埔寨)、暹粒(柬埔寨),月生活成本约 800-1100 美元,适合预算有限的远程工作者。"}
+        },
+        {
+          "@type": "Question",
+          "name": "数据多久更新一次?",
+          "acceptedAnswer": {"@type":"Answer","text":"本项目由开源社区维护,没有强制更新周期。任何用户都可以通过页面顶部的「提交城市评分(匿名)」按钮提交更新,PR 合并后对应城市「最后更新」字段会自动刷新。"}
+        }
+      ]
+    }
+  ]
+}
+</script>
+
 <style>
 :root {
   --bg: #fafbfc;
@@ -298,6 +430,7 @@ footer a { color: var(--accent); text-decoration: none; }
   <div class="links">
     <a href="#submit" id="link-submit">📤 提交城市评分(匿名)</a>
     <a href="#methodology">📐 评分标准</a>
+    <a href="#about">📖 关于 / 更新频率</a>
     <a href="https://github.com/Roloria/global-digital-nomad" target="_blank" rel="noopener">📦 GitHub</a>
     <a href="https://github.com/Roloria/global-digital-nomad/discussions" target="_blank" rel="noopener">💬 讨论</a>
   </div>
@@ -343,6 +476,74 @@ footer a { color: var(--accent); text-decoration: none; }
 </table>
 </div>
 
+<div id="faq" style="margin-top:30px; background:var(--card); border:1px solid var(--border); border-radius:12px; padding:20px 24px;">
+  <h2 style="margin:0 0 14px; font-size:18px;">❓ 常见问题(SEO / AEO 友好)</h2>
+  <details style="margin-bottom:8px; padding:10px 14px; background:var(--bg-2); border-radius:8px;">
+    <summary style="cursor:pointer; font-weight:600; font-size:14px;">什么是数字游民城市排名?</summary>
+    <p style="margin:10px 0 0; font-size:13px; color:var(--text-2); line-height:1.6;">本榜单从月成本、网络、社群、生活、安全、英语、步行、空气、女性友好、LGBTQ+、夜生活、安静指数、种族包容共 12 个维度对全球 64 个城市加权评分,综合分越高越适合数字游民长期居住。</p>
+  </details>
+  <details style="margin-bottom:8px; padding:10px 14px; background:var(--bg-2); border-radius:8px;">
+    <summary style="cursor:pointer; font-weight:600; font-size:14px;">排名前十的数字游民城市有哪些?</summary>
+    <p style="margin:10px 0 0; font-size:13px; color:var(--text-2); line-height:1.6;">综合分 TOP 10 包括:里斯本(葡萄牙)、柏林(德国)、台北(台湾)、东京(日本)、新加坡、拉斯帕尔马斯(西班牙)、塔林(爱沙尼亚)、布拉格(捷克)、波尔图(葡萄牙)、巴塞罗那(西班牙)。详见上面榜单。</p>
+  </details>
+  <details style="margin-bottom:8px; padding:10px 14px; background:var(--bg-2); border-radius:8px;">
+    <summary style="cursor:pointer; font-weight:600; font-size:14px;">如何申请数字游民签证?</summary>
+    <p style="margin:10px 0 0; font-size:13px; color:var(--text-2); line-height:1.6;">每个国家签证要求不同,常见条件包括月收入门槛(通常 2000-3500 USD)、健康保险、无犯罪记录证明等。葡萄牙 D7/D8、西班牙数字游民签证、爱沙尼亚数字游民签证、捷克游民签证是较热门选项。本榜单每个城市行末的「签证」字段会标注当前推荐签证类型,具体申请请以当地移民局官网为准。</p>
+  </details>
+  <details style="margin-bottom:8px; padding:10px 14px; background:var(--bg-2); border-radius:8px;">
+    <summary style="cursor:pointer; font-weight:600; font-size:14px;">数字游民最便宜的城市是哪个?</summary>
+    <p style="margin:10px 0 0; font-size:13px; color:var(--text-2); line-height:1.6;">本榜单中月成本最低的城市包括清迈(泰国)、胡志明(越南)、金边(柬埔寨)、暹粒(柬埔寨),月生活成本约 800-1100 美元,适合预算有限的远程工作者。</p>
+  </details>
+  <details style="padding:10px 14px; background:var(--bg-2); border-radius:8px;">
+    <summary style="cursor:pointer; font-weight:600; font-size:14px;">数据多久更新一次?</summary>
+    <p style="margin:10px 0 0; font-size:13px; color:var(--text-2); line-height:1.6;">本项目由开源社区维护,没有强制更新周期。任何用户都可以通过页面顶部的「📤 提交城市评分(匿名)」按钮提交更新,PR 合并后对应城市「最后更新」字段会自动刷新。</p>
+  </details>
+</div>
+
+<div id="about" style="margin-top:30px; background:var(--card); border:1px solid var(--border); border-radius:12px; padding:20px 24px;">
+  <h2 style="margin:0 0 12px; font-size:18px;">📖 关于本站 / 数据更新频率说明</h2>
+  <p style="margin:0 0 14px; color:var(--text-2); font-size:13px;">本站由开源社区协作维护，所有评分、签证与成本数据都公开可追溯（GitHub）。下面回答最常见的三个问题：</p>
+
+  <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:12px;">
+    <div style="padding:14px 16px; background:var(--bg-2); border-radius:10px; border:1px solid var(--border);">
+      <div style="font-size:13px; font-weight:600; margin-bottom:6px;">🔄 更新频率</div>
+      <div style="font-size:12px; color:var(--text-2); line-height:1.6;">
+        没有强制周期。<b>任何</b>读者都能通过页面顶部的「📤 提交城市评分(匿名)」按钮提交更新，PR 合并后该城市「最后更新」即被刷新。
+        重大变更会在 <a href="https://github.com/Roloria/global-digital-nomad/discussions" target="_blank" rel="noopener">GitHub Discussions</a> 公告。
+      </div>
+    </div>
+
+    <div style="padding:14px 16px; background:var(--bg-2); border-radius:10px; border:1px solid var(--border);">
+      <div style="font-size:13px; font-weight:600; margin-bottom:6px;">📅 数据新鲜度怎么看</div>
+      <div style="font-size:12px; color:var(--text-2); line-height:1.6;">
+        列表每行城市名旁都有一个 <code>📅 YYYY-MM-DD</code> 徽章，详情面板也会再列一遍。点击表头的「最近更新」列即可排序，第一眼就能看出哪些城市数据更旧。
+      </div>
+    </div>
+
+    <div style="padding:14px 16px; background:var(--bg-2); border-radius:10px; border:1px solid var(--border);">
+      <div style="font-size:13px; font-weight:600; margin-bottom:6px;">🧮 「最后更新」怎么算</div>
+      <div style="font-size:12px; color:var(--text-2); line-height:1.6;">
+        由 <code>git blame</code> 自动追溯数据行最后一次被修改的日期，<b>不是手动填写</b>，没法"假装新鲜"。今天下方显示的统计基于 64 座城市实时计算：
+      </div>
+    </div>
+  </div>
+
+  <div id="about-stats" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap:10px; margin-top:14px;"></div>
+
+  <div style="margin-top:16px; padding:14px 16px; background:linear-gradient(135deg, rgba(245,158,11,0.08), rgba(239,68,68,0.06)); border:1px solid rgba(245,158,11,0.25); border-radius:10px;">
+    <div style="font-size:13px; font-weight:600; margin-bottom:6px;">⚠️ 使用前请留意</div>
+    <ul style="margin:0; padding-left:20px; font-size:12px; color:var(--text-2); line-height:1.7;">
+      <li><b>签证政策</b>几乎每月都在变，列表中的签证字段只作起点，正式申请请以当地移民局官网为准。</li>
+      <li><b>月成本</b>会受汇率、通胀与季节影响，仅作预算量级参考，不等于真实开销。</li>
+      <li><b>评分</b>是社区共识，不是绝对答案；样本越多越接近真实体感，欢迎补刀。</li>
+    </ul>
+  </div>
+
+  <div style="margin-top:14px; font-size:12px; color:var(--text-3);">
+    想推动一次更新？前往 <a href="https://github.com/Roloria/global-digital-nomad/issues/new" target="_blank" rel="noopener">新建 Issue</a> 或直接点页面顶部「📤 提交城市评分(匿名)」。每一笔贡献都会被记录在 Git 历史里。
+  </div>
+</div>
+
 <div id="methodology" style="margin-top:30px; background:var(--card); border:1px solid var(--border); border-radius:12px; padding:20px 24px;">
   <h2 style="margin:0 0 12px; font-size:18px;">📐 评分标准说明</h2>
   <p style="margin:0 0 14px; color:var(--text-2); font-size:13px;">所有评分采用 0–10 分制（10 最佳）。综合分由加权平均计算。</p>
@@ -352,7 +553,7 @@ footer a { color: var(--accent); text-decoration: none; }
 <footer>
   <p>📊 数据综合自 Nomad List、各国旅游局及社区调研 · 评分仅供参考</p>
   <p>🌟 项目开源：<a href="https://github.com/Roloria/global-digital-nomad">github.com/Roloria/global-digital-nomad</a> · 欢迎 PR / Issue / Discussion</p>
-  <p style="opacity:0.7;">数据更新：2026-07 · 评分口径详见 <a href="https://github.com/Roloria/global-digital-nomad/blob/main/docs/methodology.md" target="_blank" rel="noopener">methodology.md</a></p>
+  <p style="opacity:0.7;"><span id="data-freshness"></span> · 评分口径详见 <a href="https://github.com/Roloria/global-digital-nomad/blob/main/docs/methodology.md" target="_blank" rel="noopener">methodology.md</a></p>
 </footer>
 
 </div>
@@ -505,6 +706,57 @@ function filtered(){
     return (av - bv) * sortDir;
   });
   return list;
+}
+
+function ageDays(dateStr){
+  if(!dateStr) return null;
+  const d = new Date(dateStr);
+  if(isNaN(d)) return null;
+  const now = new Date();
+  return Math.max(0, Math.floor((now - d) / 86400000));
+}
+
+function renderAbout(){
+  const grid = document.getElementById("about-stats");
+  const footer = document.getElementById("data-freshness");
+  if(!grid) return;
+
+  const dates = CITIES_DATA.map(d => d["最后更新"]).filter(Boolean);
+  if(!dates.length){
+    grid.innerHTML = '<div style="padding:10px 12px; background:var(--bg-2); border-radius:8px; font-size:12px; color:var(--text-3);">暂无更新日期数据</div>';
+    if(footer) footer.textContent = "数据更新：暂无记录";
+    return;
+  }
+
+  dates.sort();
+  const newest = dates[dates.length - 1];
+  const oldest = dates[0];
+  const ages = dates.map(ageDays).filter(x => x !== null);
+  const avgAge = Math.round(ages.reduce((a,b)=>a+b,0) / ages.length);
+  const maxAge = Math.max(...ages);
+  const staleCount = ages.filter(a => a > 180).length;
+  const updatedThisMonth = ages.filter(a => a <= 30).length;
+
+  const tiles = [
+    {l:"收录城市", v: CITIES_DATA.length, s:`5 大区域`},
+    {l:"最近一次更新", v: newest, s:"本批次最鲜"},
+    {l:"最早一次更新", v: oldest, s:"陈旧项在这里"},
+    {l:"距今天平均", v: avgAge + " 天", s: staleCount === 0 ? "全部相对新鲜" : `${staleCount} 条超过半年`},
+    {l:"最旧一条距今", v: maxAge + " 天", s: maxAge > 180 ? "建议复核" : "尚可"},
+    {l:"近 30 天更新", v: updatedThisMonth, s:`共 ${CITIES_DATA.length} 条`}
+  ];
+
+  grid.innerHTML = tiles.map(t => `
+    <div style="padding:12px 14px; background:var(--bg-2); border-radius:8px;">
+      <div style="font-size:11px; color:var(--text-3); text-transform:uppercase; letter-spacing:0.05em;">${t.l}</div>
+      <div style="font-size:18px; font-weight:700; margin:4px 0 2px; font-variant-numeric:tabular-nums;">${t.v}</div>
+      <div style="font-size:11px; color:var(--text-2);">${t.s}</div>
+    </div>
+  `).join("");
+
+  if(footer){
+    footer.innerHTML = `数据更新：<b>${newest}</b> · ${CITIES_DATA.length} 城 · 平均 <b>${avgAge}</b> 天前`;
+  }
 }
 
 function renderStats(){
@@ -826,6 +1078,7 @@ if (todayEl) {
 }
 
 renderStats();
+renderAbout();
 renderTabs();
 renderCountryFilter();
 renderMethodology();

@@ -1,7 +1,9 @@
-# 🌍 全球数字游民计划 / Global Digital Nomad Project
+<a id="top"></a>
+# 🌍 全球数字游民城市榜 / Global Digital Nomad Cities
 
-> 一个由全球数字游民社区共同维护的开源数据集与调研项目。  
-> An open-source, community-maintained dataset and research project for the global digital nomad community.
+> 全球数字游民城市排名 · 远程办公城市推荐 · 数字游民签证指南
+>
+> *Global Digital Nomad Cities ranking · Best cities for remote work · Digital nomad visa guide*
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
@@ -120,6 +122,53 @@ global-digital-nomad/
 
 ---
 
+<a id="keywords"></a>
+## 🔍 你可能也在找 · Related Searches
+
+如果你通过搜索引擎来到这里,下面这些长尾关键词大概率也是你想问的,直接点进去看:
+
+**排名 / Ranking**
+- [数字游民城市排名 TOP 10 是哪些?](#-常见问题) · [哪些城市适合远程办公?](https://roloria.github.io/global-digital-nomad/#about) · [全球最适合数字游民居住的城市](https://roloria.github.io/global-digital-nomad/)
+- [2026 数字游民城市榜单](https://roloria.github.io/global-digital-nomad/) · [Nomad List 中文版](https://roloria.github.io/global-digital-nomad/)
+
+**签证 / Visa**
+- [数字游民签证怎么申请?](#-常见问题) · [葡萄牙 D7 D8 签证要求](https://roloria.github.io/global-digital-nomad/) · [西班牙数字游民签证条件](https://roloria.github.io/global-digital-nomad/)
+- [爱沙尼亚数字游民签证](https://roloria.github.io/global-digital-nomad/) · [捷克游民签证](https://roloria.github.io/global-digital-nomad/) · [日本经营管理签证](https://roloria.github.io/global-digital-nomad/)
+- [哪些国家有数字游民签证?](https://roloria.github.io/global-digital-nomad/) · [游民签证收入门槛](https://roloria.github.io/global-digital-nomad/)
+
+**预算 / Budget**
+- [月成本最低的数字游民城市](#-常见问题) · [性价比最高的远程工作城市](https://roloria.github.io/global-digital-nomad/) · [1000 美元以内月生活的城市](https://roloria.github.io/global-digital-nomad/)
+- [东南亚数字游民城市](https://roloria.github.io/global-digital-nomad/) · [拉丁美洲数字游民城市](https://roloria.github.io/global-digital-nomad/)
+
+**安全 / 生活质量**
+- [最安全的数字游民城市](https://roloria.github.io/global-digital-nomad/) · [女性友好城市排名](https://roloria.github.io/global-digital-nomad/) · [LGBTQ+ 友好城市](https://roloria.github.io/global-digital-nomad/)
+- [英语友好的非英语国家](https://roloria.github.io/global-digital-nomad/) · [适合长期定居的数字游民城市](https://roloria.github.io/global-digital-nomad/)
+
+**工具 / Tools**
+- [城市评分标准说明](https://roloria.github.io/global-digital-nomad/#methodology) · [数据来源与采集方法](https://github.com/Roloria/global-digital-nomad/blob/main/docs/data-sources.md) · [数据更新频率](https://roloria.github.io/global-digital-nomad/#about)
+- [下载完整 CSV 数据集](https://github.com/Roloria/global-digital-nomad/blob/main/data/digital-nomad-cities.csv) · [可视化报告](https://github.com/Roloria/global-digital-nomad/blob/main/reports/digital-nomad-cities-report.md)
+
+---
+
+## ❓ 常见问题
+
+**Q: 什么是数字游民城市排名?**
+A: 本榜单从月成本、网络、社群、生活、安全、英语、步行、空气、女性友好、LGBTQ+、夜生活、安静指数、种族包容共 12 个维度,对全球 64 个城市加权评分,综合分越高越适合长期数字游民生活。
+
+**Q: 排名前十的数字游民城市有哪些?**
+A: 里斯本、柏林、台北、东京、新加坡、拉斯帕尔马斯、塔林、布拉格、波尔图、巴塞罗那。完整榜单见[在线网站](https://roloria.github.io/global-digital-nomad/)。
+
+**Q: 数字游民最便宜的城市是哪个?**
+A: 清迈(泰国)、胡志明(越南)、金边(柬埔寨)、暹粒(柬埔寨)等东南亚城市月生活成本约 800-1100 美元,性价比较高。
+
+**Q: 如何申请数字游民签证?**
+A: 葡萄牙 D7/D8、西班牙数字游民签证、爱沙尼亚数字游民签证、捷克游民签证是较热门选项。每个城市行末的「签证」字段会标注推荐签证类型,具体申请请以当地移民局官网为准。
+
+**Q: 数据多久更新一次?**
+A: 开源社区维护,无强制更新周期。任何人都可以匿名提交更新,PR 合并后该城市「最后更新」字段会自动刷新。
+
+---
+
 ## 🤝 参与共建
 
 **我们欢迎任何形式的贡献**：
@@ -137,7 +186,8 @@ global-digital-nomad/
 
 ## 📅 更新日志
 
-- **2026-07**：首版发布，覆盖 64 个城市 / 39 个国家（亚洲 21 / 欧洲 18 / 拉美 15 / 非洲 7 / 中东 3）
+- **2026-08**：网站新增「关于 / 数据更新频率」区块、底部数据状态改为动态统计、城市行加 `📅 最后更新` 徽章、新增 FAQ 可视化区块、为 SEO 补齐 Open Graph / Twitter Card / JSON-LD / sitemap / robots / favicon、SVG 结构化数据。
+- **2026-07**：首版发布,覆盖 64 个城市 / 39 个国家(亚洲 21 / 欧洲 18 / 拉美 15 / 非洲 7 / 中东 3)
 
 ---
 
