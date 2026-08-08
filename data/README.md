@@ -101,6 +101,8 @@ overall = (
 
 详见 [`docs/data-sources.md`](../docs/data-sources.md)。
 
+游民数逐城来源与调整记录详见 [`reports/nomad-counts-sources.md`](../reports/nomad-counts-sources.md)。
+
 ## 同步脚本
 
 将 CSV 转换为 Excel：
