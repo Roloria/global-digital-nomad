@@ -62,15 +62,15 @@ change-template: '- $TITLE (#$NUMBER) @$AUTHOR'
 template: |
   ## 🌍 全球数字游民计划 — v$RESOLVED_VERSION
 
-  > 自动生成的发布说明。最近一次更新：$DATE
-
   $CHANGES
 
   ---
 
   **🔗 相关链接**：
-  - [完整变更历史]($REPO_URL/compare/v$PREVIOUS_TAG...v$RESOLVED_VERSION)
+  - [完整变更历史]($REPO_URL/compare/$PREVIOUS_TAG...v$RESOLVED_VERSION)
   - [查看 release]($REPO_URL/releases/tag/v$RESOLVED_VERSION)
+
+  **🤝 贡献者**：$CONTRIBUTORS
 
   ---
 
