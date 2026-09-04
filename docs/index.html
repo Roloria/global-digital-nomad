@@ -968,7 +968,7 @@ footer a:hover { text-decoration: underline; }
     <div style="padding:14px 16px; background:var(--bg-2); border-radius:10px; border:1px solid var(--border);">
       <div style="font-size:13px; font-weight:600; margin-bottom:6px;">🧮 「最后更新」怎么算</div>
       <div style="font-size:12px; color:var(--text-2); line-height:1.6;">
-        由 <code>git blame</code> 自动追溯数据行最后一次被修改的日期，<b>不是手动填写</b>，没法"假装新鲜"。今天下方显示的统计基于 64 座城市实时计算：
+        由 <code>git blame</code> 自动追溯数据行最后一次被修改的日期，<b>不是手动填写</b>，没法"假装新鲜"。今天下方显示的统计基于 <span id="about-city-count">…</span> 座城市实时计算：
       </div>
     </div>
   </div>
@@ -1726,6 +1726,8 @@ function renderAbout(){
   const grid = document.getElementById("about-stats");
   const footer = document.getElementById("data-freshness");
   if(!grid) return;
+  const countEl = document.getElementById("about-city-count");
+  if(countEl) countEl.textContent = CITIES_DATA.length;
 
   const dates = CITIES_DATA.map(d => d["最后更新"]).filter(Boolean);
   if(!dates.length){

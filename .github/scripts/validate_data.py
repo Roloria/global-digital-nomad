@@ -123,6 +123,17 @@ def validate_csv(path):
                     f"❌ 第 {i} 行 ({city}): '{col}' 不是整数: '{row[col]}'"
                 )
 
+        # Sanity bounds（量级防呆，不限制具体数值）
+        for col, lo, hi in [("月成本 (USD)", 100, 10000), ("游民数", 0, 10_000_000), ("年均气温 (°C)", -20, 40)]:
+            try:
+                v = int(row[col])
+                if v < lo or v > hi:
+                    errors.append(
+                        f"❌ 第 {i} 行 ({city}): '{col}' = {v} 超出合理区间 [{lo}, {hi}]"
+                    )
+            except ValueError:
+                pass  # 非整数已由上方校验报错
+
         # Check last_updated is YYYY-MM-DD format
         last_updated = row.get("最后更新", "").strip()
         import re as _re
@@ -143,6 +154,24 @@ def validate_csv(path):
             )
 
     print(f"✅ 共 {len(rows)} 行，已检查评分范围与综合分公式")
+
+    # 排名语义：排名 = 按游民数降序的 1..N 排列（与网站的自动重算逻辑一致）
+    ranks = [r["排名"] for r in rows]
+    try:
+        rank_ints = [int(x) for x in ranks]
+        if sorted(rank_ints) != list(range(1, len(rows) + 1)):
+            errors.append("❌ 排名列不是 1..N 的完整排列（存在缺失/重复/越界）")
+        else:
+            by_nomads = sorted(rows, key=lambda r: -int(r["游民数"]))
+            for expect_i, r in enumerate(by_nomads, start=1):
+                if int(r["排名"]) != expect_i:
+                    errors.append(
+                        f"❌ 城市 {r['城市']}: 排名 {r['排名']} 与游民数降序位次 {expect_i} 不符"
+                    )
+            if not errors or all("排名" not in e and "位次" not in e for e in errors):
+                print("✅ 排名与游民数降序一致")
+    except ValueError:
+        errors.append("❌ 排名列存在非整数值")
 
     # Print top 5
     print("\n📊 综合分 TOP 5:")
