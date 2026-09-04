@@ -76,6 +76,8 @@ jobs:
           cat docs/data/exchange-rate.json
 
       - name: Commit and push
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           # 不加 set -e,git push 失败要走 PR 回退路径
           git config user.name "github-actions[bot]"
