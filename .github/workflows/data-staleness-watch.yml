@@ -1,0 +1,49 @@
+name: Data Staleness Watch
+
+on:
+  # 每天 01:00 UTC 检查一次数据新鲜度
+  schedule:
+    - cron: '0 1 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check data freshness
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          LAST=$(git log -1 --format=%cs -- data/digital-nomad-cities.csv)
+          TODAY=$(date -u +%F)
+          DAYS=$(( ($(date -u -d "$TODAY" +%s) - $(date -u -d "$LAST" +%s)) / 86400 ))
+          echo "数据最后更新: $LAST（${DAYS} 天前）"
+
+          TITLE="⏰ 数据保鲜提醒：CSV 已 ${DAYS} 天未更新"
+          BODY=$(printf '数据文件 `data/digital-nomad-cities.csv` 最后更新于 **%s**（%d 天前）。\n\n请通过腾讯文档共建表更新数据（每日自动化 apply），或在 WorkBuddy 中确认同步自动化存活。本 Issue 由 [Data Staleness Watch](/.github/workflows/data-staleness-watch.yml) 维护，数据更新后会自动关闭。' "$LAST" "$DAYS")
+
+          OPEN=$(gh issue list --state open --search "数据保鲜提醒 in:title" --json number --jq '.[0].number // ""')
+          if [ "$DAYS" -le 7 ]; then
+            if [ -n "$OPEN" ]; then
+              gh issue close "$OPEN" --comment "数据已于 $LAST 更新，自动关闭 ✅"
+              echo "✅ 数据新鲜（${DAYS} 天），已关闭提醒 #$OPEN"
+            else
+              echo "✅ 数据新鲜（${DAYS} 天），无需提醒"
+            fi
+          elif [ -n "$OPEN" ]; then
+            gh issue comment "$OPEN" --body "仍在等待更新：最后更新 $LAST（${DAYS} 天前）。"
+            echo "🔁 已更新现有提醒 #$OPEN"
+          else
+            gh issue create --title "$TITLE" --body "$BODY" --label "automated,data-freshness" || \
+              gh issue create --title "$TITLE" --body "$BODY"
+            echo "🔔 已开提醒 Issue"
+          fi
