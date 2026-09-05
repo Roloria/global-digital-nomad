@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>(function(){try{var t=localStorage.getItem("gdna-theme");if(t!=="dark"&&t!=="light")t=window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";document.documentElement.setAttribute("data-theme",t)}catch(e){}})();</script>
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
@@ -169,21 +170,22 @@
 
 <style>
 :root {
-  --bg: #f3f5f7;
-  --bg-2: #e9edf1;
-  --card: #ffffff;
-  --border: #dee4ea;
-  --border-strong: #c6cfd8;
-  --text: #17191d;
-  --text-2: #4d5560;
-  --text-3: #8a919b;
-  --accent: #0b7285;
-  --accent-hover: #096072;
-  --accent-soft: rgba(11, 114, 133, 0.09);
-  --ring: rgba(11, 114, 133, 0.22);
-  --on-accent: #ffffff;
-  --ink: #1b1f24;
-  --on-ink: #ffffff;
+  /* 浅色主题：官网同源暖调（Nomadic Cartography / Claude 编辑风） */
+  --bg: #faf9f5;
+  --bg-2: #f0eee6;
+  --card: #fffdf8;
+  --border: #e3e0d5;
+  --border-strong: #cfcbbd;
+  --text: #141413;
+  --text-2: #57544b;
+  --text-3: #98948a;
+  --accent: #c96442;
+  --accent-hover: #a94f30;
+  --accent-soft: rgba(201, 100, 66, 0.10);
+  --ring: rgba(201, 100, 66, 0.28);
+  --on-accent: #fff8f0;
+  --ink: #1f1e1d;
+  --on-ink: #faf9f5;
   --good: #2f9e44;
   --mid: #e8890c;
   --bad: #e03131;
@@ -191,29 +193,28 @@
   --shadow-sm: 0 1px 2px rgba(23, 32, 44, 0.06);
   --shadow-md: 0 10px 28px rgba(23, 32, 44, 0.12);
 }
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #0f1216;
-    --bg-2: #161b21;
-    --card: #1b222a;
-    --border: #2c3540;
-    --border-strong: #3d4854;
-    --text: #eef2f6;
-    --text-2: #aeb8c2;
-    --text-3: #74808d;
-    --accent: #3bc9db;
-    --accent-hover: #5dd3e3;
-    --accent-soft: rgba(59, 201, 219, 0.13);
-    --ring: rgba(59, 201, 219, 0.30);
-    --on-accent: #082026;
-    --ink: #e8edf2;
-    --on-ink: #12181d;
-    --good: #51cf66;
-    --mid: #ffa94d;
-    --bad: #ff6b6b;
-    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.35);
-    --shadow-md: 0 14px 36px rgba(0, 0, 0, 0.5);
-  }
+/* 深色主题：默认跟随系统；手动切换后由 localStorage 记忆 */
+html[data-theme="dark"] {
+  --bg: #0f1216;
+  --bg-2: #161b21;
+  --card: #1b222a;
+  --border: #2c3540;
+  --border-strong: #3d4854;
+  --text: #eef2f6;
+  --text-2: #aeb8c2;
+  --text-3: #74808d;
+  --accent: #3bc9db;
+  --accent-hover: #5dd3e3;
+  --accent-soft: rgba(59, 201, 219, 0.13);
+  --ring: rgba(59, 201, 219, 0.30);
+  --on-accent: #082026;
+  --ink: #e8edf2;
+  --on-ink: #12181d;
+  --good: #51cf66;
+  --mid: #ffa94d;
+  --bad: #ff6b6b;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.35);
+  --shadow-md: 0 14px 36px rgba(0, 0, 0, 0.5);
 }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
@@ -254,6 +255,21 @@ header::after {
   display: inline-flex; align-items: center; justify-content: center;
   font-size: 17px; line-height: 1; flex-shrink: 0;
 }
+
+.theme-toggle {
+  margin-left: auto;
+  width: 34px; height: 34px; border-radius: 50%;
+  border: 1px solid var(--border-strong);
+  background: var(--card); color: var(--text-2);
+  display: inline-flex; align-items: center; justify-content: center;
+  cursor: pointer; flex-shrink: 0; padding: 0;
+  transition: color .15s, border-color .15s, transform .2s, background .15s;
+}
+.theme-toggle:hover { color: var(--accent); border-color: var(--accent); transform: rotate(18deg); }
+.theme-toggle svg { width: 17px; height: 17px; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+.theme-toggle .icon-sun { display: none; }
+html[data-theme="dark"] .theme-toggle .icon-sun { display: block; }
+html[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
 .eyebrow {
   font-family: var(--font-display);
   font-size: 11px; font-weight: 600;
@@ -794,6 +810,10 @@ footer a:hover { text-decoration: underline; }
     <span class="logo-mark">🌍</span>
     <span class="eyebrow">Open Data · Global Nomad Index</span>
     <span class="masthead-meta">5 大区域 · 40 国 · 80 城 + 60 社区</span>
+    <button class="theme-toggle" id="theme-toggle" type="button" aria-label="切换浅色 / 深色主题" title="切换浅色 / 深色主题">
+      <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+    </button>
   </div>
   <h1>全球数字游民城市榜</h1>
   <div class="tagline">开源社区维护 · 80 个城市 · 12 维度评分 · 欢迎匿名提交更新</div>
@@ -1682,6 +1702,21 @@ function renderCurrency(){
   }
   renderRateIndicator();
 }
+
+// ====== Theme toggle（浅色 = 官网暖调，深色 = 原版） ======
+const themeMedia = window.matchMedia("(prefers-color-scheme: dark)");
+function applyTheme(t){ document.documentElement.setAttribute("data-theme", t); }
+function currentTheme(){ return document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light"; }
+function savedTheme(){ try { const t = localStorage.getItem("gdna-theme"); return t === "dark" || t === "light" ? t : null; } catch(e) { return null; } }
+applyTheme(savedTheme() || (themeMedia.matches ? "dark" : "light"));
+document.getElementById("theme-toggle").addEventListener("click", () => {
+  const next = currentTheme() === "dark" ? "light" : "dark";
+  applyTheme(next);
+  try { localStorage.setItem("gdna-theme", next); } catch(e) {}
+});
+themeMedia.addEventListener("change", (e) => {
+  if (!savedTheme()) applyTheme(e.matches ? "dark" : "light");
+});
 
 // ====== Helpers ======
 function tier(v){ return v>=7?"g":v>=5.5?"m":"b"; }
