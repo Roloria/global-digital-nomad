@@ -297,7 +297,7 @@ def city_page(row, prev_row, next_row, lang) -> str:
 
 
 def en_index(rows) -> str:
-    now = date.today().isoformat()
+    now = max(r["最后更新"] for r in rows)
     t = f"Global Digital Nomad Cities Index · 80 Cities × 12 Dimensions · Open Data | {BRAND_EN}"
     d = ("Open, community-maintained ranking of 80 digital-nomad cities across 40 countries: monthly cost, "
          "internet, safety, community and more, scored 0–10 with a public formula. English edition of 牛马迁移指南.")
@@ -346,7 +346,7 @@ Every change is recorded in git history and reflected on these pages. Cost figur
 <b>Can I contribute?</b> Yes — the dataset is fully open: <a href="https://github.com/{REPO}">GitHub</a> ·
 <a href="https://docs.qq.com/sheet/DREppWERNRWdwcXRR">shared spreadsheet</a> · or <a href="../">browse the Chinese interactive edition</a>.</p>
 </div>
-<footer><span>{BRAND_EN} · part of <a href="../">牛马迁移指南</a></span><span>Generated {now} · <a href="https://github.com/{REPO}">open source</a></span></footer>
+<footer><span>{BRAND_EN} · part of <a href="../">牛马迁移指南</a></span><span>Data as of {now} · <a href="https://github.com/{REPO}">open source</a></span></footer>
 </div></body></html>"""
     return body
 
@@ -368,7 +368,7 @@ def rebuild_sitemap(rows):
                 continue  # generated entries are rebuilt below
             kept.append(block.rstrip())
 
-    today = date.today().isoformat()
+    today = max(r["最后更新"] for r in rows)
     gen = []
     for r in rows:
         slug, lm = r["_slug"], r["最后更新"]
