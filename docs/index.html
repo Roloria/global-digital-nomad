@@ -998,6 +998,15 @@ footer a:hover { text-decoration: underline; }
 
   <div id="about-stats" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap:10px; margin-top:14px;"></div>
 
+  <div id="contributors-box" style="display:none; margin-top:14px; padding:14px 16px; background:var(--bg-2); border-radius:10px; border:1px solid var(--border);">
+    <div style="display:flex; align-items:baseline; justify-content:space-between; gap:10px;">
+      <div style="font-size:13px; font-weight:600;">🏆 贡献者荣誉榜</div>
+      <a href="https://github.com/Roloria/global-digital-nomad/graphs/contributors" target="_blank" rel="noopener" style="font-size:11px; color:var(--accent); text-decoration:none;">查看全部 →</a>
+    </div>
+    <div style="font-size:11px; color:var(--text-3); margin:4px 0 10px;">每一笔共建都会留痕 —— 以下数据来自 GitHub 实时贡献记录。想上榜？<a href="https://github.com/Roloria/global-digital-nomad/discussions/10" target="_blank" rel="noopener" style="color:var(--accent); text-decoration:none;">认领一座城做数据守护者</a>。</div>
+    <div id="contributors-grid" style="display:grid; grid-template-columns:repeat(auto-fill, minmax(96px, 1fr)); gap:8px;"></div>
+  </div>
+
   <div style="margin-top:16px; padding:14px 16px; background:rgba(232,137,12,0.07); border:1px solid rgba(232,137,12,0.28); border-radius:10px;">
     <div style="font-size:13px; font-weight:600; margin-bottom:6px;">⚠️ 使用前请留意</div>
     <ul style="margin:0; padding-left:20px; font-size:12px; color:var(--text-2); line-height:1.7;">
@@ -2125,8 +2134,30 @@ if (todayEl) {
   todayEl.value = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
 }
 
+function renderContributors(){
+  const box = document.getElementById("contributors-box");
+  const grid = document.getElementById("contributors-grid");
+  if(!box || !grid) return;
+  fetch("https://api.github.com/repos/Roloria/global-digital-nomad/contributors?per_page=24")
+    .then(r => r.ok ? r.json() : Promise.reject(r.status))
+    .then(list => {
+      const humans = (Array.isArray(list) ? list : []).filter(u => u && u.login && !/\[bot\]$/.test(u.login));
+      if(!humans.length){ return; }
+      grid.innerHTML = humans.map(u => `
+        <a href="${u.html_url}" target="_blank" rel="noopener" title="${u.login} · ${u.contributions} 次贡献"
+           style="display:flex; flex-direction:column; align-items:center; gap:5px; padding:8px 4px; background:var(--bg); border:1px solid var(--border); border-radius:10px; text-decoration:none;">
+          <img src="${u.avatar_url}&s=64" alt="${u.login}" loading="lazy" style="width:36px; height:36px; border-radius:50%; border:1px solid var(--border);">
+          <span style="font-size:11px; color:var(--text-2); max-width:88px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${u.login}</span>
+          <span style="font-size:10px; color:var(--text-3);">${u.contributions} 次</span>
+        </a>`).join("");
+      box.style.display = "block";
+    })
+    .catch(() => { /* API 不可达时整个板块保持隐藏，不影响主功能 */ });
+}
+
 renderStats();
 renderAbout();
+renderContributors();
 renderCommunityStats();
 renderCommunities();
 

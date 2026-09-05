@@ -1,0 +1,55 @@
+name: Weekly Issue Triage
+
+on:
+  # 每周一 01:00 UTC（北京时间周一 09:00）
+  schedule:
+    - cron: '0 1 * * 1'
+  workflow_dispatch:
+
+permissions:
+  issues: write
+
+jobs:
+  triage:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Build weekly triage list
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          TITLE="🧹 本周 Issue triage 清单"
+
+          # 汇总所有开放 issue（排除本清单自身），含标签与年龄
+          ITEMS=$(gh issue list --state open --limit 100 --json number,title,labels,createdAt \
+            --jq '.[] | select(.title | startswith("🧹") | not) |
+                  "- #\(.number) \(.title) [" + ([.labels[].name] | join(",")) + "] · 开于 \(.createdAt[0:10])"' || true)
+
+          if [ -z "$ITEMS" ]; then
+            ITEMS="_本周无待处理 Issue，社区静好 🎉（匿名提交与模板 Issue 会自动出现在这里）_"
+          fi
+
+          COUNT=$(gh issue list --state open --limit 100 --json number,title \
+            --jq '[.[] | select(.title | startswith("🧹") | not)] | length')
+
+          BODY=$(cat <<MD
+          ## 🧹 本周待处理（共 ${COUNT} 条）
+
+          处理流程见 [TRIAGE.md](/Roloria/global-digital-nomad/blob/main/TRIAGE.md)：定标签 → 定去向（PR / Discussions / 补问）→ 致谢。**每周一 09:00 本清单自动刷新。**
+
+          ${ITEMS}
+
+          ---
+          🤖 由 Weekly Issue Triage 维护 · 上次刷新 $(date -u '+%F %H:%M UTC')
+          MD
+          )
+
+          OPEN=$(gh issue list --state open --search "🧹 本周 Issue triage in:title" --json number --jq '.[0].number // ""')
+          if [ -n "$OPEN" ]; then
+            gh issue edit "$OPEN" --body "$BODY"
+            echo "🔁 已刷新清单 #$OPEN"
+          else
+            gh issue create --title "$TITLE" --body "$BODY" --label "automated"
+            echo "🔔 已创建清单"
+          fi

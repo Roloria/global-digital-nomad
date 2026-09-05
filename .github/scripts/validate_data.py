@@ -12,6 +12,8 @@
 import csv
 import sys
 import os
+import re
+from collections import Counter
 from pathlib import Path
 
 EXPECTED_HEADERS = [
@@ -248,6 +250,54 @@ def validate_xlsx_matches_csv(csv_rows):
     return errors
 
 
+def validate_guardians(cities_keys):
+    """校验守护者登记表（可选文件）：城市必须存在、无重复认领、日期格式正确。"""
+    errors = []
+    path = "data/guardians.csv"
+    if not Path(path).exists():
+        print("ℹ️  无 guardians.csv，跳过守护者校验")
+        return errors
+
+    rows = load_csv(path)
+    if not rows:
+        print("ℹ️  guardians.csv 为空（尚无守护者），跳过")
+        return errors
+
+    expected = ["认领人", "城市", "国家", "认领日期", "备注"]
+    if list(rows[0].keys()) != expected:
+        errors.append(f"❌ guardians.csv 表头不匹配：期望 {expected}，实际 {list(rows[0].keys())}")
+        return errors
+
+    seen = set()
+    for i, r in enumerate(rows, start=2):
+        who, city, country = r["认领人"].strip(), r["城市"].strip(), r["国家"].strip()
+        if not who or not city or not country:
+            errors.append(f"❌ guardians.csv 第 {i} 行：认领人/城市/国家 存在空值")
+            continue
+        if (city, country) not in cities_keys:
+            errors.append(
+                f"❌ guardians.csv 第 {i} 行 ({who}): 城市 '{city}({country})' 不在主数据中——请与 "
+                f"digital-nomad-cities.csv 的「城市」「国家」逐字一致"
+            )
+        key = (who.lower(), city, country)
+        if key in seen:
+            errors.append(f"❌ guardians.csv 第 {i} 行：{who} 重复认领 {city}")
+        seen.add(key)
+
+        d = r["认领日期"].strip()
+        if not re.match(r"^\d{4}-\d{2}-\d{2}$", d):
+            errors.append(f"❌ guardians.csv 第 {i} 行 ({who}): 认领日期格式错误: '{d}' (应为 YYYY-MM-DD)")
+
+    per_guardian = Counter(who.lower() for who, *_ in [ (r["认领人"],) for r in rows ])
+    for who, n in per_guardian.items():
+        if n > 3:
+            errors.append(f"❌ 守护者 {who} 认领 {n} 座城，超过上限 3")
+
+    if not errors:
+        print(f"✅ guardians.csv 校验通过（{len(rows)} 条认领）")
+    return errors
+
+
 def main():
     csv_path = os.environ.get("CSV_PATH", "data/digital-nomad-cities.csv")
     print(f"🔍 校验数据文件: {csv_path}\n")
@@ -256,6 +306,8 @@ def main():
 
     if csv_rows:
         errors.extend(validate_xlsx_matches_csv(csv_rows))
+        cities_keys = {(r["城市"].strip(), r["国家"].strip()) for r in csv_rows}
+        errors.extend(validate_guardians(cities_keys))
 
     print("\n" + "=" * 50)
     if errors:

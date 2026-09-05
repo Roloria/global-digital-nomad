@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: ✏️ 直接改腾讯文档共建表
+    url: https://docs.qq.com/sheet/DREppWERNRWdwcXRR
+    about: 最简单的共建方式——拿到链接即可编辑，每日自动同步进 GitHub
+  - name: 💬 Discussions 社区
+    url: https://github.com/Roloria/global-digital-nomad/discussions
+    about: 求新城投票（Ideas）、数据守护者认领（Show and tell）、一般讨论（General）

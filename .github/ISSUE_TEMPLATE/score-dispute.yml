@@ -1,0 +1,32 @@
+name: ⚖️ 评分争议
+description: 认为某座城市的某个评分不反映真实情况？先讨论，共识后改表
+labels: ["question"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        评分是社区共识，不是绝对答案。争议先在这里/社区讨论，达成共识后统一调整，避免来回拉锯。
+  - type: input
+    id: city
+    attributes:
+      label: 城市 / 国家
+      placeholder: "里斯本 / 葡萄牙"
+    validations:
+      required: true
+  - type: dropdown
+    id: dim
+    attributes:
+      label: 争议维度
+      options:
+        - 网络 / 社群 / 生活 / 安全 / 英语 / 步行 / 空气
+        - 女性友好 / LGBTQ+ / 夜生活 / 安静指数 / 种族包容
+        - 综合分 / 权重公式
+    validations:
+      required: true
+  - type: textarea
+    id: argument
+    attributes:
+      label: 你的论据
+      placeholder: 现状评分、你认为的合理评分、依据（居住经历/数据来源）
+    validations:
+      required: true

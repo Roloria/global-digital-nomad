@@ -1,0 +1,34 @@
+name: 🏙️ 求新城提名
+description: 提名一座尚未收录的城市，进入每月扩城评审
+labels: ["feature"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        也可以去 Discussions「[🗳️ 求新城](https://github.com/Roloria/global-digital-nomad/discussions/11)」用 👍 投票——票数高的城市优先入库。
+  - type: input
+    id: city
+    attributes:
+      label: 城市 / 国家
+      placeholder: "佛罗伦萨 / 意大利"
+    validations:
+      required: true
+  - type: dropdown
+    id: region
+    attributes:
+      label: 区域
+      options: ["亚洲", "欧洲", "拉美", "非洲", "中东"]
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: 推荐理由
+      placeholder: 签证政策、共享办公生态、游民聚集情况……
+    validations:
+      required: true
+  - type: textarea
+    id: data
+    attributes:
+      label: 数据线索（可选）
+      placeholder: 月成本参考、游民数估计、来源链接——附线索的提名优先入库
