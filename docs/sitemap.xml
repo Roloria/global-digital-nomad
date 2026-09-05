@@ -3,13 +3,13 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 
-  <url>
+<url>
     <loc>https://roloria.github.io/global-digital-nomad/home/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
-  <url>
+<url>
     <loc>https://roloria.github.io/global-digital-nomad/#cities</loc>
     <lastmod>2026-08-08</lastmod>
     <changefreq>weekly</changefreq>
@@ -28,68 +28,1678 @@
     </image:image>
   </url>
 
-  <url>
+<url>
     <loc>https://roloria.github.io/global-digital-nomad/#methodology</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
-  <url>
+<url>
     <loc>https://roloria.github.io/global-digital-nomad/#about</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
 
-  <url>
+<url>
     <loc>https://roloria.github.io/global-digital-nomad/#communities</loc>
     <lastmod>2026-08-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
-  <url>
+<url>
     <loc>https://github.com/Roloria/global-digital-nomad/blob/main/data/digital-nomad-cities.csv</loc>
     <lastmod>2026-08-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
-  <url>
+<url>
     <loc>https://github.com/Roloria/global-digital-nomad/blob/main/data/digital-nomad-communities.csv</loc>
     <lastmod>2026-08-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
-  <url>
+<url>
     <loc>https://github.com/Roloria/global-digital-nomad/blob/main/README.md</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
 
-  <url>
+<url>
     <loc>https://github.com/Roloria/global-digital-nomad/blob/main/docs/methodology.md</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
-  <url>
+<url>
     <loc>https://github.com/Roloria/global-digital-nomad/blob/main/docs/data-sources.md</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
-  <url>
+<url>
     <loc>https://github.com/Roloria/global-digital-nomad/blob/main/reports/digital-nomad-cities-report.md</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
-  <url>
+<url>
     <loc>https://github.com/Roloria/global-digital-nomad/blob/main/reports/digital-nomad-communities-report.md</loc>
     <lastmod>2026-08-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/en/</loc>
+    <lastmod>2026-09-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/city/mexico-city/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/mexico-city/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/mexico-city/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/mexico-city/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/en/city/mexico-city/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/mexico-city/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/mexico-city/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/mexico-city/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/city/bali-canggu/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/bali-canggu/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/bali-canggu/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/bali-canggu/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/en/city/bali-canggu/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/bali-canggu/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/bali-canggu/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/bali-canggu/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/city/lisbon/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/lisbon/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/lisbon/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/lisbon/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/en/city/lisbon/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/lisbon/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/lisbon/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/lisbon/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/city/barcelona/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/barcelona/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/barcelona/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/barcelona/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/en/city/barcelona/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/barcelona/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/barcelona/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/barcelona/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/city/shanghai/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/shanghai/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/shanghai/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/shanghai/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/en/city/shanghai/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/shanghai/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/shanghai/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/shanghai/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/city/dali/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/dali/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/dali/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/dali/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/en/city/dali/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/dali/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/dali/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/dali/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/city/chiang-mai/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/chiang-mai/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/chiang-mai/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/chiang-mai/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/en/city/chiang-mai/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/chiang-mai/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/chiang-mai/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/chiang-mai/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/city/beijing/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/beijing/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/beijing/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/beijing/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/en/city/beijing/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/beijing/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/beijing/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/beijing/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/city/medellin/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/medellin/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/medellin/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/medellin/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/en/city/medellin/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/medellin/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/medellin/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/medellin/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/city/hangzhou/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/hangzhou/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/hangzhou/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/hangzhou/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/en/city/hangzhou/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/hangzhou/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/hangzhou/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/hangzhou/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/city/shenzhen/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/shenzhen/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/shenzhen/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/shenzhen/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/en/city/shenzhen/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/shenzhen/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/shenzhen/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/shenzhen/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/city/ho-chi-minh-city/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/ho-chi-minh-city/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/ho-chi-minh-city/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/ho-chi-minh-city/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/en/city/ho-chi-minh-city/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/ho-chi-minh-city/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/ho-chi-minh-city/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/ho-chi-minh-city/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/city/chengdu/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/chengdu/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/chengdu/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/chengdu/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/en/city/chengdu/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/chengdu/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/chengdu/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/chengdu/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/city/bangkok/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/bangkok/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/bangkok/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/bangkok/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/en/city/bangkok/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/bangkok/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/bangkok/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/bangkok/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/city/buenos-aires/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/buenos-aires/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/buenos-aires/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/buenos-aires/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/en/city/buenos-aires/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/buenos-aires/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/buenos-aires/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/buenos-aires/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/city/hanoi/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/hanoi/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/hanoi/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/hanoi/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/en/city/hanoi/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/hanoi/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/hanoi/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/hanoi/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/city/bangalore/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/bangalore/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/bangalore/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/bangalore/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/en/city/bangalore/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/bangalore/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/bangalore/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/bangalore/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/city/tbilisi/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/tbilisi/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/tbilisi/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/tbilisi/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/en/city/tbilisi/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/tbilisi/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/tbilisi/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/tbilisi/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/city/tulum/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/tulum/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/tulum/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/tulum/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/en/city/tulum/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/tulum/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/tulum/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/tulum/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/city/berlin/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/berlin/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/berlin/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/berlin/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/en/city/berlin/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/berlin/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/berlin/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/berlin/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/city/las-palmas/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/las-palmas/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/las-palmas/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/las-palmas/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/en/city/las-palmas/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/las-palmas/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/las-palmas/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/las-palmas/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/city/kuala-lumpur/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/kuala-lumpur/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/kuala-lumpur/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/kuala-lumpur/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/en/city/kuala-lumpur/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/kuala-lumpur/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/kuala-lumpur/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/kuala-lumpur/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/city/istanbul/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/istanbul/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/istanbul/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/istanbul/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/en/city/istanbul/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/istanbul/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/istanbul/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/istanbul/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/city/playa-del-carmen/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/playa-del-carmen/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/playa-del-carmen/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/playa-del-carmen/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/en/city/playa-del-carmen/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/playa-del-carmen/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/playa-del-carmen/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/playa-del-carmen/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/city/dubai/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/dubai/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/dubai/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/dubai/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/en/city/dubai/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/dubai/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/dubai/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/dubai/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/city/phuket/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/phuket/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/phuket/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/phuket/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/en/city/phuket/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/phuket/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/phuket/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/phuket/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/city/tokyo/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/tokyo/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/tokyo/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/tokyo/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/en/city/tokyo/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/tokyo/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/tokyo/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/tokyo/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/city/nanjing/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/nanjing/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/nanjing/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/nanjing/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/en/city/nanjing/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/nanjing/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/nanjing/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/nanjing/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/city/xian/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/xian/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/xian/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/xian/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/en/city/xian/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/xian/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/xian/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/xian/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/city/cape-town/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/cape-town/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/cape-town/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/cape-town/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/en/city/cape-town/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/cape-town/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/cape-town/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/cape-town/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/city/rio-de-janeiro/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/rio-de-janeiro/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/rio-de-janeiro/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/rio-de-janeiro/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/en/city/rio-de-janeiro/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/rio-de-janeiro/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/rio-de-janeiro/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/rio-de-janeiro/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/city/goa/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/goa/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/goa/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/goa/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/en/city/goa/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/goa/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/goa/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/goa/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/city/cartagena/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/cartagena/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/cartagena/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/cartagena/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/en/city/cartagena/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/cartagena/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/cartagena/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/cartagena/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/city/budapest/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/budapest/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/budapest/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/budapest/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/en/city/budapest/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/budapest/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/budapest/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/budapest/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/city/singapore/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/singapore/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/singapore/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/singapore/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/en/city/singapore/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/singapore/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/singapore/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/singapore/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/city/prague/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/prague/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/prague/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/prague/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/en/city/prague/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/prague/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/prague/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/prague/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/city/panama-city/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/panama-city/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/panama-city/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/panama-city/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/en/city/panama-city/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/panama-city/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/panama-city/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/panama-city/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/city/sanya/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/sanya/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/sanya/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/sanya/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/en/city/sanya/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/sanya/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/sanya/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/sanya/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/city/kunming/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/kunming/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/kunming/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/kunming/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/en/city/kunming/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/kunming/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/kunming/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/kunming/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/city/suzhou/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/suzhou/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/suzhou/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/suzhou/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/en/city/suzhou/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/suzhou/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/suzhou/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/suzhou/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/city/bansko/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/bansko/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/bansko/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/bansko/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/en/city/bansko/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/bansko/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/bansko/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/bansko/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/city/da-nang/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/da-nang/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/da-nang/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/da-nang/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/en/city/da-nang/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/da-nang/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/da-nang/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/da-nang/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/city/jakarta/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/jakarta/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/jakarta/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/jakarta/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/en/city/jakarta/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/jakarta/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/jakarta/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/jakarta/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/city/taipei/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/taipei/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/taipei/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/taipei/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/en/city/taipei/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/taipei/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/taipei/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/taipei/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/city/krakow/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/krakow/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/krakow/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/krakow/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/en/city/krakow/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/krakow/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/krakow/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/krakow/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/city/lima/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/lima/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/lima/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/lima/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/en/city/lima/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/lima/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/lima/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/lima/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/city/porto/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/porto/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/porto/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/porto/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/en/city/porto/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/porto/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/porto/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/porto/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/city/seoul/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/seoul/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/seoul/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/seoul/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/en/city/seoul/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/seoul/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/seoul/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/seoul/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/city/tenerife/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/tenerife/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/tenerife/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/tenerife/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/en/city/tenerife/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/tenerife/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/tenerife/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/tenerife/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/city/athens/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/athens/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/athens/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/athens/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/en/city/athens/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/athens/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/athens/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/athens/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/city/penang/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/penang/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/penang/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/penang/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/en/city/penang/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/penang/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/penang/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/penang/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/city/phnom-penh/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/phnom-penh/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/phnom-penh/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/phnom-penh/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/en/city/phnom-penh/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/phnom-penh/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/phnom-penh/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/phnom-penh/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/city/tallinn/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/tallinn/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/tallinn/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/tallinn/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/en/city/tallinn/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/tallinn/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/tallinn/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/tallinn/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/city/xiamen/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/xiamen/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/xiamen/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/xiamen/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/en/city/xiamen/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/xiamen/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/xiamen/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/xiamen/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/city/qingdao/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/qingdao/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/qingdao/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/qingdao/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/en/city/qingdao/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/qingdao/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/qingdao/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/qingdao/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/city/lijiang/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/lijiang/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/lijiang/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/lijiang/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/en/city/lijiang/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/lijiang/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/lijiang/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/lijiang/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/city/san-miguel-de-allende/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/san-miguel-de-allende/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/san-miguel-de-allende/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/san-miguel-de-allende/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/en/city/san-miguel-de-allende/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/san-miguel-de-allende/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/san-miguel-de-allende/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/san-miguel-de-allende/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/city/nairobi/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/nairobi/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/nairobi/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/nairobi/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/en/city/nairobi/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/nairobi/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/nairobi/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/nairobi/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/city/manila/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/manila/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/manila/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/manila/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/en/city/manila/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/manila/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/manila/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/manila/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/city/madeira/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/madeira/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/madeira/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/madeira/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/en/city/madeira/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/madeira/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/madeira/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/madeira/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/city/split/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/split/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/split/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/split/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/en/city/split/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/split/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/split/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/split/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/city/florianopolis/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/florianopolis/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/florianopolis/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/florianopolis/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/en/city/florianopolis/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/florianopolis/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/florianopolis/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/florianopolis/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/city/oaxaca/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/oaxaca/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/oaxaca/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/oaxaca/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/en/city/oaxaca/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/oaxaca/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/oaxaca/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/oaxaca/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/city/cebu/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/cebu/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/cebu/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/cebu/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/en/city/cebu/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/cebu/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/cebu/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/cebu/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/city/johannesburg/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/johannesburg/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/johannesburg/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/johannesburg/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/en/city/johannesburg/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/johannesburg/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/johannesburg/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/johannesburg/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/city/yangshuo/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/yangshuo/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/yangshuo/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/yangshuo/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/en/city/yangshuo/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/yangshuo/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/yangshuo/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/yangshuo/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/city/montevideo/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/montevideo/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/montevideo/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/montevideo/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/en/city/montevideo/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/montevideo/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/montevideo/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/montevideo/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/city/belgrade/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/belgrade/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/belgrade/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/belgrade/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/en/city/belgrade/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/belgrade/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/belgrade/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/belgrade/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/city/cabo-san-lucas/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/cabo-san-lucas/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/cabo-san-lucas/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/cabo-san-lucas/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/en/city/cabo-san-lucas/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/cabo-san-lucas/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/cabo-san-lucas/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/cabo-san-lucas/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/city/siem-reap/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/siem-reap/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/siem-reap/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/siem-reap/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/en/city/siem-reap/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/siem-reap/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/siem-reap/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/siem-reap/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/city/koh-samui/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/koh-samui/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/koh-samui/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/koh-samui/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/en/city/koh-samui/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/koh-samui/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/koh-samui/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/koh-samui/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/city/sofia/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/sofia/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/sofia/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/sofia/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/en/city/sofia/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/sofia/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/sofia/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/sofia/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/city/antigua-guatemala/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/antigua-guatemala/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/antigua-guatemala/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/antigua-guatemala/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/en/city/antigua-guatemala/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/antigua-guatemala/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/antigua-guatemala/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/antigua-guatemala/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/city/marrakech/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/marrakech/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/marrakech/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/marrakech/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/en/city/marrakech/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/marrakech/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/marrakech/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/marrakech/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/city/abu-dhabi/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/abu-dhabi/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/abu-dhabi/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/abu-dhabi/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/en/city/abu-dhabi/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/abu-dhabi/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/abu-dhabi/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/abu-dhabi/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/city/taghazout/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/taghazout/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/taghazout/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/taghazout/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/en/city/taghazout/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/taghazout/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/taghazout/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/taghazout/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/city/cairo/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/cairo/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/cairo/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/cairo/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/en/city/cairo/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/cairo/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/cairo/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/cairo/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/city/kigali/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/kigali/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/kigali/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/kigali/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/en/city/kigali/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/kigali/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/kigali/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/kigali/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/city/anji/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/anji/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/anji/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/anji/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/en/city/anji/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/anji/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/anji/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/anji/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/city/doha/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/doha/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/doha/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/doha/"/>
+  </url>
+
+  <url>
+    <loc>https://roloria.github.io/global-digital-nomad/en/city/doha/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://roloria.github.io/global-digital-nomad/city/doha/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://roloria.github.io/global-digital-nomad/en/city/doha/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://roloria.github.io/global-digital-nomad/city/doha/"/>
   </url>
 
 </urlset>

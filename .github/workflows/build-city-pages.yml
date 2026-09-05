@@ -1,0 +1,52 @@
+name: Build City Pages & EN Site
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'data/digital-nomad-cities.csv'
+      - '.github/scripts/build_city_pages.py'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Generate city pages (zh/en) + EN index + sitemap
+        run: python3 .github/scripts/build_city_pages.py
+
+      - name: Commit if changed
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -uo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/city docs/en docs/sitemap.xml docs/index.html
+
+          if git diff --cached --quiet; then
+            echo "ℹ️ 无变化，跳过"
+            exit 0
+          fi
+
+          git commit -m "city-pages: 由 CSV 自动再生成中/英详情页 + 英文版首页 + sitemap ($(date -u +%F))"
+
+          if git push origin HEAD:main 2>&1; then
+            echo "✅ direct push succeeded"
+          else
+            BRANCH="auto/city-pages-$(date -u +%F-%s)"
+            git checkout -b "$BRANCH"
+            git push -u origin "$BRANCH" || { echo "❌ branch push failed"; exit 1; }
+            gh pr create --base main --head "$BRANCH" \
+              --title "🤖 城市详情页/英文版自动再生成 $(date -u +%F)" \
+              --body "数据变更后由 build_city_pages.py 自动生成。review 后 merge。" \
+              --label "automated" || { echo "❌ PR create failed"; exit 1; }
+            echo "✅ PR opened"
+          fi
