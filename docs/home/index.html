@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>全球数字游民城市榜 · 你的下一座城，不该靠运气选</title>
+<meta name="description" content="一份由全球数字游民共同维护的开放城市数据库：80 座城市 × 12 个维度评分，评分公式公开，人人可编辑，改动全程留痕、开源可追溯。">
+<meta property="og:title" content="全球数字游民城市榜 · 你的下一座城，不该靠运气选">
+<meta property="og:description" content="80 座城市 × 12 个维度，社区共建、数据透明、开源可追溯的数字游民城市数据库。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://roloria.github.io/global-digital-nomad/home/">
+<link rel="canonical" href="https://roloria.github.io/global-digital-nomad/home/">
+<link rel="preconnect" href="https://fonts.loli.net">
+<link rel="preconnect" href="https://gstatic.loli.net" crossorigin>
+<link href="https://fonts.loli.net/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Noto+Serif+SC:wght@500;600;700&family=Noto+Sans+SC:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "评分是怎么来的？", "acceptedAnswer": {"@type": "Answer", "text": "每座城市按网络、社群、生活、安全、英语、步行、空气、女性友好、LGBTQ+、夜生活、安静指数、种族包容共 12 个维度加权评分，月成本作为独立数据列呈现。权重与公式完全公开，综合分人人可复算。"}},
+    {"@type": "Question", "name": "数据多久更新一次？", "acceptedAnswer": {"@type": "Answer", "text": "由社区持续维护，任何人都可以提交更新；PR 合并后对应城市的最后更新时间自动刷新，CI 数据保鲜哨兵会在数据停滞超 7 天时自动提醒。"}},
+    {"@type": "Question", "name": "我不懂代码，能参与吗？", "acceptedAnswer": {"@type": "Answer", "text": "能。打开腾讯文档就能像编辑在线表格一样直接修改，改动会自动进入 GitHub 审核，全程不需要任何编程知识。"}},
+    {"@type": "Question", "name": "数字游民签证怎么选？", "acceptedAnswer": {"@type": "Answer", "text": "热门选项包括葡萄牙 D7/D8、西班牙数字游民签证、爱沙尼亚与捷克游民签证，常见门槛为月收入 2,000–3,500 美元与健康保险。榜单为每座城市标注了当前推荐签证类型。"}}
+  ]
+}
+</script>
+<style>
+  :root {
+    --bg: #FAF9F5;
+    --bg-oat: #F0EEE6;
+    --ink: #141413;
+    --ink-soft: #6E6B64;
+    --ink-faint: #98948A;
+    --terra: #C96442;
+    --terra-deep: #A94F30;
+    --gold: #E8B04B;
+    --line: #E3E0D5;
+    --line-dark: #3A3833;
+    --dark: #1F1E1D;
+    --dark-soft: #B5B1A6;
+    --card: #FFFDF8;
+    --radius: 16px;
+    --font-display: "Newsreader", "Noto Serif SC", "Songti SC", "STSong", "SimSun", serif;
+    --font-body: "Noto Sans SC", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    --font-mono: "IBM Plex Mono", "SF Mono", Menlo, Consolas, monospace;
+    --max: 1180px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--font-body);
+    background: var(--bg);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  ::selection { background: rgba(201, 100, 66, .22); }
+  a { color: inherit; text-decoration: none; }
+  img, svg { display: block; }
+  section { scroll-margin-top: 88px; }
+
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 32px; }
+  .icon { width: 1em; height: 1em; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+
+  /* ---------- kicker / marginalia ---------- */
+  .kicker {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: var(--terra);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .kicker::before { content: ""; width: 28px; height: 1px; background: var(--terra); }
+
+  /* ---------- nav ---------- */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(250, 249, 245, .86);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 0 32px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+  }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 15px; letter-spacing: .02em; white-space: nowrap; }
+  .brand svg { width: 22px; height: 22px; fill: var(--terra); }
+  .nav-links { display: flex; gap: 28px; margin-left: auto; font-size: 14px; color: var(--ink-soft); }
+  .nav-links a { transition: color .18s; }
+  .nav-links a:hover { color: var(--terra); }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 500;
+    border: 1px solid transparent;
+    transition: transform .18s, background .18s, border-color .18s, color .18s;
+    white-space: nowrap;
+  }
+  .btn .icon { width: 14px; height: 14px; }
+  .btn-dark { background: var(--ink); color: var(--bg); }
+  .btn-dark:hover { background: var(--terra-deep); transform: translateY(-1px); }
+  .btn-terra { background: var(--terra); color: #FFF8F0; }
+  .btn-terra:hover { background: var(--terra-deep); transform: translateY(-1px); }
+  .btn-ghost { border-color: var(--ink); color: var(--ink); background: transparent; }
+  .btn-ghost:hover { background: var(--ink); color: var(--bg); transform: translateY(-1px); }
+  .btn-ghost-light { border-color: rgba(250,249,245,.45); color: var(--bg); background: transparent; }
+  .btn-ghost-light:hover { border-color: var(--bg); background: rgba(250,249,245,.1); transform: translateY(-1px); }
+
+  /* ---------- hero ---------- */
+  .hero { padding: 96px 0 72px; position: relative; overflow: hidden; }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    gap: 48px;
+    align-items: center;
+  }
+  .hero h1 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(40px, 5.4vw, 68px);
+    line-height: 1.22;
+    letter-spacing: .01em;
+    margin: 28px 0 24px;
+  }
+  .hero h1 em { font-style: normal; color: var(--terra); position: relative; }
+  .hero-lede { font-size: 17px; color: var(--ink-soft); max-width: 34em; margin-bottom: 36px; }
+  .hero-lede strong { color: var(--ink); font-weight: 500; }
+  .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; }
+
+  .hero-stats {
+    display: flex;
+    margin-top: 56px;
+    border-top: 1px solid var(--line);
+  }
+  .hero-stats > div { padding: 20px 32px 0 0; margin-right: 32px; }
+  .hero-stats b {
+    display: block;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 34px;
+    line-height: 1.15;
+  }
+  .hero-stats span { font-size: 13px; color: var(--ink-faint); letter-spacing: .06em; }
+
+  /* hero city cards */
+  .hero-fig { position: relative; height: 460px; }
+  .hero-fig .fig-label {
+    position: absolute;
+    top: -28px;
+    right: 0;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: .18em;
+    color: var(--ink-faint);
+  }
+  .city-card {
+    position: absolute;
+    width: 232px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 20px 22px;
+    box-shadow: 0 24px 48px -24px rgba(31, 30, 29, .18);
+    transition: transform .25s ease;
+  }
+  .city-card:hover { transform: translateY(-4px) rotate(0deg) !important; z-index: 9; }
+  .cc-top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; }
+  .cc-city { font-family: var(--font-display); font-weight: 600; font-size: 22px; }
+  .cc-ccode {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--ink-faint);
+    letter-spacing: .14em;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 2px 7px;
+  }
+  .cc-country { font-size: 12.5px; color: var(--ink-faint); margin-bottom: 14px; }
+  .cc-score { display: flex; align-items: baseline; gap: 8px; padding-top: 12px; border-top: 1px dashed var(--line); }
+  .cc-score b { font-family: var(--font-display); font-size: 40px; font-weight: 600; color: var(--terra); line-height: 1; }
+  .cc-score span { font-size: 12px; color: var(--ink-faint); }
+  .cc-meta { margin-top: 12px; font-family: var(--font-mono); font-size: 12.5px; color: var(--ink-soft); display: grid; gap: 5px; }
+  .cc-meta i { font-style: normal; color: var(--ink-faint); }
+  .cc-tag {
+    position: absolute;
+    top: -11px;
+    left: 20px;
+    background: var(--gold);
+    color: #3D2E10;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: .12em;
+    padding: 3px 10px;
+    border-radius: 999px;
+  }
+  .cc-1 { top: 118px; left: 0; z-index: 3; transform: rotate(-2deg); }
+  .cc-2 { top: 0; right: 6px; z-index: 2; transform: rotate(2.2deg); }
+  .cc-3 { bottom: 10px; right: 64px; z-index: 4; transform: rotate(1.4deg); }
+
+  /* ---------- ticker ---------- */
+  .ticker { background: var(--bg-oat); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .ticker-inner {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 15px 32px;
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 0;
+  }
+  .ticker-inner span { padding: 0 18px; border-right: 1px solid var(--line); white-space: nowrap; }
+  .ticker-inner span:first-child { padding-left: 0; }
+  .ticker-inner span:last-child { border-right: 0; }
+  .ticker-inner b { color: var(--terra); font-weight: 500; }
+
+  /* ---------- pillars ---------- */
+  .pillars { padding: 110px 0 100px; }
+  .pillars-head { max-width: 620px; margin-bottom: 72px; }
+  .pillars-head h2 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(30px, 3.4vw, 44px);
+    line-height: 1.3;
+    margin-top: 22px;
+  }
+  .pillar-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 56px; }
+  .pillar { border-top: 1px solid var(--ink); padding-top: 22px; position: relative; }
+  .pillar:nth-child(2) { margin-top: 44px; }
+  .pillar:nth-child(3) { margin-top: 88px; }
+  .pillar-no {
+    font-family: var(--font-display);
+    font-size: 58px;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--terra);
+    line-height: 1;
+    margin-bottom: 14px;
+  }
+  .pillar h3 { font-size: 19px; font-weight: 700; margin-bottom: 10px; display: flex; align-items: center; gap: 9px; }
+  .pillar h3 .icon { color: var(--terra); width: 18px; height: 18px; flex: none; }
+  .pillar p { font-size: 14.5px; color: var(--ink-soft); }
+  .dims { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 7px; }
+  .dims i {
+    font-style: normal;
+    font-size: 12px;
+    color: var(--ink-soft);
+    border: 1px solid var(--line);
+    background: var(--card);
+    border-radius: 999px;
+    padding: 3px 11px;
+    white-space: nowrap;
+  }
+  .dims i.gold { border-color: var(--gold); color: #8A6A1E; background: #FBF3DF; }
+
+  /* ---------- flywheel (dark) ---------- */
+  .flow { background: var(--dark); color: var(--bg); padding: 110px 0 100px; }
+  .flow .kicker { color: var(--gold); }
+  .flow .kicker::before { background: var(--gold); }
+  .flow h2 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(30px, 3.4vw, 44px);
+    line-height: 1.3;
+    margin: 22px 0 14px;
+    max-width: 21em;
+  }
+  .flow-lede { color: var(--dark-soft); max-width: 38em; margin-bottom: 64px; font-size: 16px; }
+  .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 1px solid var(--line-dark); }
+  .step { padding: 28px 28px 8px 0; position: relative; }
+  .step + .step { padding-left: 28px; border-left: 1px solid var(--line-dark); }
+  .step-no { font-family: var(--font-mono); font-size: 12px; color: var(--gold); letter-spacing: .2em; }
+  .step h3 { font-family: var(--font-display); font-weight: 600; font-size: 24px; margin: 12px 0 10px; }
+  .step p { font-size: 14px; color: var(--dark-soft); }
+  .pipeline {
+    margin-top: 72px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--dark-soft);
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px 0;
+    padding: 18px 22px;
+    border: 1px dashed var(--line-dark);
+    border-radius: 12px;
+  }
+  .pipeline b { color: var(--bg); font-weight: 500; padding: 4px 12px; border: 1px solid var(--line-dark); border-radius: 8px; background: rgba(250,249,245,.04); white-space: nowrap; }
+  .pipeline em { font-style: normal; color: var(--gold); padding: 0 10px; }
+  .flow-foot { margin-top: 40px; display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+  .flow-note { font-size: 12.5px; color: var(--ink-faint); width: 100%; margin-top: 10px; }
+  .flow-note .icon { width: 13px; height: 13px; vertical-align: -2px; margin-right: 6px; }
+
+  /* ---------- ledger ---------- */
+  .ledger { padding: 110px 0 100px; }
+  .ledger-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; margin-bottom: 48px; flex-wrap: wrap; }
+  .ledger-head h2 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(30px, 3.4vw, 44px);
+    margin-top: 22px;
+  }
+  .ledger-head .side-note { font-size: 13.5px; color: var(--ink-faint); max-width: 24em; }
+  table.city-table { width: 100%; border-collapse: collapse; font-size: 14.5px; }
+  .city-table thead th {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    text-align: left;
+    padding: 0 16px 12px 0;
+    border-bottom: 1px solid var(--ink);
+  }
+  .city-table thead th.num, .city-table td.num { text-align: right; }
+  .city-table tbody td { padding: 15px 16px 15px 0; border-bottom: 1px solid var(--line); vertical-align: baseline; }
+  .city-table tbody tr { transition: background .15s; }
+  .city-table tbody tr:hover { background: rgba(201, 100, 66, .045); }
+  .city-table .rank { font-family: var(--font-display); font-style: italic; font-size: 18px; color: var(--terra); width: 44px; }
+  .city-table .cname { font-family: var(--font-display); font-weight: 600; font-size: 17.5px; }
+  .city-table .ccountry { color: var(--ink-faint); font-size: 13px; }
+  .city-table .score { font-family: var(--font-display); font-weight: 600; font-size: 19px; color: var(--terra); }
+  .city-table .mono { font-family: var(--font-mono); font-size: 13px; color: var(--ink-soft); }
+  .ledger-foot { margin-top: 30px; }
+  .ledger-link {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 14.5px; font-weight: 500; color: var(--terra);
+    border-bottom: 1px solid rgba(201,100,66,.4);
+    padding-bottom: 2px;
+    transition: border-color .18s, gap .18s;
+  }
+  .ledger-link:hover { border-color: var(--terra); gap: 12px; }
+
+  /* ---------- FAQ ---------- */
+  .faq { background: var(--bg-oat); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 100px 0; }
+  .faq-grid { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: 56px; }
+  .faq-side h2 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(30px, 3.2vw, 42px);
+    line-height: 1.3;
+    margin-top: 22px;
+    position: sticky;
+    top: 110px;
+  }
+  .faq-side p { margin-top: 16px; font-size: 14px; color: var(--ink-faint); max-width: 24em; }
+  .faq-list details { border-bottom: 1px solid var(--line); }
+  .faq-list details:first-child { border-top: 1px solid var(--ink); }
+  .faq-list summary {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    padding: 22px 4px;
+    font-size: 16.5px;
+    font-weight: 500;
+    transition: color .18s;
+  }
+  .faq-list summary::-webkit-details-marker { display: none; }
+  .faq-list summary:hover { color: var(--terra); }
+  .faq-list summary .qno { font-family: var(--font-mono); font-size: 12px; color: var(--terra); flex: none; }
+  .faq-list summary .plus {
+    margin-left: auto;
+    font-family: var(--font-mono);
+    color: var(--ink-faint);
+    font-size: 16px;
+    flex: none;
+    transition: transform .2s;
+  }
+  .faq-list details[open] summary .plus { transform: rotate(45deg); color: var(--terra); }
+  .faq-list details p { padding: 0 4px 24px 44px; font-size: 14.5px; color: var(--ink-soft); max-width: 44em; }
+
+  /* ---------- final CTA + footer ---------- */
+  .final { background: var(--dark); color: var(--bg); padding: 130px 0 0; position: relative; overflow: hidden; }
+  .final-inner { text-align: left; max-width: 720px; position: relative; z-index: 2; }
+  .final .kicker { color: var(--gold); }
+  .final .kicker::before { background: var(--gold); }
+  .final h2 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(34px, 4.4vw, 56px);
+    line-height: 1.28;
+    margin: 26px 0 18px;
+  }
+  .final p { color: var(--dark-soft); font-size: 16.5px; margin-bottom: 44px; max-width: 30em; }
+  .final-ctas { display: flex; gap: 14px; flex-wrap: wrap; }
+  .final-mark {
+    position: absolute;
+    right: -60px;
+    bottom: 40px;
+    width: 340px;
+    height: 340px;
+    fill: var(--terra);
+    opacity: .16;
+    z-index: 1;
+  }
+  footer { border-top: 1px solid var(--line-dark); margin-top: 110px; }
+  .foot-grid {
+    display: grid;
+    grid-template-columns: 5fr 2.5fr 2.5fr 2.5fr;
+    gap: 40px;
+    padding: 56px 0 48px;
+  }
+  .foot-brand .brand { margin-bottom: 16px; }
+  .foot-brand p { font-size: 13px; color: var(--ink-faint); max-width: 26em; }
+  .foot-col h4 {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 18px;
+  }
+  .foot-col a { display: block; font-size: 14px; color: var(--dark-soft); padding: 5px 0; transition: color .18s; }
+  .foot-col a:hover { color: var(--gold); }
+  .foot-base {
+    border-top: 1px solid var(--line-dark);
+    padding: 20px 0 26px;
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    letter-spacing: .08em;
+    color: var(--ink-faint);
+  }
+
+  /* ---------- entrance animation ---------- */
+  @keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+  .a1, .a2, .a3, .a4, .a5, .cc-1, .cc-2, .cc-3 {
+    opacity: 0;
+    animation: rise .7s cubic-bezier(.2,.7,.3,1) forwards;
+  }
+  .a1 { animation-delay: .05s; }
+  .a2 { animation-delay: .18s; }
+  .a3 { animation-delay: .32s; }
+  .a4 { animation-delay: .46s; }
+  .a5 { animation-delay: .6s; }
+  .cc-1 { animation-delay: .35s; }
+  .cc-2 { animation-delay: .5s; }
+  .cc-3 { animation-delay: .65s; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .a1,.a2,.a3,.a4,.a5,.cc-1,.cc-2,.cc-3 { animation: none; opacity: 1; }
+    .city-card { transition: none; }
+  }
+
+  /* ---------- responsive ---------- */
+  @media (max-width: 1024px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .hero-fig { height: 400px; max-width: 560px; }
+    .cc-2 { right: 24px; }
+    .steps { grid-template-columns: 1fr 1fr; }
+    .step { border-top: none; padding-bottom: 28px; }
+    .step + .step { padding-left: 28px; }
+    .step:nth-child(3) { padding-left: 0; border-left: none; border-top: 1px solid var(--line-dark); }
+    .step:nth-child(4) { border-top: 1px solid var(--line-dark); }
+    .pillar-grid { gap: 40px; }
+    .foot-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 760px) {
+    .nav-links { display: none; }
+    .hero { padding: 64px 0 56px; }
+    .hero-stats { flex-wrap: wrap; row-gap: 8px; }
+    .hero-stats > div { padding-right: 20px; margin-right: 20px; }
+    .hero-fig { height: auto; max-width: none; display: flex; flex-direction: column; gap: 18px; }
+    .hero-fig .fig-label { position: static; order: 0; }
+    .city-card { position: static; width: 100%; transform: none !important; }
+    .pillar-grid { grid-template-columns: 1fr; }
+    .pillar:nth-child(2), .pillar:nth-child(3) { margin-top: 0; }
+    .steps { grid-template-columns: 1fr; }
+    .step, .step + .step { padding-left: 0; border-left: none; border-top: 1px solid var(--line-dark); }
+    .table-scroll { overflow-x: auto; }
+    .faq-grid { grid-template-columns: 1fr; }
+    .faq-side h2 { position: static; }
+    .foot-grid { grid-template-columns: 1fr; gap: 28px; }
+    .ticker-inner { font-size: 11.5px; }
+    .ticker-inner span { padding: 0 12px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- SVG symbol defs (Lucide-style stroke icons) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-arrow-up-right" viewBox="0 0 24 24"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></symbol>
+    <symbol id="i-external" viewBox="0 0 24 24"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+    <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></symbol>
+    <symbol id="i-history" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></symbol>
+    <symbol id="i-edit" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M21.801 10A10 10 0 1 1 17 3.335"/><path d="m9 11 3 3L22 4"/></symbol>
+    <symbol id="i-github" viewBox="0 0 24 24"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></symbol>
+    <symbol id="i-table" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M3 15h18"/><path d="M9 3v18"/><path d="M15 3v18"/></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></symbol>
+    <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></symbol>
+    <symbol id="i-mark" viewBox="0 0 24 24"><path d="M12 1.6l2.1 8.3 8.3 2.1-8.3 2.1-2.1 8.3-2.1-8.3L1.6 12l8.3-2.1L12 1.6z"/></symbol>
+  </defs>
+</svg>
+
+<!-- ================= NAV ================= -->
+<nav>
+  <div class="nav-inner">
+    <a class="brand" href="#top">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-mark"/></svg>
+      全球数字游民城市榜
+    </a>
+    <div class="nav-links">
+      <a href="#pillars">三大支柱</a>
+      <a href="#flow">共建机制</a>
+      <a href="#ledger">城市预览</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <a class="btn btn-dark" href="https://roloria.github.io/global-digital-nomad/" target="_blank" rel="noopener">
+      打开城市榜单
+      <svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right"/></svg>
+    </a>
+  </div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <p class="kicker a1">Global Digital Nomad Atlas · 游徙制图学</p>
+        <h1 class="a2">你的下一座城，<br>不该靠<em>运气</em>选。</h1>
+        <p class="hero-lede a3">
+          一份由全球数字游民亲手维护的开放城市数据库。<strong>80 座城市、12 个维度</strong>，
+          评分公式公开，人人可编辑——每一次改动都留痕、可回滚、永久开源。
+        </p>
+        <div class="hero-ctas a4">
+          <a class="btn btn-terra" href="https://roloria.github.io/global-digital-nomad/" target="_blank" rel="noopener">
+            查看城市榜单
+            <svg class="icon" aria-hidden="true"><use href="#i-external"/></svg>
+          </a>
+          <a class="btn btn-ghost" href="https://docs.qq.com/sheet/DREppWERNRWdwcXRR" target="_blank" rel="noopener">
+            <svg class="icon" aria-hidden="true"><use href="#i-edit"/></svg>
+            参与共建
+          </a>
+        </div>
+        <div class="hero-stats a5">
+          <div><b>80</b><span>座城市</span></div>
+          <div><b>40</b><span>个国家 / 地区</span></div>
+          <div><b>12</b><span>个评分维度</span></div>
+          <div><b>60</b><span>个社区地图</span></div>
+        </div>
+      </div>
+
+      <figure class="hero-fig a3" aria-label="城市数据卡示例">
+        <span class="fig-label">fig. 01 — city score cards</span>
+
+        <div class="city-card cc-2">
+          <div class="cc-top"><span class="cc-city">柏林</span><span class="cc-ccode">DE</span></div>
+          <div class="cc-country">德国 · Europe</div>
+          <div class="cc-score"><b>7.8</b><span>综合分</span></div>
+          <div class="cc-meta">
+            <div><i>月成本</i> $2,700</div>
+            <div><i>游民数</i> 2,200</div>
+          </div>
+        </div>
+
+        <div class="city-card cc-1">
+          <span class="cc-tag">SCORE TOP 1</span>
+          <div class="cc-top"><span class="cc-city">里斯本</span><span class="cc-ccode">PT</span></div>
+          <div class="cc-country">葡萄牙 · Europe</div>
+          <div class="cc-score"><b>7.9</b><span>综合分</span></div>
+          <div class="cc-meta">
+            <div><i>月成本</i> $2,300</div>
+            <div><i>游民数</i> 16,000</div>
+          </div>
+        </div>
+
+        <div class="city-card cc-3">
+          <div class="cc-top"><span class="cc-city">大理</span><span class="cc-ccode">CN</span></div>
+          <div class="cc-country">中国 · Asia</div>
+          <div class="cc-score"><b>7.5</b><span>综合分</span></div>
+          <div class="cc-meta">
+            <div><i>月成本</i> $850</div>
+            <div><i>游民数</i> 5,000</div>
+          </div>
+        </div>
+      </figure>
+    </div>
+  </div>
+</header>
+
+<!-- ================= TICKER ================= -->
+<div class="ticker" role="marquee" aria-label="关键数据速览">
+  <div class="ticker-inner">
+    <span>综合分最高 <b>里斯本 7.9</b></span>
+    <span>游民最多 <b>墨西哥城 50,000</b></span>
+    <span>月成本最低 <b>河内 $800</b></span>
+    <span>成本中位数 <b>$1,400</b></span>
+    <span>亚洲 37 城 · 欧洲 18 城 · 拉美 15 城 · 非洲 7 城 · 中东 3 城</span>
+  </div>
+</div>
+
+<!-- ================= PILLARS ================= -->
+<section class="pillars" id="pillars">
+  <div class="wrap">
+    <div class="pillars-head">
+      <p class="kicker">为什么不一样</p>
+      <h2>不是又一份<br>「博主私藏清单」。</h2>
+    </div>
+    <div class="pillar-grid">
+      <article class="pillar">
+        <div class="pillar-no">01</div>
+        <h3><svg class="icon" aria-hidden="true"><use href="#i-users"/></svg>开放共建</h3>
+        <p>拿到链接就能编辑，没有中心化运营。补一座城、改一个评分、加一条备注——每一个真正住过那里的人，都是数据源。</p>
+      </article>
+      <article class="pillar">
+        <div class="pillar-no">02</div>
+        <h3><svg class="icon" aria-hidden="true"><use href="#i-eye"/></svg>数据透明</h3>
+        <p>12 个维度加权合成综合分，权重与公式完全公开。不是黑箱评分，而是社区共识——人人可复算、可质疑、可讨论。</p>
+        <div class="dims">
+          <i>网络</i><i>社群</i><i>生活</i><i>安全</i><i>英语</i><i>步行</i><i>空气</i><i>女性友好</i><i>LGBTQ+</i><i>夜生活</i><i>安静指数</i><i>种族包容</i><i class="gold">月成本 · 独立数据列</i>
+        </div>
+      </article>
+      <article class="pillar">
+        <div class="pillar-no">03</div>
+        <h3><svg class="icon" aria-hidden="true"><use href="#i-history"/></svg>开源可追溯</h3>
+        <p>每次改动自动生成 GitHub 提交记录，git 历史就是一部「城市变迁编年史」。改错了？历史版本随时回滚。</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FLOW (dark) ================= -->
+<section class="flow" id="flow">
+  <div class="wrap">
+    <p class="kicker">共建机制</p>
+    <h2>你随手改的一行数据，<br>会走完这样一段旅程。</h2>
+    <p class="flow-lede">腾讯文档与 GitHub 仓库双向同步，每日自动运行。你不需要懂 git，也不需要会编程。</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-no">STEP / 01</div>
+        <h3>编辑</h3>
+        <p>打开腾讯文档，像用在线表格一样直接改。无需登录，拿到链接就能动手。</p>
+      </div>
+      <div class="step">
+        <div class="step-no">STEP / 02</div>
+        <h3>同步</h3>
+        <p>同步脚本自动比对文档与开源仓库，你的改动生成一个 GitHub PR，谁改了什么、何时改的，清清楚楚。</p>
+      </div>
+      <div class="step">
+        <div class="step-no">STEP / 03</div>
+        <h3>校验</h3>
+        <p>CI 自动检查排名一致性、成本与气温合理区间，异常数据进不了主线；人工审核把最后一道关。</p>
+      </div>
+      <div class="step">
+        <div class="step-no">STEP / 04</div>
+        <h3>上线</h3>
+        <p>合并后榜单即时更新，你的 GitHub 头像进入贡献者列表——这份数据库，从此有你的一笔。</p>
+      </div>
+    </div>
+
+    <div class="pipeline" aria-label="数据流水线">
+      <b>腾讯文档</b><em>⇄</em><b>同步脚本</b><em>→</em><b>GitHub PR</b><em>→</em><b>CI 校验</b><em>→</em><b>榜单网站</b>
+    </div>
+
+    <div class="flow-foot">
+      <a class="btn btn-terra" href="https://docs.qq.com/sheet/DREppWERNRWdwcXRR" target="_blank" rel="noopener">
+        <svg class="icon" aria-hidden="true"><use href="#i-edit"/></svg>
+        去腾讯文档编辑
+      </a>
+      <a class="btn btn-ghost-light" href="https://github.com/Roloria/global-digital-nomad" target="_blank" rel="noopener">
+        <svg class="icon" aria-hidden="true"><use href="#i-github"/></svg>
+        GitHub 仓库
+      </a>
+      <p class="flow-note">
+        <svg class="icon" style="display:inline" aria-hidden="true"><use href="#i-shield"/></svg>
+        担心恶意编辑？三重保险：腾讯文档历史版本回滚 · PR 人工审核 · CI 自动校验。
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= LEDGER ================= -->
+<section class="ledger" id="ledger">
+  <div class="wrap">
+    <div class="ledger-head">
+      <div>
+        <p class="kicker">城市预览</p>
+        <h2>综合分 TOP 8，先睹为快。</h2>
+      </div>
+      <p class="side-note">榜单共收录 80 城，此处按综合分排序展示前 8；完整榜单支持按成本、区域与 12 维明细查看。</p>
+    </div>
+    <div class="table-scroll">
+      <table class="city-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>城市</th>
+            <th class="num">综合分</th>
+            <th class="num">月成本 (USD)</th>
+            <th class="num">游民数</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="rank">01</td><td><span class="cname">里斯本</span> <span class="ccountry">葡萄牙</span></td><td class="num score">7.9</td><td class="num mono">2,300</td><td class="num mono">16,000</td></tr>
+          <tr><td class="rank">02</td><td><span class="cname">柏林</span> <span class="ccountry">德国</span></td><td class="num score">7.8</td><td class="num mono">2,700</td><td class="num mono">2,200</td></tr>
+          <tr><td class="rank">03</td><td><span class="cname">台北</span> <span class="ccountry">台湾</span></td><td class="num score">7.7</td><td class="num mono">1,700</td><td class="num mono">1,400</td></tr>
+          <tr><td class="rank">04</td><td><span class="cname">上海</span> <span class="ccountry">中国</span></td><td class="num score">7.6</td><td class="num mono">2,000</td><td class="num mono">5,000</td></tr>
+          <tr><td class="rank">05</td><td><span class="cname">东京</span> <span class="ccountry">日本</span></td><td class="num score">7.6</td><td class="num mono">2,600</td><td class="num mono">1,800</td></tr>
+          <tr><td class="rank">06</td><td><span class="cname">新加坡</span> <span class="ccountry">新加坡</span></td><td class="num score">7.6</td><td class="num mono">3,500</td><td class="num mono">1,600</td></tr>
+          <tr><td class="rank">07</td><td><span class="cname">大理</span> <span class="ccountry">中国</span></td><td class="num score">7.5</td><td class="num mono">850</td><td class="num mono">5,000</td></tr>
+          <tr><td class="rank">08</td><td><span class="cname">拉斯帕尔马斯</span> <span class="ccountry">西班牙</span></td><td class="num score">7.5</td><td class="num mono">1,700</td><td class="num mono">2,200</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="ledger-foot">
+      <a class="ledger-link" href="https://roloria.github.io/global-digital-nomad/" target="_blank" rel="noopener">
+        查看完整 80 城榜单（含签证、气温与 12 维明细）
+        <svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="faq" id="faq">
+  <div class="wrap">
+    <div class="faq-grid">
+      <div class="faq-side">
+        <p class="kicker">FAQ</p>
+        <h2>常见问题</h2>
+        <p>更多疑问欢迎在 GitHub Discussions 里提问，或在腾讯文档留言。</p>
+      </div>
+      <div class="faq-list">
+        <details open>
+          <summary><span class="qno">Q1</span>评分是怎么来的？<span class="plus">+</span></summary>
+          <p>每座城市按网络、社群、生活、安全、英语、步行、空气、女性友好、LGBTQ+、夜生活、安静指数、种族包容共 12 个维度加权评分，月成本作为独立数据列呈现。权重与公式完全公开，综合分人人可复算。</p>
+        </details>
+        <details>
+          <summary><span class="qno">Q2</span>数据多久更新一次？<span class="plus">+</span></summary>
+          <p>没有强制周期，由社区持续维护。任何人都可以在表格或榜单页提交更新，PR 合并后对应城市的「最后更新」会自动刷新；CI 数据保鲜哨兵会在数据停滞超 7 天时自动提醒社区。</p>
+        </details>
+        <details>
+          <summary><span class="qno">Q3</span>我不懂代码，能参与吗？<span class="plus">+</span></summary>
+          <p>能。打开腾讯文档就能像编辑在线表格一样直接修改，改动会自动进入 GitHub 审核流程，全程不需要任何编程知识。匿名提交也可以：榜单页的提交表单会自动帮你创建 GitHub Issue。</p>
+        </details>
+        <details>
+          <summary><span class="qno">Q4</span>数字游民签证怎么选？<span class="plus">+</span></summary>
+          <p>热门选项包括葡萄牙 D7/D8、西班牙数字游民签证、爱沙尼亚与捷克游民签证，常见门槛为月收入 2,000–3,500 美元与健康保险。榜单为每座城市标注了当前推荐签证类型，具体申请请以当地移民局官网为准。</p>
+        </details>
+        <details>
+          <summary><span class="qno">Q5</span>预算有限，可以去哪儿？<span class="plus">+</span></summary>
+          <p>河内、岘港、暹粒、开罗的月成本约 800 美元；大理 850 美元就能住进综合分 7.5 的城市。打开完整榜单，按「月成本」一列筛选即可。</p>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FINAL CTA + FOOTER ================= -->
+<section class="final" id="join">
+  <svg class="final-mark" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-mark"/></svg>
+  <div class="wrap">
+    <div class="final-inner">
+      <p class="kicker">现在开始</p>
+      <h2>来这张表里，<br>留下你走过的城。</h2>
+      <p>如果你也在路上，或者正准备上路——选城这件事，不该是一个人拍脑袋。</p>
+      <div class="final-ctas">
+        <a class="btn btn-terra" href="https://roloria.github.io/global-digital-nomad/" target="_blank" rel="noopener">
+          打开城市榜单
+          <svg class="icon" aria-hidden="true"><use href="#i-external"/></svg>
+        </a>
+        <a class="btn btn-ghost-light" href="https://docs.qq.com/sheet/DREppWERNRWdwcXRR" target="_blank" rel="noopener">
+          <svg class="icon" aria-hidden="true"><use href="#i-edit"/></svg>
+          编辑共建表
+        </a>
+        <a class="btn btn-ghost-light" href="https://github.com/Roloria/global-digital-nomad" target="_blank" rel="noopener">
+          <svg class="icon" aria-hidden="true"><use href="#i-star"/></svg>
+          GitHub Star
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="wrap">
+      <div class="foot-grid">
+        <div class="foot-brand">
+          <a class="brand" href="#top">
+            <svg viewBox="0 0 24 24" style="width:22px;height:22px;fill:var(--terra)" aria-hidden="true"><use href="#i-mark"/></svg>
+            全球数字游民城市榜
+          </a>
+          <p>一份由全球数字游民共同维护的开放城市数据库：社区共建、数据透明、开源可追溯。英文名 Global Digital Nomad Atlas，视觉世界观「游徙制图学 Nomadic Cartography」。</p>
+        </div>
+        <div class="foot-col">
+          <h4>使用</h4>
+          <a href="https://roloria.github.io/global-digital-nomad/" target="_blank" rel="noopener">城市榜单网站</a>
+          <a href="https://roloria.github.io/global-digital-nomad/#communities" target="_blank" rel="noopener">60 个社区地图</a>
+          <a href="https://docs.qq.com/sheet/DREppWERNRWdwcXRR" target="_blank" rel="noopener">腾讯文档共建表</a>
+        </div>
+        <div class="foot-col">
+          <h4>参与</h4>
+          <a href="https://github.com/Roloria/global-digital-nomad" target="_blank" rel="noopener">GitHub 仓库</a>
+          <a href="https://github.com/Roloria/global-digital-nomad/discussions" target="_blank" rel="noopener">Discussions 讨论</a>
+          <a href="https://github.com/Roloria/global-digital-nomad/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener">贡献指南</a>
+        </div>
+        <div class="foot-col">
+          <h4>数据</h4>
+          <a href="https://raw.githubusercontent.com/Roloria/global-digital-nomad/main/data/digital-nomad-cities.csv" target="_blank" rel="noopener">cities.csv</a>
+          <a href="https://raw.githubusercontent.com/Roloria/global-digital-nomad/main/data/digital-nomad-communities.csv" target="_blank" rel="noopener">communities.csv</a>
+          <a href="https://github.com/Roloria/global-digital-nomad/blob/main/LICENSE" target="_blank" rel="noopener">开源许可</a>
+        </div>
+      </div>
+      <div class="foot-base">
+        <span>© 2026 全球数字游民城市榜 · 由社区用 git 与好奇心维护</span>
+        <span>DATA: 80 CITIES × 12 DIMENSIONS · UPDATED BY COMMUNITY</span>
+      </div>
+    </div>
+  </footer>
+</section>
+
+</body>
+</html>
