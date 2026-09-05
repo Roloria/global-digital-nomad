@@ -4,6 +4,12 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 
   <url>
+    <loc>https://roloria.github.io/global-digital-nomad/home/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
     <loc>https://roloria.github.io/global-digital-nomad/#cities</loc>
     <lastmod>2026-08-08</lastmod>
     <changefreq>weekly</changefreq>
