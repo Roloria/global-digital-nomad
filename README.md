@@ -1,7 +1,11 @@
 <a id="top"></a>
-# 🌍 全球数字游民城市榜 / Global Digital Nomad Cities
+<div align="center">
+  <img src="docs/assets/logo.png" alt="牛马迁移指南" width="110">
+</div>
 
-> 全球数字游民城市排名 · 远程办公城市推荐 · 数字游民签证指南
+# 🐃 牛马迁移指南 / Global Digital Nomad Cities
+
+> 全球数字游民城市评分榜 · 远程办公城市推荐 · 数字游民签证指南
 >
 > *Global Digital Nomad Cities ranking · Best cities for remote work · Digital nomad visa guide*
 
@@ -17,7 +21,7 @@
 
 ## 📌 项目简介
 
-**全球数字游民计划** 致力于以**开放协作**的方式，整理并持续更新全球适合数字游民居住/工作的城市数据，包括成本、网络、生活品质、安全、签证等关键维度。
+**牛马迁移指南**（Global Digital Nomad Cities）致力于以**开放协作**的方式，整理并持续更新全球适合数字游民居住/工作的城市数据，包括成本、网络、生活品质、安全、签证等关键维度。
 
 数据综合自：
 - Nomad List（nomadlist.com）
