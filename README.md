@@ -11,6 +11,7 @@
 [![Data: 2026](https://img.shields.io/badge/Data-2026--08-blue)](data/)
 [![🌐 Website](https://img.shields.io/badge/🌐_Website-Live-success?style=flat-square)](https://roloria.github.io/global-digital-nomad/)
 [![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Deployed-blueviolet?logo=github)](https://roloria.github.io/global-digital-nomad/)
+[![🏠 项目官网](https://img.shields.io/badge/🏠_项目官网-Nomadic_Cartography-C96442?style=flat-square)](https://roloria.github.io/global-digital-nomad/home/)
 
 ---
 
@@ -47,10 +48,20 @@
 | 📤 **匿名提交** | 浏览器本地保存评分，附 GitHub Issue 模板一键上报 |
 | 📐 **评分标准内置** | 页面底部完整展示 12 项评分口径与综合分计算公式 |
 | 📱 **响应式** | 适配桌面 / 平板 / 手机（375px 起） |
-| 🌙 **暗色模式** | 自动跟随系统主题 |
+| 🌛 **主题切换** | 深色 / 浅色一键切换——浅色为官网同源暖调设计（象牙白 + 赤陶橙），深色为原版；默认跟随系统，手动选择自动记忆 |
 | 🌐 **数字游民社区** | 60 个联合办公 / 联合生活 / 度假村 / 聚会 / 在线社群的结构化资料；可筛选；支持**匿名提交**社区体验 → Cloudflare Worker → GitHub Issue（无需登录） |
 
-**快速体验**：[打开网站](https://roloria.github.io/global-digital-nomad/) · [数据 CSV](data/digital-nomad-cities.csv) · [可视化报告](reports/digital-nomad-cities-report.md)
+**快速体验**：[打开网站](https://roloria.github.io/global-digital-nomad/) · [数据 CSV](data/digital-nomad-cities.csv) · [项目官网](https://roloria.github.io/global-digital-nomad/home/)
+
+### 🏠 项目官网（Nomadic Cartography · 项目介绍页）
+
+<div align="center">
+
+### 👉 [roloria.github.io/global-digital-nomad/home](https://roloria.github.io/global-digital-nomad/home/)
+
+</div>
+
+> **「你的下一座城，不该靠运气选。」** 官网以暖调编辑风呈现项目全貌：为什么做这张榜（三大支柱：**开放共建 / 数据透明 / 开源可追溯**）、你的数据如何走完「编辑 → 同步 → CI 校验 → 上线」的共建旅程、综合分 TOP 8 城市预览，以及评分来源、签证选择、如何无代码参与共建等常见问题。适合第一次了解本项目的你。
 
 
 
