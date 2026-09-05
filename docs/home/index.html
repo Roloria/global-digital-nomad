@@ -561,6 +561,7 @@
       <a href="#ledger">城市预览</a>
       <a href="#faq">FAQ</a>
     </div>
+    <button id="lang-toggle" type="button" title="切换中文 / English" style="font-size:13px;font-weight:600;color:var(--ink-soft);border:1px solid #e3ded2;border-radius:999px;padding:5px 14px;background:transparent;cursor:pointer;font-family:inherit;">EN</button>
     <a class="btn btn-dark" href="https://roloria.github.io/global-digital-nomad/" target="_blank" rel="noopener">
       打开城市榜单
       <svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right"/></svg>
@@ -866,5 +867,108 @@
   </footer>
 </section>
 
+<script>
+/* ==== 官网原地语言切换（内联字典，无跳转） ==== */
+(function(){
+  const S = {
+    "三大支柱":"Three pillars","共建机制":"How it works","城市预览":"City preview",
+    "打开城市榜单":"Open the index","查看城市榜单":"View the index","编辑共建表":"Edit the sheet",
+    "现在开始":"Start now","参与共建":"Contribute","参与":"Join","使用":"Use","编辑":"Edit","同步":"Sync","校验":"Validate","上线":"Ship","数据":"Data",
+    "一份由全球数字游民亲手维护的开放城市数据库。":"An open city database maintained hands-on by digital nomads worldwide.",
+    "不是又一份":"Not another","「博主私藏清单」。":"“influencer shortlist”.",
+    "你的下一座城，":"Your next city ","不该靠":"shouldn't come down to ","运气":"luck","选。":".",
+    "来这张表里，":"In this table, ","留下你走过的城。":"leave the cities you've lived.",
+    "，\n          评分公式公开，人人可编辑——每一次改动都留痕、可回滚、永久开源。":" — the scoring formula is public and anyone can edit. Every change is on the record, reversible, and permanently open source.",
+    "三大支柱":"Three pillars","为什么不一样":"Why it's different",
+    "开放共建":"Open co-building","数据透明":"Transparent data","开源可追溯":"Open & traceable",
+    "拿到链接就能编辑，没有中心化运营。补一座城、改一个评分、加一条备注——每一个真正住过那里的人，都是数据源。":"If you have the link you can edit — no central gatekeeping. Add a city, adjust a score, leave a note: everyone who actually lived there is a data source.",
+    "每座城市按网络、社群、生活、安全、英语、步行、空气、女性友好、LGBTQ+、夜生活、安静指数、种族包容共 12 个维度加权评分，月成本作为独立数据列呈现。权重与公式完全公开，综合分人人可复算。":"Each city is weighted-scored across 12 dimensions — internet, community, living, safety, English, walkability, air, female-friendliness, LGBTQ+, nightlife, quietness, inclusivity — with monthly cost as its own column. Weights and formula are fully public; anyone can recompute the score.",
+    "每次改动自动生成 GitHub 提交记录，git 历史就是一部「城市变迁编年史」。改错了？历史版本随时回滚。":"Every change auto-creates a GitHub commit — git history doubles as a chronicle of each city. Made a mistake? Roll back anytime.",
+    "腾讯文档与 GitHub 仓库双向同步，每日自动运行。你不需要懂 git，也不需要会编程。":"The shared sheet and the GitHub repo sync both ways, daily, automatically. You don't need git or code.",
+    "同步脚本自动比对文档与开源仓库，你的改动生成一个 GitHub PR，谁改了什么、何时改的，清清楚楚。":"A sync script diffs the sheet against the repo automatically; your edits become a GitHub PR — who changed what, and when, is crystal clear.",
+    "CI 自动检查排名一致性、成本与气温合理区间，异常数据进不了主线；人工审核把最后一道关。":"CI checks ranking consistency and sanity of costs & temperatures; bad data never reaches main. A human review makes the final call.",
+    "合并后榜单即时更新，你的 GitHub 头像进入贡献者列表——这份数据库，从此有你的一笔。":"Once merged the index updates instantly and your GitHub avatar joins the contributors — this database now carries your mark.",
+    "去腾讯文档编辑":"Edit in the shared sheet","打开腾讯文档，像用在线表格一样直接改。无需登录，拿到链接就能动手。":"Open the sheet and edit it like any online spreadsheet. No login — if you have the link, you're in.",
+    "80 座城市、12 个维度":"80 cities · 12 dimensions","60 个社区地图":"60-community map",
+    "综合分 TOP 8，先睹为快。":"Top 8 by overall score — a sneak peek.",
+    "榜单共收录 80 城，此处按综合分排序展示前 8；完整榜单支持按成本、区域与 12 维明细查看。":"The index covers 80 cities; top 8 shown here by score. The full index supports filtering by cost, region and all 12 dimensions.",
+    "综合分":"Overall","月成本":"Monthly cost","月成本 (USD)":"Cost (USD/mo)","游民数":"Nomads","游民最多":"Most nomads",
+    "综合分最高":"Top score","成本中位数":"Median cost","月成本最低":"Lowest cost","座城市":"cities",
+    "个城市 / 地区":"countries / regions","个评分维度":"scoring dimensions","个社区地图":"community map",
+    "亚洲 37 城 · 欧洲 18 城 · 拉美 15 城 · 非洲 7 城 · 中东 3 城":"Asia 37 · Europe 18 · LatAm 15 · Africa 7 · Middle East 3",
+    "常见问题":"FAQ","评分是怎么来的？":"How are scores computed?",
+    "数字游民签证怎么选？":"How to pick a digital nomad visa?",
+    "热门选项包括葡萄牙 D7/D8、西班牙数字游民签证、爱沙尼亚与捷克游民签证，常见门槛为月收入 2,000–3,500 美元与健康保险。榜单为每座城市标注了当前推荐签证类型，具体申请请以当地移民局官网为准。":"Popular options: Portugal D7/D8, Spain's and Estonia's digital nomad visas, and Czechia's Zivno — typical requirements are $2,000–3,500/mo income and health insurance. Each city in the index lists its recommended visa; always confirm with the local immigration authority.",
+    "数据多久更新一次？":"How often is data updated?",
+    "没有强制周期，由社区持续维护。任何人都可以在表格或榜单页提交更新，PR 合并后对应城市的「最后更新」会自动刷新；CI 数据保鲜哨兵会在数据停滞超 7 天时自动提醒社区。":"No forced cadence — the community maintains it continuously. Anyone can submit updates in the sheet or the index; once a PR merges, that city's “updated” date refreshes. A CI freshness sentinel nudges the community if data stalls for 7+ days.",
+    "我不懂代码，能参与吗？":"I can't code — can I still help?",
+    "能。打开腾讯文档就能像编辑在线表格一样直接修改，改动会自动进入 GitHub 审核流程，全程不需要任何编程知识。匿名提交也可以：榜单页的提交表单会自动帮你创建 GitHub Issue。":"Yes. The shared sheet edits like any online spreadsheet; changes flow into GitHub review automatically — zero coding. Anonymous submissions work too: the form on the index page opens a GitHub Issue for you.",
+    "担心恶意编辑？三重保险：腾讯文档历史版本回滚 · PR 人工审核 · CI 自动校验。":"Worried about vandalism? Triple protection: sheet version history · human PR review · automated CI validation.",
+    "更多疑问欢迎在 GitHub Discussions 里提问，或在腾讯文档留言。":"More questions? Ask on GitHub Discussions or leave a note in the sheet.",
+    "打开城市榜单 ":"Open the index ",
+    "牛马迁移指南":"Nomad Atlas",
+    "© 2026 牛马迁移指南 · 由社区用 git 与好奇心维护":"© 2026 Nomad Atlas · maintained by a community, with git and curiosity",
+    "开源许可":"License","贡献指南":"Contributing","腾讯文档":"Shared sheet","GitHub 仓库":"GitHub repo",
+    "Discussions 讨论":"Discussions","榜单网站":"The index","腾讯文档共建表":"The shared sheet",
+    "查看完整 80 城榜单（含签证、气温与 12 维明细）":"Open the full 80-city index (visa, temperature & all 12 dimensions)",
+    "如果你也在路上，或者正准备上路——选城这件事，不该是一个人拍脑袋。":"If you're already on the road — or about to be — choosing a city shouldn't be a solo gut call.",
+    "牛马迁移指南 · 全球数字游民城市评分榜 · 你的下一座城，不该靠运气选":"Nomad Atlas · Global digital nomad city index · Your next city shouldn't be a gamble",
+    "牛马迁移指南——全球数字游民城市评分榜：由全球数字游民共同维护的开放城市数据库，社区共建、数据透明、开源可追溯。英文名 Global Digital Nomad Atlas。":"Nomad Atlas (Global Digital Nomad Cities) — an open city database co-maintained by digital nomads worldwide: community-built, transparent, open-source and fully traceable.",
+    "Global Digital Nomad Atlas · 全球数字游民城市评分榜":"Global Digital Nomad Atlas · Open digital nomad city index",
+    "墨西哥城 50,000":"Mexico City 50,000","里斯本 7.9":"Lisbon 7.9","河内 $800":"Hanoi $800",
+    "网络":"Internet","社群":"Community","生活":"Living","安全":"Safety","英语":"English","步行":"Walkability",
+    "空气":"Air","女性友好":"Female-friendly","夜生活":"Nightlife","安静指数":"Quietness","种族包容":"Inclusivity",
+    "中国 · Asia":"China · Asia","德国 · Europe":"Germany · Europe","葡萄牙 · Europe":"Portugal · Europe",
+    "中国":"China","德国":"Germany","日本":"Japan","台湾":"Taiwan","新加坡":"Singapore","西班牙":"Spain",
+    "葡萄牙":"Portugal","墨西哥城":"Mexico City","里斯本":"Lisbon","柏林":"Berlin","东京":"Tokyo","大理":"Dali",
+    "台北":"Taipei","上海":"Shanghai","拉斯帕尔马斯":"Las Palmas","河内":"Hanoi",
+  };
+  const ZH_TITLE = document.title;
+  const EN_TITLE = "Nomad Atlas · Global Digital Nomad Cities — an open city database for remote workers";
+  const btn = document.getElementById("lang-toggle");
+  function trText(t){
+    if(S[t] !== undefined) return S[t];
+    return t;
+  }
+  function applyTree(root){
+    const w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+      acceptNode(n){
+        const p=n.parentElement; if(!p) return NodeFilter.FILTER_REJECT;
+        if(p.closest("script,style")) return NodeFilter.FILTER_REJECT;
+        return n.nodeValue.trim()?NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_REJECT;
+      }});
+    const nodes=[]; let n;
+    while((n=w.nextNode())) nodes.push(n);
+    for(const node of nodes){
+      const raw=node.nodeValue, t=raw.trim();
+      if(LANG==="en"){
+        if(node.__zh===undefined) node.__zh=raw;
+        const rep=trText(t);
+        if(rep!==t) node.nodeValue=raw.replace(t,rep);
+      } else if(node.__zh!==undefined){ node.nodeValue=node.__zh; }
+    }
+  }
+  let LANG="zh";
+  function setLang(lang){
+    if(lang===LANG) return;
+    LANG=lang;
+    try{ localStorage.setItem("gdna-home-lang", lang); }catch(e){}
+    document.documentElement.lang = lang==="en" ? "en" : "zh-CN";
+    document.title = lang==="en" ? EN_TITLE : ZH_TITLE;
+    if(btn) btn.textContent = lang==="en" ? "中文" : "EN";
+    try{
+      const u=new URL(location.href);
+      if(lang==="en") u.searchParams.set("lang","en"); else u.searchParams.delete("lang");
+      history.replaceState(null,"",u);
+    }catch(e){}
+    applyTree(document.body);
+  }
+  if(btn) btn.addEventListener("click", ()=>setLang(LANG==="en"?"zh":"en"));
+  const urlLang=new URLSearchParams(location.search).get("lang");
+  let stored=null; try{ stored=localStorage.getItem("gdna-home-lang"); }catch(e){}
+  const initial=urlLang||stored||"zh";
+  if(initial==="en") setLang("en");
+})();
+</script>
 </body>
 </html>

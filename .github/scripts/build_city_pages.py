@@ -68,6 +68,10 @@ VISA_PHRASES = [
     ("商务签", "Business Visa"), ("工作签证", "Work Visa"), ("工作签", "Work Visa"),
     ("长期居留", "Long-term Residence"), ("落地签", "Visa on Arrival"), ("电子签", "eVisa"),
     ("过境签", "Transit Visa"), ("长期旅游", "Long-term Tourist"), ("游民签", "Nomad Visa"),
+    ("临时居留", "Temporary Residence"), ("创业准证", "Entrepreneur Pass"), ("创业签", "Startup Visa"),
+    ("白卡", "Temp card"), ("虚拟办公", "virtual office"), ("依国籍", "depending on nationality"),
+    ("多数国家", "most nationalities"), ("国内无需签证", "No domestic visa needed"), ("免签过境", "visa-free transit"),
+    ("过境", "transit"), ("短租友好", "short-rental friendly"), ("旅签", "Tourist Visa"), ("经营管理", "business mgmt."),
     ("免签", "Visa-free"), ("申根", "Schengen"), ("落地", "VOA"), ("长期", "Long-term"),
     ("商务", "Business"), ("旅游", "Tourist"), ("签证", "Visa"), ("签", "Visa"),
 ]
@@ -134,6 +138,9 @@ def en_visa(zh: str) -> str:
     s = re.sub(r"(\d+)\s*月", r"\1-month", s)
     s = re.sub(r"(\d+)\s*年", r"\1-year", s)
     s = re.sub(r"(\d+)\s*天", r"\1-day", s)
+    s = re.sub(r"(residence|Residence|visa|Visa|free|VOA|Pass|card)(\d)", r"\1 \2", s)
+    s = re.sub(r"([\u4e00-\u9fff])([A-Za-z0-9])", r"\1 \2", s)
+    s = re.sub(r"([A-Za-z0-9])([\u4e00-\u9fff])", r"\1 \2", s)
     return s
 
 
@@ -422,6 +429,22 @@ def refresh_index_slugs(rows):
     p.write_text(html_text, encoding="utf-8")
 
 
+
+
+def emit_i18n_json(rows):
+    """输出 docs/data/i18n-en.json：主站原地语言切换用的英文数据覆盖层。"""
+    out = {"cities": {}, "regions": REGION_EN, "dims": DIM_EN}
+    for r in rows:
+        out["cities"][r["城市"]] = {
+            "name": r["_en"], "country": r["国家(英)"],
+            "region": REGION_EN[r["区域"]],
+            "season": en_season(r["最佳季节"]), "visa": en_visa(r["签证"]),
+        }
+    path = DOCS / "data" / "i18n-en.json"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(out, ensure_ascii=False, indent=1), encoding="utf-8")
+    print(f"✅ docs/data/i18n-en.json（{len(out['cities'])} 城覆盖层）")
+
 def prune_stale_city_pages(rows):
     """删除已不在数据集中的城市目录，防残留。"""
     valid_zh = {(DOCS / "city" / r["_slug"]) for r in rows}
@@ -457,6 +480,7 @@ def main():
     (DOCS / "en" / "index.html").write_text(en_index(rows), encoding="utf-8")
     print("✅ 英文版首页 docs/en/index.html")
 
+    emit_i18n_json(rows)
     refresh_index_slugs(rows)
     print("✅ 主站 CITY_SLUGS 已刷新")
     prune_stale_city_pages(rows)

@@ -815,7 +815,7 @@ footer a:hover { text-decoration: underline; }
     <img class="logo-img" src="./assets/logo.png" alt="牛马迁移指南" width="34" height="34">
     <span class="eyebrow">Open Data · Global Nomad Index</span>
     <span class="masthead-meta">5 大区域 · 40 国 · 80 城 + 60 社区</span>
-    <a class="lang-toggle" href="./en/" lang="en" hreflang="en" title="Switch to English" style="font-size:12px; font-weight:700; color:var(--text-2); border:1px solid var(--border); border-radius:999px; padding:4px 12px; text-decoration:none;">EN</a>
+    <button class="lang-toggle" id="lang-toggle" type="button" title="切换中文 / English" style="font-size:12px; font-weight:700; color:var(--text-2); border:1px solid var(--border); border-radius:999px; padding:4px 12px; background:transparent; cursor:pointer; font-family:inherit;">EN</button>
     <button class="theme-toggle" id="theme-toggle" type="button" aria-label="切换浅色 / 深色主题" title="切换浅色 / 深色主题">
       <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
       <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
@@ -1750,7 +1750,7 @@ function filtered(){
   if(currentRank !== "all") list = list.filter(d => d["排名"] <= parseInt(currentRank));
   if(currentSearch){
     const q = currentSearch.toLowerCase();
-    list = list.filter(d => d["城市"].toLowerCase().includes(q) || d["国家"].toLowerCase().includes(q) || (d["国家(英)"]||"").toLowerCase().includes(q));
+    list = list.filter(d => d["城市"].toLowerCase().includes(q) || d["国家"].toLowerCase().includes(q) || (d["国家(英)"]||"").toLowerCase().includes(q) || (LANG==="en" && EN_CITIES && EN_CITIES[d["城市"]] && (EN_CITIES[d["城市"]].name.toLowerCase().includes(q) || EN_CITIES[d["城市"]].visa.toLowerCase().includes(q))));
   }
   list.sort((a,b) => {
     const av = a[sortKey], bv = b[sortKey];
@@ -1851,7 +1851,7 @@ function renderCountryFilter(){
   let pool = CITIES_DATA;
   if(currentRegion !== "全部") pool = pool.filter(d => d["区域"] === currentRegion);
   const countries = [...new Set(pool.map(d => d["国家"]))].sort();
-  sel.innerHTML = `<option value="">全部国家（${countries.length}）</option>` + countries.map(c => `<option value="${c}" ${currentCountry===c?"selected":""}>${c}</option>`).join("");
+  sel.innerHTML = `<option value="">全部国家（${countries.length}）</option>` + countries.map(c => `<option value="${c}" ${currentCountry===c?"selected":""}>${locCountryName(c)}</option>`).join("");
 }
 
 function renderMethodology(){
@@ -1880,11 +1880,34 @@ function dotHTML(v, opts){
   </span>`;
 }
 
+let LANG = "zh";
+let EN_CITIES = null;   // docs/data/i18n-en.json 覆盖层
+const ZH_MONTHS = {1:"Jan",2:"Feb",3:"Mar",4:"Apr",5:"May",6:"Jun",7:"Jul",8:"Aug",9:"Sep",10:"Oct",11:"Nov",12:"Dec"};
+function locCityKey(d){ return d._key || d["城市"]; }
+function locCity(d){ return (LANG==="en" && EN_CITIES && EN_CITIES[locCityKey(d)]) ? EN_CITIES[locCityKey(d)].name : d["城市"]; }
+function locCountry(d){ return (LANG==="en" && EN_CITIES && EN_CITIES[locCityKey(d)]) ? EN_CITIES[locCityKey(d)].country : d["国家"]; }
+function locRegion(r){ return (LANG==="en" && window.I18N) ? (I18N.S[r] || r) : r; }
+function locSeason(d){
+  const s = d["最佳季节"];
+  if(LANG!=="en") return s;
+  if(EN_CITIES && EN_CITIES[locCityKey(d)]) return EN_CITIES[locCityKey(d)].season;
+  return s.replace(/(\d{1,2})月/g,(m,n)=>ZH_MONTHS[+n]||n).replace(/全年/,"Year-round");
+}
+function locVisa(d){
+  const v = d["签证"];
+  if(LANG!=="en") return v;
+  return (EN_CITIES && EN_CITIES[locCityKey(d)]) ? EN_CITIES[locCityKey(d)].visa : v;
+}
+const _CN2EN = {};
+function locCountryName(zh){ return (LANG==="en" && _CN2EN[zh]) ? _CN2EN[zh] : zh; }
+CITIES_DATA.forEach(d => { _CN2EN[d["国家"]] = d["国家(英)"] || d["国家"]; });
+
 function cityLink(d){
-  const slug = (typeof CITY_SLUGS !== "undefined") && CITY_SLUGS[d["城市"]];
-  const name = d["城市"];
+  const slug = (typeof CITY_SLUGS !== "undefined") && CITY_SLUGS[locCityKey(d)];
+  const name = locCity(d);
   if(!slug) return name;
-  return `<a class="city-name" href="city/${slug}/" title="${name} 数字游民指南">${name} ↗</a>`;
+  const prefix = LANG === "en" ? "en/city/" : "city/";
+  return `<a class="city-name" href="${prefix}${slug}/" title="${name} digital nomad guide">${name} ↗</a>`;
 }
 
 function rowHTML(d, i){
@@ -1892,7 +1915,7 @@ function rowHTML(d, i){
   return `
     <tr class="${isExp?"expanded":""}" data-i="${i}">
       <td class="rank">${d["排名"]}</td>
-      <td><div class="city-cell"><div class="city-flag">${d["国旗"]}</div><div><div class="city-name">${cityLink(d)}</div><div class="city-country">${d["国家"]} · <span class="pill ${d["区域"]}">${d["区域"]}</span></div></div></div></td>
+      <td><div class="city-cell"><div class="city-flag">${d["国旗"]}</div><div><div class="city-name">${cityLink(d)}</div><div class="city-country">${locCountry(d)} · <span class="pill ${d["区域"]}">${locRegion(d["区域"])}</span></div></div></div></td>
       <td class="num">${num(d["游民数"])}</td>
       <td class="num ${costClass(d["月成本 (USD)"])}">${formatCost(d["月成本 (USD)"])}</td>
       <td>${dotHTML(d["网络"])}</td>
@@ -1902,7 +1925,7 @@ function rowHTML(d, i){
       <td>${dotHTML(d["空气"])}</td>
       <td>${dotHTML(d["夜生活"])}</td>
       <td class="num temp">${d["年均气温 (°C)"]}<span style="opacity:0.55; font-size:10px;">°C</span></td>
-      <td class="season" title="${d["最佳季节"]}">${d["最佳季节"]}</td>
+      <td class="season" title="${locSeason(d)}">${locSeason(d)}</td>
       <td class="num" style="font-weight:700; color:var(--accent); white-space:nowrap;">${d["综合分"]}</td>
       <td style="font-size:11px; color:var(--text-3); white-space:nowrap;">${d["最后更新"]}</td>
     </tr>
@@ -1912,8 +1935,8 @@ function rowHTML(d, i){
         <div><strong>游民数：</strong>${num(d["游民数"])} 人</div>
         <div><strong>月成本:</strong> <b>${formatCost(d["月成本 (USD)"])}</b> <span style="color:var(--text-3); font-size:11px; margin-left:4px;">${currentCurrency === "CNY" ? `≈$${num(d["月成本 (USD)"])} USD` : `≈¥${num(Math.round((d["月成本 (USD)"]||0) * effectiveRate()))} CNY`} · 1 USD ≈ ${effectiveRate().toFixed(2)} CNY</span></div>
         <div><strong>年均气温：</strong>${d["年均气温 (°C)"]}°C</div>
-        <div><strong>最佳季节：</strong>${d["最佳季节"]}</div>
-        <div><strong>签证：</strong>${d["签证"]}</div>
+        <div><strong>最佳季节：</strong>${locSeason(d)}</div>
+        <div><strong>签证：</strong>${locVisa(d)}</div>
         <div class="meta-update"><strong>最后更新：</strong>${d["最后更新"]}</div>
       </div>
       <div class="detail-grid">
@@ -1935,6 +1958,7 @@ function render(){
     return;
   }
   tbody.innerHTML = list.map(rowHTML).join("");
+  if(window.__i18nApply) window.__i18nApply();
   tbody.querySelectorAll("tr[data-i]").forEach(tr => {
     tr.addEventListener("click", () => {
       const i = parseInt(tr.getAttribute("data-i"));
@@ -2243,6 +2267,108 @@ renderTabs();
 renderCountryFilter();
 renderMethodology();
 render();
+</script>
+<script src="i18n.js"></script>
+<script>
+/* ==== 原地语言切换引擎（无跳转） ==== */
+(function(){
+  const ZH_TITLE = document.title;
+  const EN_TITLE = "🌐 Nomad Atlas · Global Digital Nomad City Index · 80 Cities × 12 Dimensions";
+  const btn = document.getElementById("lang-toggle");
+  function trText(t){
+    if(I18N.S[t] !== undefined) return I18N.S[t];
+    for(const [re,rep] of (I18N.P||[])){ if(re.test(t)) return t.replace(re,rep); }
+    const m = t.match(/^(.*?)([：:]\s*)$/);
+    if(m && I18N.S[m[1]] !== undefined) return I18N.S[m[1]] + ":";
+    const m2 = t.match(/^(.*?)\s+$/);
+    if(m2 && I18N.S[m2[1]] !== undefined) return I18N.S[m2[1]] + t.slice(m2[1].length);
+    const m3 = t.match(/^\/\s*(.+)$/);
+    if(m3){ const inner = trText(m3[1]); if(inner !== m3[1]) return "/ " + inner; }
+    return t;
+  }
+  function trAttr(v){ return (LANG==="en" && I18N.A) ? (I18N.A.placeholder && I18N.A.placeholder[v]) ?? v : v; }
+  function applyTree(root){
+    if(!window.I18N) return;
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+      acceptNode(n){
+        const p = n.parentElement; if(!p) return NodeFilter.FILTER_REJECT;
+        if(p.closest("script,style")) return NodeFilter.FILTER_REJECT;
+        return n.nodeValue.trim() ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+      }});
+    const nodes=[]; let n;
+    while((n=walker.nextNode())) nodes.push(n);
+    for(const node of nodes){
+      const raw = node.nodeValue, t = raw.trim();
+      if(LANG==="en"){
+        if(node.__zh === undefined) node.__zh = raw;
+        const rep = trText(t);
+        if(rep !== t) node.nodeValue = raw.replace(t, rep);
+      } else if(node.__zh !== undefined){
+        node.nodeValue = node.__zh;
+      }
+    }
+    root.querySelectorAll("[placeholder],[title],[aria-label]").forEach(el=>{
+      for(const a of ["placeholder","title","aria-label"]){
+        const v = el.getAttribute && el.getAttribute(a);
+        if(!v || !v.trim()) continue;
+        if(LANG==="en"){
+          if(el.__zh_a === undefined) el.__zh_a = {};
+          if(el.__zh_a[a] === undefined) el.__zh_a[a] = v;
+          const rep = (I18N.A && I18N.A[a] && I18N.A[a][v.trim()]) || null;
+          if(rep) el.setAttribute(a, rep);
+        } else if(el.__zh_a && el.__zh_a[a] !== undefined){
+          el.setAttribute(a, el.__zh_a[a]);
+        }
+      }
+    });
+  }
+  function renderAll(){
+    try { renderStats(); } catch(e){}
+    try { render(); } catch(e){}
+    try { renderAbout(); } catch(e){}
+    try { renderCommunityStats(); } catch(e){}
+    try { renderCommunities(); } catch(e){}
+    try { renderMethodology(); } catch(e){}
+    try { renderCountryFilter(); } catch(e){}
+    try { populateCommSelect(); } catch(e){}
+    try { renderRateIndicator(); } catch(e){}
+    try { renderCurrency(); } catch(e){}
+  }
+  async function setLang(lang){
+    if(lang === LANG) return;
+    LANG = lang;
+    try { localStorage.setItem("gdna-lang", lang); } catch(e){}
+    document.documentElement.lang = lang === "en" ? "en" : "zh-CN";
+    document.title = lang === "en" ? EN_TITLE : ZH_TITLE;
+    if(btn) btn.textContent = lang === "en" ? "中文" : "EN";
+    try {
+      const u = new URL(location.href);
+      if(lang === "en") u.searchParams.set("lang","en"); else u.searchParams.delete("lang");
+      history.replaceState(null, "", u);
+    } catch(e){}
+    if(lang === "en" && !EN_CITIES){
+      EN_CITIES = await fetch("data/i18n-en.json").then(r=>r.json()).then(j=>j.cities).catch(()=>null);
+    }
+    renderAll();
+    applyTree(document.body);
+  }
+  if(btn) btn.addEventListener("click", () => setLang(LANG === "en" ? "zh" : "en"));
+  // 动态插入的节点（排序/筛选/展开详情/toast）自动翻译
+  let pending = null;
+  const mo = new MutationObserver(muts => {
+    if(LANG !== "en") return;
+    if(pending) clearTimeout(pending);
+    pending = setTimeout(() => applyTree(document.body), 10);
+  });
+  mo.observe(document.body, { childList: true, subtree: true });
+  // 初始化：URL ?lang=en > localStorage > 浏览器语言
+  const urlLang = new URLSearchParams(location.search).get("lang");
+  let stored = null; try { stored = localStorage.getItem("gdna-lang"); } catch(e){}
+  const initial = urlLang || stored || ((navigator.language||"").toLowerCase().startsWith("en") ? "en" : "zh");
+  if(initial === "en") setLang("en");
+  window.__setLang = setLang;
+  window.__i18nApply = () => applyTree(document.body);
+})();
 </script>
 </body>
 </html>

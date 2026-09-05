@@ -1,0 +1,586 @@
+{
+ "cities": {
+  "墨西哥城": {
+   "name": "Mexico City",
+   "country": "Mexico",
+   "region": "LatAm",
+   "season": "Mar–May, Oct–Nov",
+   "visa": "Temporary Residence 6-month"
+  },
+  "巴厘岛 (长谷)": {
+   "name": "Bali (Canggu)",
+   "country": "Indonesia",
+   "region": "Asia",
+   "season": "Apr–Oct",
+   "visa": "B211A 6-month/VOA"
+  },
+  "里斯本": {
+   "name": "Lisbon",
+   "country": "Portugal",
+   "region": "Europe",
+   "season": "Apr–Jun, Sep–Oct",
+   "visa": "D7/D8 Digital Nomad Visa"
+  },
+  "巴塞罗那": {
+   "name": "Barcelona",
+   "country": "Spain",
+   "region": "Europe",
+   "season": "May–Jun, Sep–Oct",
+   "visa": "西班牙 Digital Nomad Visa"
+  },
+  "上海": {
+   "name": "Shanghai",
+   "country": "China",
+   "region": "Asia",
+   "season": "Mar–May, Sep–Nov",
+   "visa": "No domestic visa needed/240hvisa-free transit"
+  },
+  "大理": {
+   "name": "Dali",
+   "country": "China",
+   "region": "Asia",
+   "season": "Mar–May, Sep–Nov",
+   "visa": "No domestic visa needed/240hvisa-free transit"
+  },
+  "清迈": {
+   "name": "Chiang Mai",
+   "country": "Thailand",
+   "region": "Asia",
+   "season": "Nov–Feb",
+   "visa": "DTV 5-year/Education Visa"
+  },
+  "北京": {
+   "name": "Beijing",
+   "country": "China",
+   "region": "Asia",
+   "season": "Apr–Jun, Sep–Oct",
+   "visa": "No domestic visa needed/240hvisa-free transit"
+  },
+  "麦德林": {
+   "name": "Medellín",
+   "country": "Colombia",
+   "region": "LatAm",
+   "season": "Dec–Mar, Jul–Aug",
+   "visa": "Nomad VisaM"
+  },
+  "杭州": {
+   "name": "Hangzhou",
+   "country": "China",
+   "region": "Asia",
+   "season": "Mar–May, Sep–Nov",
+   "visa": "No domestic visa needed/240hvisa-free transit"
+  },
+  "深圳": {
+   "name": "Shenzhen",
+   "country": "China",
+   "region": "Asia",
+   "season": "Oct–Apr",
+   "visa": "No domestic visa needed/240hvisa-free transit"
+  },
+  "胡志明市": {
+   "name": "Ho Chi Minh City",
+   "country": "Vietnam",
+   "region": "Asia",
+   "season": "Dec–Apr",
+   "visa": "eVisa/Visa-free 45-day"
+  },
+  "成都": {
+   "name": "Chengdu",
+   "country": "China",
+   "region": "Asia",
+   "season": "Mar–May, Sep–Nov",
+   "visa": "No domestic visa needed/240hvisa-free transit"
+  },
+  "曼谷": {
+   "name": "Bangkok",
+   "country": "Thailand",
+   "region": "Asia",
+   "season": "Nov–Feb",
+   "visa": "DTV/Education Visa"
+  },
+  "布宜诺斯艾利斯": {
+   "name": "Buenos Aires",
+   "country": "Argentina",
+   "region": "LatAm",
+   "season": "Sep–Dec, Mar–Apr",
+   "visa": "数字 Nomad Visa"
+  },
+  "河内": {
+   "name": "Hanoi",
+   "country": "Vietnam",
+   "region": "Asia",
+   "season": "Oct–Dec",
+   "visa": "eVisa"
+  },
+  "班加罗尔": {
+   "name": "Bangalore",
+   "country": "India",
+   "region": "Asia",
+   "season": "Oct–Feb",
+   "visa": "eVisa"
+  },
+  "第比利斯": {
+   "name": "Tbilisi",
+   "country": "Georgia",
+   "region": "Europe",
+   "season": "May–Oct",
+   "visa": "Visa-free 1-year"
+  },
+  "图卢姆": {
+   "name": "Tulum",
+   "country": "Mexico",
+   "region": "LatAm",
+   "season": "Nov–Apr",
+   "visa": "Temporary Residence"
+  },
+  "柏林": {
+   "name": "Berlin",
+   "country": "Germany",
+   "region": "Europe",
+   "season": "May–Sep",
+   "visa": "Freelancer Visa"
+  },
+  "拉斯帕尔马斯": {
+   "name": "Las Palmas",
+   "country": "Spain",
+   "region": "Europe",
+   "season": "Year-round",
+   "visa": "西班牙数字游民"
+  },
+  "吉隆坡": {
+   "name": "Kuala Lumpur",
+   "country": "Malaysia",
+   "region": "Asia",
+   "season": "May–Aug",
+   "visa": "DE R passes"
+  },
+  "伊斯坦布尔": {
+   "name": "Istanbul",
+   "country": "Türkiye",
+   "region": "Europe",
+   "season": "Apr–May, Sep–Oct",
+   "visa": "Visa-free/居留"
+  },
+  "普拉亚德尔卡曼": {
+   "name": "Playa del Carmen",
+   "country": "Mexico",
+   "region": "LatAm",
+   "season": "Nov–Apr",
+   "visa": "Temporary Residence"
+  },
+  "迪拜": {
+   "name": "Dubai",
+   "country": "UAE",
+   "region": "Middle East",
+   "season": "Nov–Mar",
+   "visa": "Tourist Visa/virtual office"
+  },
+  "普吉": {
+   "name": "Phuket",
+   "country": "Thailand",
+   "region": "Asia",
+   "season": "Nov–Apr",
+   "visa": "DTV 5-year"
+  },
+  "东京": {
+   "name": "Tokyo",
+   "country": "Japan",
+   "region": "Asia",
+   "season": "Mar–May, Oct–Nov",
+   "visa": "Visa-free 15-90-day(depending on nationality)/business mgmt."
+  },
+  "南京": {
+   "name": "Nanjing",
+   "country": "China",
+   "region": "Asia",
+   "season": "Mar–May, Sep–Nov",
+   "visa": "No domestic visa needed/240hvisa-free transit"
+  },
+  "西安": {
+   "name": "Xi'an",
+   "country": "China",
+   "region": "Asia",
+   "season": "Mar–May, Sep–Nov",
+   "visa": "No domestic visa needed/240hvisa-free transit"
+  },
+  "开普敦": {
+   "name": "Cape Town",
+   "country": "South Africa",
+   "region": "Africa",
+   "season": "Nov–Mar",
+   "visa": "Nomad Visa/Tourist"
+  },
+  "里约": {
+   "name": "Rio de Janeiro",
+   "country": "Brazil",
+   "region": "LatAm",
+   "season": "May–Aug",
+   "visa": "数字 Nomad Visa"
+  },
+  "果阿": {
+   "name": "Goa",
+   "country": "India",
+   "region": "Asia",
+   "season": "Nov–Feb",
+   "visa": "eVisa"
+  },
+  "卡塔赫纳": {
+   "name": "Cartagena",
+   "country": "Colombia",
+   "region": "LatAm",
+   "season": "Dec–Mar",
+   "visa": "Nomad VisaM"
+  },
+  "布达佩斯": {
+   "name": "Budapest",
+   "country": "Hungary",
+   "region": "Europe",
+   "season": "Apr–Jun, Sep–Oct",
+   "visa": "Temp card/Nomad Visa"
+  },
+  "新加坡": {
+   "name": "Singapore",
+   "country": "Singapore",
+   "region": "Asia",
+   "season": "Year-round",
+   "visa": "Tourist Visa/Entrepreneur Pass"
+  },
+  "布拉格": {
+   "name": "Prague",
+   "country": "Czechia",
+   "region": "Europe",
+   "season": "May–Sep",
+   "visa": "捷克 Nomad Visa"
+  },
+  "巴拿马城": {
+   "name": "Panama City",
+   "country": "Panama",
+   "region": "LatAm",
+   "season": "Dec–Mar",
+   "visa": "Nomad Visa/short-rental friendly"
+  },
+  "三亚": {
+   "name": "Sanya",
+   "country": "China",
+   "region": "Asia",
+   "season": "Oct–Apr",
+   "visa": "No domestic visa needed/海南 30-dayVisa-free(59 国)"
+  },
+  "昆明": {
+   "name": "Kunming",
+   "country": "China",
+   "region": "Asia",
+   "season": "Year-round",
+   "visa": "No domestic visa needed/240hvisa-free transit"
+  },
+  "苏州": {
+   "name": "Suzhou",
+   "country": "China",
+   "region": "Asia",
+   "season": "Mar–May, Sep–Nov",
+   "visa": "No domestic visa needed/240hvisa-free transit"
+  },
+  "班斯科": {
+   "name": "Bansko",
+   "country": "Bulgaria",
+   "region": "Europe",
+   "season": "Jun–Sep, Dec–Mar滑雪",
+   "visa": "保加利亚 Nomad Visa"
+  },
+  "岘港": {
+   "name": "Da Nang",
+   "country": "Vietnam",
+   "region": "Asia",
+   "season": "Feb–May",
+   "visa": "eVisa"
+  },
+  "雅加达": {
+   "name": "Jakarta",
+   "country": "Indonesia",
+   "region": "Asia",
+   "season": "Jun–Sep",
+   "visa": "B211A"
+  },
+  "台北": {
+   "name": "Taipei",
+   "country": "Taiwan",
+   "region": "Asia",
+   "season": "Oct–Dec",
+   "visa": "Visa-free 14-90-day(depending on nationality)"
+  },
+  "克拉科夫": {
+   "name": "Kraków",
+   "country": "Poland",
+   "region": "Europe",
+   "season": "May–Sep",
+   "visa": "波兰 Nomad Visa"
+  },
+  "利马": {
+   "name": "Lima",
+   "country": "Peru",
+   "region": "LatAm",
+   "season": "Dec–Apr",
+   "visa": "Tourist Visa 183-day"
+  },
+  "波尔图": {
+   "name": "Porto",
+   "country": "Portugal",
+   "region": "Europe",
+   "season": "May–Sep",
+   "visa": "D7/D8"
+  },
+  "首尔": {
+   "name": "Seoul",
+   "country": "South Korea",
+   "region": "Asia",
+   "season": "Apr–Jun, Sep–Oct",
+   "visa": "Visa-free/Startup Visa"
+  },
+  "特内里费": {
+   "name": "Tenerife",
+   "country": "Spain",
+   "region": "Europe",
+   "season": "Year-round",
+   "visa": "西班牙数字游民"
+  },
+  "雅典": {
+   "name": "Athens",
+   "country": "Greece",
+   "region": "Europe",
+   "season": "Apr–Jun, Sep–Oct",
+   "visa": "希腊 Nomad Visa"
+  },
+  "槟城": {
+   "name": "Penang",
+   "country": "Malaysia",
+   "region": "Asia",
+   "season": "Dec–Feb",
+   "visa": "DE R passes"
+  },
+  "金边": {
+   "name": "Phnom Penh",
+   "country": "Cambodia",
+   "region": "Asia",
+   "season": "Nov–Feb",
+   "visa": "E-visa/VOA"
+  },
+  "塔林": {
+   "name": "Tallinn",
+   "country": "Estonia",
+   "region": "Europe",
+   "season": "Jun–Aug",
+   "visa": "Digital Nomad Visa"
+  },
+  "厦门": {
+   "name": "Xiamen",
+   "country": "China",
+   "region": "Asia",
+   "season": "Oct–Apr",
+   "visa": "No domestic visa needed/240hvisa-free transit"
+  },
+  "青岛": {
+   "name": "Qingdao",
+   "country": "China",
+   "region": "Asia",
+   "season": "May–Sep",
+   "visa": "No domestic visa needed/240hvisa-free transit"
+  },
+  "丽江": {
+   "name": "Lijiang",
+   "country": "China",
+   "region": "Asia",
+   "season": "Mar–May, Sep–Nov",
+   "visa": "No domestic visa needed/240hvisa-free transit"
+  },
+  "圣米格尔": {
+   "name": "San Miguel de Allende",
+   "country": "Mexico",
+   "region": "LatAm",
+   "season": "Oct–May",
+   "visa": "Temporary Residence"
+  },
+  "内罗毕": {
+   "name": "Nairobi",
+   "country": "Kenya",
+   "region": "Africa",
+   "season": "Jul–Sep, Jan–Feb",
+   "visa": "Nomad Visa"
+  },
+  "马尼拉": {
+   "name": "Manila",
+   "country": "Philippines",
+   "region": "Asia",
+   "season": "Dec–Feb",
+   "visa": "Visa-free 30-day"
+  },
+  "马德拉": {
+   "name": "Madeira",
+   "country": "Portugal",
+   "region": "Europe",
+   "season": "Mar–Oct",
+   "visa": "D7/D8"
+  },
+  "斯普利特": {
+   "name": "Split",
+   "country": "Croatia",
+   "region": "Europe",
+   "season": "May–Sep",
+   "visa": "CroatiaNomad Visa/Schengen"
+  },
+  "弗洛里亚诺波利斯": {
+   "name": "Florianópolis",
+   "country": "Brazil",
+   "region": "LatAm",
+   "season": "Dec–Mar",
+   "visa": "数字 Nomad Visa"
+  },
+  "瓦哈卡": {
+   "name": "Oaxaca",
+   "country": "Mexico",
+   "region": "LatAm",
+   "season": "Oct–May",
+   "visa": "Temporary Residence"
+  },
+  "宿务": {
+   "name": "Cebu",
+   "country": "Philippines",
+   "region": "Asia",
+   "season": "Dec–May",
+   "visa": "Visa-free 30-day"
+  },
+  "约翰内斯堡": {
+   "name": "Johannesburg",
+   "country": "South Africa",
+   "region": "Africa",
+   "season": "Sep–Nov, Mar–May",
+   "visa": "Nomad Visa/Tourist"
+  },
+  "阳朔": {
+   "name": "Yangshuo",
+   "country": "China",
+   "region": "Asia",
+   "season": "Apr–Oct",
+   "visa": "No domestic visa needed/240hvisa-free transit"
+  },
+  "蒙得维的亚": {
+   "name": "Montevideo",
+   "country": "Uruguay",
+   "region": "LatAm",
+   "season": "Nov–Mar",
+   "visa": "Visa-free 90-day(most nationalities)"
+  },
+  "贝尔格莱德": {
+   "name": "Belgrade",
+   "country": "Serbia",
+   "region": "Europe",
+   "season": "May–Sep",
+   "visa": "Visa-free 30-day"
+  },
+  "卡波圣卢卡斯": {
+   "name": "Cabo San Lucas",
+   "country": "Mexico",
+   "region": "LatAm",
+   "season": "Nov–Apr",
+   "visa": "Temporary Residence"
+  },
+  "暹粒": {
+   "name": "Siem Reap",
+   "country": "Cambodia",
+   "region": "Asia",
+   "season": "Nov–Feb",
+   "visa": "Visa on Arrival"
+  },
+  "苏梅岛": {
+   "name": "Koh Samui",
+   "country": "Thailand",
+   "region": "Asia",
+   "season": "Dec–Apr",
+   "visa": "DTV 5-year"
+  },
+  "索菲亚": {
+   "name": "Sofia",
+   "country": "Bulgaria",
+   "region": "Europe",
+   "season": "May–Sep",
+   "visa": "保加利亚 Nomad Visa"
+  },
+  "安提瓜": {
+   "name": "Antigua Guatemala",
+   "country": "Guatemala",
+   "region": "LatAm",
+   "season": "Nov–Apr",
+   "visa": "Tourist Visa"
+  },
+  "马拉喀什": {
+   "name": "Marrakech",
+   "country": "Morocco",
+   "region": "Africa",
+   "season": "Mar–May, Sep–Nov",
+   "visa": "Tourist Visa 90-day"
+  },
+  "阿布扎比": {
+   "name": "Abu Dhabi",
+   "country": "UAE",
+   "region": "Middle East",
+   "season": "Nov–Mar",
+   "visa": "Tourist Visa"
+  },
+  "塔加祖特": {
+   "name": "Taghazout",
+   "country": "Morocco",
+   "region": "Africa",
+   "season": "Apr–Oct冲浪",
+   "visa": "Tourist Visa"
+  },
+  "开罗": {
+   "name": "Cairo",
+   "country": "Egypt",
+   "region": "Africa",
+   "season": "Oct–Apr",
+   "visa": "Tourist Visa"
+  },
+  "基加利": {
+   "name": "Kigali",
+   "country": "Rwanda",
+   "region": "Africa",
+   "season": "Jun–Sep",
+   "visa": "Nomad Visa/Tourist"
+  },
+  "安吉": {
+   "name": "Anji",
+   "country": "China",
+   "region": "Asia",
+   "season": "Apr–Jun, Sep–Nov",
+   "visa": "No domestic visa needed/240hvisa-free transit(杭州入境)"
+  },
+  "多哈": {
+   "name": "Doha",
+   "country": "Qatar",
+   "region": "Middle East",
+   "season": "Nov–Mar",
+   "visa": "Visa-free 30-day"
+  }
+ },
+ "regions": {
+  "亚洲": "Asia",
+  "欧洲": "Europe",
+  "拉美": "LatAm",
+  "非洲": "Africa",
+  "中东": "Middle East"
+ },
+ "dims": {
+  "网络": "Internet",
+  "社群": "Community",
+  "生活": "Cost of Living",
+  "安全": "Safety",
+  "英语": "English-friendly",
+  "步行": "Walkability",
+  "空气": "Air Quality",
+  "女性友好": "Female-friendly",
+  "LGBTQ+": "LGBTQ+",
+  "夜生活": "Nightlife",
+  "安静指数": "Quietness",
+  "种族包容": "Inclusivity",
+  "综合分": "Overall Score"
+ }
+}
