@@ -6,7 +6,7 @@
 window.I18N = {
   S: {
     /* —— 刊头 / 导航 —— */
-    "牛马迁移指南": "Nomad Atlas · Global Digital Nomad Cities",
+    "牛马迁移指南": "Global Nomad Atlas",
     "全球数字游民城市评分榜 · 开源社区维护 · 80 个城市 · 12 维度评分 · 欢迎匿名提交更新": "Open, community-maintained digital nomad city index · 80 cities · 12 dimensions · anonymous submissions welcome",
     "5 大区域 · 40 国 · 80 城 + 60 社区": "5 regions · 40 countries · 80 cities + 60 communities",
     "📤 提交城市评分(匿名)": "📤 Submit a score (anonymous)",
@@ -165,7 +165,7 @@ window.I18N = {
     "🔹 中期 (1-3 月)": "🔹 Mid-term (1–3 mo)", "🔹 短期 (1-4 周)": "🔹 Short-term (1–4 wk)", "🔹 长期 (3 月+)": "🔹 Long-term (3 mo+)",
     "· 评分口径详见": "· Scoring details in",
     "🌟 项目开源：": "🌟 Open source:",
-    "🐮 牛马迁移指南 · 全球数字游民城市评分榜 · 80 城 12 维评分 · 远程办公 & 游民签证指南": "🐮 Nomad Atlas · Global digital nomad city index · 80 cities · 12 dimensions · remote work & visa guide",
+    "🐮 牛马迁移指南 · 全球数字游民城市评分榜 · 80 城 12 维评分 · 远程办公 & 游民签证指南": "🐮 Global Nomad Atlas · digital nomad city index · 80 cities · 12 dimensions · remote work & visa guide",
     "💬 讨论": "💬 Discuss",
     "个社区 · 5 类": "communities · 5 types",
     " · 5 类": " · 5 types",

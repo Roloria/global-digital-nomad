@@ -27,7 +27,7 @@ CSV_PATH = os.environ.get("CSV_PATH", "data/digital-nomad-cities.csv")
 DOCS = Path(os.environ.get("DOCS_DIR", "docs"))
 
 BRAND_ZH = "牛马迁移指南"
-BRAND_EN = "Global Digital Nomad Cities"
+BRAND_EN = "Global Nomad Atlas"
 
 DIMENSIONS = ["网络", "社群", "生活", "安全", "英语", "步行", "空气", "女性友好", "LGBTQ+", "夜生活", "安静指数", "种族包容"]
 DIM_EN = {"网络": "Internet", "社群": "Community", "生活": "Cost of Living", "安全": "Safety", "英语": "English-friendly",
@@ -305,7 +305,7 @@ def city_page(row, prev_row, next_row, lang) -> str:
 
 def en_index(rows) -> str:
     now = max(r["最后更新"] for r in rows)
-    t = f"Global Digital Nomad Cities Index · 80 Cities × 12 Dimensions · Open Data | {BRAND_EN}"
+    t = f"Global Nomad Atlas · Digital Nomad City Index · 80 Cities × 12 Dimensions · Open Data"
     d = ("Open, community-maintained ranking of 80 digital-nomad cities across 40 countries: monthly cost, "
          "internet, safety, community and more, scored 0–10 with a public formula. English edition of 牛马迁移指南.")
     head = head_block("en", t, d, "/en/", now)
@@ -327,7 +327,7 @@ def en_index(rows) -> str:
 {head}
 <body><div class="wrap">
 <div class="crumbs"><a href="../">牛马迁移指南</a> / English</div>
-<h1>🌍 Global Digital Nomad Cities Index</h1>
+<h1>🌍 Global Nomad Atlas</h1>
 <div class="sub">{len(rows)} cities · 40 countries · 12 dimensions · community-maintained open data. <a href="../">中文交互版 →</a></div>
 <div class="stats">
   <div class="stat"><div class="l">Cities</div><div class="v big">{len(rows)}</div></div>

@@ -25,7 +25,7 @@
   "@context": "https://schema.org",
   "@type": "WebSite",
   "name": "牛马迁移指南",
-  "alternateName": "Global Digital Nomad Atlas",
+  "alternateName": "Global Nomad Atlas",
   "url": "https://roloria.github.io/global-digital-nomad/home/",
   "inLanguage": "zh-CN",
   "description": "由全球数字游民共同维护的开放城市数据库：80 座城市、40 个国家、12 个维度评分，评分公式公开，人人可编辑，开源可追溯。",
@@ -561,7 +561,7 @@
       <a href="#ledger">城市预览</a>
       <a href="#faq">FAQ</a>
     </div>
-    <button id="lang-toggle" type="button" title="切换中文 / English" style="font-size:13px;font-weight:600;color:var(--ink-soft);border:1px solid #e3ded2;border-radius:999px;padding:5px 14px;background:transparent;cursor:pointer;font-family:inherit;">EN</button>
+    <button id="lang-toggle" type="button" title="切换中文 / English" aria-label="切换中文 / English" style="font-size:12px;border:1px solid #e3ded2;border-radius:999px;padding:5px 14px;background:transparent;cursor:pointer;font-family:inherit;letter-spacing:.02em;"><span class="lang-opt" data-l="zh" style="color:#a89f8d;font-weight:600;">CN</span><span style="padding:0 4px;color:#a89f8d;opacity:.6;">/</span><span class="lang-opt" data-l="en" style="color:#a89f8d;font-weight:600;">EN</span></button>
     <a class="btn btn-dark" href="https://roloria.github.io/global-digital-nomad/" target="_blank" rel="noopener">
       打开城市榜单
       <svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right"/></svg>
@@ -574,7 +574,7 @@
   <div class="wrap">
     <div class="hero-grid">
       <div>
-        <p class="kicker a1">Global Digital Nomad Atlas · 全球数字游民城市评分榜</p>
+        <p class="kicker a1">Global Nomad Atlas · 全球数字游民城市评分榜</p>
         <h1 class="a2">你的下一座城，<br>不该靠<em>运气</em>选。</h1>
         <p class="hero-lede a3">
           一份由全球数字游民亲手维护的开放城市数据库。<strong>80 座城市、12 个维度</strong>，
@@ -838,7 +838,7 @@
             <img src="../assets/logo.png" alt="牛马迁移指南" style="width:24px;height:24px;border-radius:50%" aria-hidden="true">
             牛马迁移指南
           </a>
-          <p>牛马迁移指南——全球数字游民城市评分榜：由全球数字游民共同维护的开放城市数据库，社区共建、数据透明、开源可追溯。英文名 Global Digital Nomad Atlas。</p>
+          <p>牛马迁移指南——全球数字游民城市评分榜：由全球数字游民共同维护的开放城市数据库，社区共建、数据透明、开源可追溯。英文名 Global Nomad Atlas。</p>
         </div>
         <div class="foot-col">
           <h4>使用</h4>
@@ -913,8 +913,8 @@
     "查看完整 80 城榜单（含签证、气温与 12 维明细）":"Open the full 80-city index (visa, temperature & all 12 dimensions)",
     "如果你也在路上，或者正准备上路——选城这件事，不该是一个人拍脑袋。":"If you're already on the road — or about to be — choosing a city shouldn't be a solo gut call.",
     "牛马迁移指南 · 全球数字游民城市评分榜 · 你的下一座城，不该靠运气选":"Nomad Atlas · Global digital nomad city index · Your next city shouldn't be a gamble",
-    "牛马迁移指南——全球数字游民城市评分榜：由全球数字游民共同维护的开放城市数据库，社区共建、数据透明、开源可追溯。英文名 Global Digital Nomad Atlas。":"Nomad Atlas (Global Digital Nomad Cities) — an open city database co-maintained by digital nomads worldwide: community-built, transparent, open-source and fully traceable.",
-    "Global Digital Nomad Atlas · 全球数字游民城市评分榜":"Global Digital Nomad Atlas · Open digital nomad city index",
+    "牛马迁移指南——全球数字游民城市评分榜：由全球数字游民共同维护的开放城市数据库，社区共建、数据透明、开源可追溯。英文名 Global Nomad Atlas。":"Global Nomad Atlas — an open city database co-maintained by digital nomads worldwide: community-built, transparent, open-source and fully traceable.",
+    "Global Nomad Atlas · 全球数字游民城市评分榜":"Global Digital Nomad Atlas · Open digital nomad city index",
     "墨西哥城 50,000":"Mexico City 50,000","里斯本 7.9":"Lisbon 7.9","河内 $800":"Hanoi $800",
     "网络":"Internet","社群":"Community","生活":"Living","安全":"Safety","英语":"English","步行":"Walkability",
     "空气":"Air","女性友好":"Female-friendly","夜生活":"Nightlife","安静指数":"Quietness","种族包容":"Inclusivity",
@@ -924,8 +924,16 @@
     "台北":"Taipei","上海":"Shanghai","拉斯帕尔马斯":"Las Palmas","河内":"Hanoi",
   };
   const ZH_TITLE = document.title;
-  const EN_TITLE = "Nomad Atlas · Global Digital Nomad Cities — an open city database for remote workers";
+  const EN_TITLE = "Global Nomad Atlas — an open city database for remote workers";
   const btn = document.getElementById("lang-toggle");
+  function paintLangBtn(){
+    if(!btn) return;
+    btn.querySelectorAll(".lang-opt").forEach(s => {
+      const on = s.dataset.l === LANG;
+      s.style.color = on ? "#c96442" : "#a89f8d";
+      s.style.fontWeight = on ? "800" : "600";
+    });
+  }
   function trText(t){
     if(S[t] !== undefined) return S[t];
     return t;
@@ -955,7 +963,7 @@
     try{ localStorage.setItem("gdna-home-lang", lang); }catch(e){}
     document.documentElement.lang = lang==="en" ? "en" : "zh-CN";
     document.title = lang==="en" ? EN_TITLE : ZH_TITLE;
-    if(btn) btn.textContent = lang==="en" ? "中文" : "EN";
+    paintLangBtn();
     try{
       const u=new URL(location.href);
       if(lang==="en") u.searchParams.set("lang","en"); else u.searchParams.delete("lang");
@@ -964,6 +972,7 @@
     applyTree(document.body);
   }
   if(btn) btn.addEventListener("click", ()=>setLang(LANG==="en"?"zh":"en"));
+  paintLangBtn();
   const urlLang=new URLSearchParams(location.search).get("lang");
   let stored=null; try{ stored=localStorage.getItem("gdna-home-lang"); }catch(e){}
   const initial=urlLang||stored||"zh";

@@ -1,4 +1,4 @@
-# robots.txt · Global Digital Nomad Cities
+# robots.txt · Global Nomad Atlas
 User-agent: *
 Allow: /
 

@@ -66,7 +66,7 @@
       "@id": "https://roloria.github.io/global-digital-nomad/#website",
       "url": "https://roloria.github.io/global-digital-nomad/",
       "name": "牛马迁移指南",
-      "alternateName": "Global Digital Nomad Cities",
+      "alternateName": "Global Nomad Atlas",
       "slogan": "全球数字游民城市评分榜——你的下一座城，不该靠运气选",
       "inLanguage": "zh-CN",
       "description": "牛马迁移指南（全球数字游民城市评分榜）,5 大区域 40 国 80 城 12 维评分,开源社区维护每周更新。",
@@ -815,7 +815,7 @@ footer a:hover { text-decoration: underline; }
     <img class="logo-img" src="./assets/logo.png" alt="牛马迁移指南" width="34" height="34">
     <span class="eyebrow">Open Data · Global Nomad Index</span>
     <span class="masthead-meta">5 大区域 · 40 国 · 80 城 + 60 社区</span>
-    <button class="lang-toggle" id="lang-toggle" type="button" title="切换中文 / English" style="font-size:12px; font-weight:700; color:var(--text-2); border:1px solid var(--border); border-radius:999px; padding:4px 12px; background:transparent; cursor:pointer; font-family:inherit;">EN</button>
+    <button class="lang-toggle" id="lang-toggle" type="button" title="切换中文 / English" aria-label="切换中文 / English" style="font-size:12px; border:1px solid var(--border); border-radius:999px; padding:4px 12px; background:transparent; cursor:pointer; font-family:inherit; letter-spacing:.02em;"><span class="lang-opt" data-l="zh" style="color:var(--text-3); font-weight:600;">CN</span><span style="padding:0 4px; color:var(--text-3); opacity:.6;">/</span><span class="lang-opt" data-l="en" style="color:var(--text-3); font-weight:600;">EN</span></button>
     <button class="theme-toggle" id="theme-toggle" type="button" aria-label="切换浅色 / 深色主题" title="切换浅色 / 深色主题">
       <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
       <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
@@ -2273,8 +2273,16 @@ render();
 /* ==== 原地语言切换引擎（无跳转） ==== */
 (function(){
   const ZH_TITLE = document.title;
-  const EN_TITLE = "🌐 Nomad Atlas · Global Digital Nomad City Index · 80 Cities × 12 Dimensions";
+  const EN_TITLE = "🌐 Global Nomad Atlas · Digital Nomad City Index · 80 Cities × 12 Dimensions";
   const btn = document.getElementById("lang-toggle");
+  function paintLangBtn(){
+    if(!btn) return;
+    btn.querySelectorAll(".lang-opt").forEach(s => {
+      const on = s.dataset.l === LANG;
+      s.style.color = on ? "var(--accent)" : "var(--text-3)";
+      s.style.fontWeight = on ? "800" : "600";
+    });
+  }
   function trText(t){
     if(I18N.S[t] !== undefined) return I18N.S[t];
     for(const [re,rep] of (I18N.P||[])){ if(re.test(t)) return t.replace(re,rep); }
@@ -2340,7 +2348,7 @@ render();
     try { localStorage.setItem("gdna-lang", lang); } catch(e){}
     document.documentElement.lang = lang === "en" ? "en" : "zh-CN";
     document.title = lang === "en" ? EN_TITLE : ZH_TITLE;
-    if(btn) btn.textContent = lang === "en" ? "中文" : "EN";
+    paintLangBtn();
     try {
       const u = new URL(location.href);
       if(lang === "en") u.searchParams.set("lang","en"); else u.searchParams.delete("lang");
@@ -2368,6 +2376,7 @@ render();
   if(initial === "en") setLang("en");
   window.__setLang = setLang;
   window.__i18nApply = () => applyTree(document.body);
+  paintLangBtn();
 })();
 </script>
 </body>
