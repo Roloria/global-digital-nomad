@@ -6,7 +6,7 @@
 |---|---|
 | 主数据 CSV | [`data/digital-nomad-communities.csv`](../data/digital-nomad-communities.csv) |
 | Excel 多 sheet | [`data/digital-nomad-communities.xlsx`](../data/digital-nomad-communities.xlsx) |
-| 在线浏览 | [roloria.github.io/global-digital-nomad/#communities](https://roloria.github.io/global-digital-nomad/#communities) |
+| 在线浏览 | [roloria.github.io/global-nomad-atlas/#communities](https://roloria.github.io/global-nomad-atlas/#communities) |
 | 数据字典 | [`data/README.md`](../data/README.md) |
 | 匿名提交 | 站内「📤 分享社区体验」按钮 |
 
@@ -176,7 +176,7 @@ git push origin feat/add-medellin-community
 
 ### 7.3 匿名分享体验
 
-在网站 https://roloria.github.io/global-digital-nomad/#communities 顶部点击「📤 分享社区体验（匿名）」：
+在网站 https://roloria.github.io/global-nomad-atlas/#communities 顶部点击「📤 分享社区体验（匿名）」：
 
 1. 选择社区 + 居住时长 + 季节
 2. 描述你的真实体验（无需注册账号）

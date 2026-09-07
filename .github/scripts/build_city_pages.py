@@ -21,8 +21,8 @@ import unicodedata
 from datetime import date
 from pathlib import Path
 
-REPO = os.environ.get("REPO", "Roloria/global-digital-nomad")
-BASE = os.environ.get("SITE_BASE", "https://roloria.github.io/global-digital-nomad")
+REPO = os.environ.get("REPO", "Roloria/global-nomad-atlas")
+BASE = os.environ.get("SITE_BASE", "https://roloria.github.io/global-nomad-atlas")
 CSV_PATH = os.environ.get("CSV_PATH", "data/digital-nomad-cities.csv")
 DOCS = Path(os.environ.get("DOCS_DIR", "docs"))
 

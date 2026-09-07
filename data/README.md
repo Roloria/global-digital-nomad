@@ -194,7 +194,7 @@ df.to_excel("digital-nomad-cities.xlsx", index=False)
 - 至少 1 条政策亮点（如接受访客、24×7 开放等）
 - 简介 < 80 字
 
-可在 [`Issues`](https://github.com/Roloria/global-digital-nomad/issues) 中提议或在 PR 中直接编辑 CSV。
+可在 [`Issues`](https://github.com/Roloria/global-nomad-atlas/issues) 中提议或在 PR 中直接编辑 CSV。
 
 ---
 

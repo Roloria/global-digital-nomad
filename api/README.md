@@ -45,7 +45,7 @@ Content-Type: application/json
 {
   "ok": true,
   "issue_number": 142,
-  "issue_url": "https://github.com/Roloria/global-digital-nomad/issues/142"
+  "issue_url": "https://github.com/Roloria/global-nomad-atlas/issues/142"
 }
 ```
 
@@ -71,7 +71,7 @@ GET https://<your-worker>.workers.dev/health
 ### 1. 准备 GitHub PAT
 
 1. 访问 <https://github.com/settings/tokens?type=beta>
-2. 创建 **Fine-grained PAT**，Repository access 选 `Roloria/global-digital-nomad`，Permissions 选 `Issues: Read and Write`
+2. 创建 **Fine-grained PAT**，Repository access 选 `Roloria/global-nomad-atlas`，Permissions 选 `Issues: Read and Write`
 3. 复制 token（只显示一次）
 
 ### 2. 部署 Worker
@@ -88,8 +88,8 @@ npx wrangler deploy             # 部署到 *.workers.dev
 部署成功后会得到一个 URL，类似：
 
 ```
-Published global-digital-nomad-community-api (1.23 sec)
-  https://global-digital-nomad-community-api.<your-subdomain>.workers.dev
+Published global-nomad-atlas-community-api (1.23 sec)
+  https://global-nomad-atlas-community-api.<your-subdomain>.workers.dev
 ```
 
 ### 3. 测试
@@ -116,7 +116,7 @@ const COMMUNITY_API_URL = "";
 填入你的 Worker URL：
 
 ```html
-const COMMUNITY_API_URL = "https://global-digital-nomad-community-api.<your-subdomain>.workers.dev/";
+const COMMUNITY_API_URL = "https://global-nomad-atlas-community-api.<your-subdomain>.workers.dev/";
 ```
 
 提交一个 PR 即可。
@@ -126,7 +126,7 @@ const COMMUNITY_API_URL = "https://global-digital-nomad-community-api.<your-subd
 | 名称 | 类型 | 说明 |
 |---|---|---|
 | `GITHUB_TOKEN` | **Secret** | GitHub Fine-grained PAT，需 `Issues: Write` 到本仓库 |
-| `GITHUB_REPO` | Var | 默认 `Roloria/global-digital-nomad` |
+| `GITHUB_REPO` | Var | 默认 `Roloria/global-nomad-atlas` |
 | `GITHUB_LABELS` | Var | 默认 `community-experience,data,anonymous-submission` |
 | `ALLOWED_ORIGIN` | Var | CORS 白名单，逗号分隔；`*` 表示全部 |
 
@@ -152,7 +152,7 @@ npm run dev
 # → wrangler dev 会启动 http://localhost:8787
 # 模拟环境变量：在项目根新建 .dev.vars 文件：
 #   GITHUB_TOKEN=ghp_xxxxxxxx
-#   GITHUB_REPO=Roloria/global-digital-nomad
+#   GITHUB_REPO=Roloria/global-nomad-atlas
 # wrangler 会自动读取 .dev.vars
 ```
 

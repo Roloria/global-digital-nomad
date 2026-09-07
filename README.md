@@ -11,11 +11,11 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
-[![GitHub stars](https://img.shields.io/github/stars/Roloria/global-digital-nomad)](https://github.com/Roloria/global-digital-nomad/stargazers)
+[![GitHub stars](https://img.shields.io/github/stars/Roloria/global-nomad-atlas)](https://github.com/Roloria/global-nomad-atlas/stargazers)
 [![Data: 2026](https://img.shields.io/badge/Data-2026--08-blue)](data/)
-[![🌐 Website](https://img.shields.io/badge/🌐_Website-Live-success?style=flat-square)](https://roloria.github.io/global-digital-nomad/)
-[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Deployed-blueviolet?logo=github)](https://roloria.github.io/global-digital-nomad/)
-[![🏠 项目官网](https://img.shields.io/badge/🏠_项目官网-Nomadic_Cartography-C96442?style=flat-square)](https://roloria.github.io/global-digital-nomad/home/)
+[![🌐 Website](https://img.shields.io/badge/🌐_Website-Live-success?style=flat-square)](https://roloria.github.io/global-nomad-atlas/)
+[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Deployed-blueviolet?logo=github)](https://roloria.github.io/global-nomad-atlas/)
+[![🏠 项目官网](https://img.shields.io/badge/🏠_项目官网-Nomadic_Cartography-C96442?style=flat-square)](https://roloria.github.io/global-nomad-atlas/home/)
 
 ---
 
@@ -37,7 +37,7 @@
 
 <div align="center">
 
-### 👉 https://roloria.github.io/global-digital-nomad/
+### 👉 https://roloria.github.io/global-nomad-atlas/
 
 </div>
 
@@ -55,13 +55,13 @@
 | 🌛 **主题切换** | 深色 / 浅色一键切换——浅色为官网同源暖调设计（象牙白 + 赤陶橙），深色为原版；**默认浅色**，手动选择自动记忆 |
 | 🌐 **数字游民社区** | 60 个联合办公 / 联合生活 / 度假村 / 聚会 / 在线社群的结构化资料；可筛选；支持**匿名提交**社区体验 → Cloudflare Worker → GitHub Issue（无需登录） |
 
-**快速体验**：[打开网站](https://roloria.github.io/global-digital-nomad/) · [数据 CSV](data/digital-nomad-cities.csv) · [项目官网](https://roloria.github.io/global-digital-nomad/home/)
+**快速体验**：[打开网站](https://roloria.github.io/global-nomad-atlas/) · [数据 CSV](data/digital-nomad-cities.csv) · [项目官网](https://roloria.github.io/global-nomad-atlas/home/)
 
 ### 🏠 项目官网（Nomadic Cartography · 项目介绍页）
 
 <div align="center">
 
-### 👉 [roloria.github.io/global-digital-nomad/home](https://roloria.github.io/global-digital-nomad/home/)
+### 👉 [roloria.github.io/global-nomad-atlas/home](https://roloria.github.io/global-nomad-atlas/home/)
 
 </div>
 
@@ -80,7 +80,7 @@
 ## 📂 仓库结构
 
 ```
-global-digital-nomad/
+global-nomad-atlas/
 ├── README.md                        ← 本文件（项目说明）
 ├── CONTRIBUTING.md                  ← 如何贡献
 ├── CODE_OF_CONDUCT.md               ← 社区守则
@@ -159,25 +159,25 @@ global-digital-nomad/
 如果你通过搜索引擎来到这里,下面这些长尾关键词大概率也是你想问的,直接点进去看:
 
 **排名 / Ranking**
-- [数字游民城市排名 TOP 10 是哪些?](#-常见问题) · [哪些城市适合远程办公?](https://roloria.github.io/global-digital-nomad/#about) · [全球最适合数字游民居住的城市](https://roloria.github.io/global-digital-nomad/)
-- [2026 数字游民城市榜单](https://roloria.github.io/global-digital-nomad/) · [Nomad List 中文版](https://roloria.github.io/global-digital-nomad/)
+- [数字游民城市排名 TOP 10 是哪些?](#-常见问题) · [哪些城市适合远程办公?](https://roloria.github.io/global-nomad-atlas/#about) · [全球最适合数字游民居住的城市](https://roloria.github.io/global-nomad-atlas/)
+- [2026 数字游民城市榜单](https://roloria.github.io/global-nomad-atlas/) · [Nomad List 中文版](https://roloria.github.io/global-nomad-atlas/)
 
 **签证 / Visa**
-- [数字游民签证怎么申请?](#-常见问题) · [葡萄牙 D7 D8 签证要求](https://roloria.github.io/global-digital-nomad/) · [西班牙数字游民签证条件](https://roloria.github.io/global-digital-nomad/)
-- [爱沙尼亚数字游民签证](https://roloria.github.io/global-digital-nomad/) · [捷克游民签证](https://roloria.github.io/global-digital-nomad/) · [日本经营管理签证](https://roloria.github.io/global-digital-nomad/)
-- [哪些国家有数字游民签证?](https://roloria.github.io/global-digital-nomad/) · [游民签证收入门槛](https://roloria.github.io/global-digital-nomad/)
+- [数字游民签证怎么申请?](#-常见问题) · [葡萄牙 D7 D8 签证要求](https://roloria.github.io/global-nomad-atlas/) · [西班牙数字游民签证条件](https://roloria.github.io/global-nomad-atlas/)
+- [爱沙尼亚数字游民签证](https://roloria.github.io/global-nomad-atlas/) · [捷克游民签证](https://roloria.github.io/global-nomad-atlas/) · [日本经营管理签证](https://roloria.github.io/global-nomad-atlas/)
+- [哪些国家有数字游民签证?](https://roloria.github.io/global-nomad-atlas/) · [游民签证收入门槛](https://roloria.github.io/global-nomad-atlas/)
 
 **预算 / Budget**
-- [月成本最低的数字游民城市](#-常见问题) · [性价比最高的远程工作城市](https://roloria.github.io/global-digital-nomad/) · [1000 美元以内月生活的城市](https://roloria.github.io/global-digital-nomad/)
-- [东南亚数字游民城市](https://roloria.github.io/global-digital-nomad/) · [拉丁美洲数字游民城市](https://roloria.github.io/global-digital-nomad/)
+- [月成本最低的数字游民城市](#-常见问题) · [性价比最高的远程工作城市](https://roloria.github.io/global-nomad-atlas/) · [1000 美元以内月生活的城市](https://roloria.github.io/global-nomad-atlas/)
+- [东南亚数字游民城市](https://roloria.github.io/global-nomad-atlas/) · [拉丁美洲数字游民城市](https://roloria.github.io/global-nomad-atlas/)
 
 **安全 / 生活质量**
-- [最安全的数字游民城市](https://roloria.github.io/global-digital-nomad/) · [女性友好城市排名](https://roloria.github.io/global-digital-nomad/) · [LGBTQ+ 友好城市](https://roloria.github.io/global-digital-nomad/)
-- [英语友好的非英语国家](https://roloria.github.io/global-digital-nomad/) · [适合长期定居的数字游民城市](https://roloria.github.io/global-digital-nomad/)
+- [最安全的数字游民城市](https://roloria.github.io/global-nomad-atlas/) · [女性友好城市排名](https://roloria.github.io/global-nomad-atlas/) · [LGBTQ+ 友好城市](https://roloria.github.io/global-nomad-atlas/)
+- [英语友好的非英语国家](https://roloria.github.io/global-nomad-atlas/) · [适合长期定居的数字游民城市](https://roloria.github.io/global-nomad-atlas/)
 
 **工具 / Tools**
-- [城市评分标准说明](https://roloria.github.io/global-digital-nomad/#methodology) · [数据来源与采集方法](https://github.com/Roloria/global-digital-nomad/blob/main/docs/data-sources.md) · [数据更新频率](https://roloria.github.io/global-digital-nomad/#about)
-- [下载完整 CSV 数据集](https://github.com/Roloria/global-digital-nomad/blob/main/data/digital-nomad-cities.csv) · [可视化报告](https://github.com/Roloria/global-digital-nomad/blob/main/reports/digital-nomad-cities-report.md)
+- [城市评分标准说明](https://roloria.github.io/global-nomad-atlas/#methodology) · [数据来源与采集方法](https://github.com/Roloria/global-nomad-atlas/blob/main/docs/data-sources.md) · [数据更新频率](https://roloria.github.io/global-nomad-atlas/#about)
+- [下载完整 CSV 数据集](https://github.com/Roloria/global-nomad-atlas/blob/main/data/digital-nomad-cities.csv) · [可视化报告](https://github.com/Roloria/global-nomad-atlas/blob/main/reports/digital-nomad-cities-report.md)
 
 ---
 
@@ -187,7 +187,7 @@ global-digital-nomad/
 A: 本榜单从月成本、网络、社群、生活、安全、英语、步行、空气、女性友好、LGBTQ+、夜生活、安静指数、种族包容共 12 个维度,对全球 80 个城市加权评分,综合分越高越适合长期数字游民生活。
 
 **Q: 排名前十的数字游民城市有哪些?**
-A: 里斯本、柏林、台北、东京、新加坡、拉斯帕尔马斯、塔林、布拉格、波尔图、巴塞罗那。完整榜单见[在线网站](https://roloria.github.io/global-digital-nomad/)。
+A: 里斯本、柏林、台北、东京、新加坡、拉斯帕尔马斯、塔林、布拉格、波尔图、巴塞罗那。完整榜单见[在线网站](https://roloria.github.io/global-nomad-atlas/)。
 
 **Q: 数字游民最便宜的城市是哪个?**
 A: 清迈(泰国)、胡志明(越南)、金边(柬埔寨)、暹粒(柬埔寨)等东南亚城市月生活成本约 800-1100 美元,性价比较高。
@@ -238,14 +238,14 @@ A: 开源社区维护,无强制更新周期。任何人都可以匿名提交更�
 
 - [Nomad List](https://nomadlist.com) — Pieter Levels 的开源数字游民数据
 - [Flatio](https://flatio.com) — 数字游民住宿数据
-- 所有参与贡献的 [贡献者们](https://github.com/Roloria/global-digital-nomad/graphs/contributors) ❤️
+- 所有参与贡献的 [贡献者们](https://github.com/Roloria/global-nomad-atlas/graphs/contributors) ❤️
 
 ---
 
 ## 📬 联系方式
 
-- 提交 Issue：[Issues](https://github.com/Roloria/global-digital-nomad/issues)
-- 发起讨论：[Discussions](https://github.com/Roloria/global-digital-nomad/discussions)
+- 提交 Issue：[Issues](https://github.com/Roloria/global-nomad-atlas/issues)
+- 发起讨论：[Discussions](https://github.com/Roloria/global-nomad-atlas/discussions)
 - 维护者：[@Roloria](https://github.com/Roloria)
 
 > 🌟 **如果这个项目对你有帮助，欢迎 Star、Fork、Watch，也欢迎推荐给身边正在考虑数字游民生活方式的朋友！**

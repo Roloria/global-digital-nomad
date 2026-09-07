@@ -23,4 +23,4 @@ Allow: /
 User-agent: 360Spider
 Allow: /
 
-Sitemap: https://roloria.github.io/global-digital-nomad/sitemap.xml
+Sitemap: https://roloria.github.io/global-nomad-atlas/sitemap.xml

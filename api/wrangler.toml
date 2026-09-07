@@ -1,11 +1,11 @@
-name = "global-digital-nomad-community-api"
+name = "global-nomad-atlas-community-api"
 main = "src/index.js"
 compatibility_date = "2026-08-08"
 
 # 默认配置 - 可在 Cloudflare Dashboard 覆盖
 [vars]
 ALLOWED_ORIGIN = "https://roloria.github.io,http://localhost:8765"
-GITHUB_REPO = "Roloria/global-digital-nomad"
+GITHUB_REPO = "Roloria/global-nomad-atlas"
 GITHUB_LABELS = "community-experience,data,anonymous-submission"
 
 # 密钥 - 通过以下命令设置:
@@ -18,5 +18,5 @@ enabled = true
 
 # 可选：自定义域名 / 路由
 # routes = [
-#   { pattern = "community-api.global-digital-nomad.workers.dev/*", custom_domain = true }
+#   { pattern = "community-api.global-nomad-atlas.workers.dev/*", custom_domain = true }
 # ]

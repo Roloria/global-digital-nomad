@@ -39,7 +39,7 @@ jobs:
           BODY=$(cat <<MD
           ## 🧹 本周待处理（共 ${COUNT} 条）
 
-          处理流程见 [TRIAGE.md](/Roloria/global-digital-nomad/blob/main/TRIAGE.md)：定标签 → 定去向（PR / Discussions / 补问）→ 致谢。**每周一 09:00 本清单自动刷新。**
+          处理流程见 [TRIAGE.md](/Roloria/global-nomad-atlas/blob/main/TRIAGE.md)：定标签 → 定去向（PR / Discussions / 补问）→ 致谢。**每周一 09:00 本清单自动刷新。**
 
           ${ITEMS}
 

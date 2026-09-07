@@ -1,5 +1,5 @@
 {
-  "name": "global-digital-nomad-community-api",
+  "name": "global-nomad-atlas-community-api",
   "version": "1.0.0",
   "private": true,
   "description": "Anonymous community experience submission API — POST endpoint that proxies to GitHub Issues API. Users never need to log in.",

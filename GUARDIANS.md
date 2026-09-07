@@ -14,7 +14,7 @@
 
 ## 怎么认领
 
-在 [🏅 数据守护者认领帖](https://github.com/Roloria/global-digital-nomad/discussions/10) 回帖：
+在 [🏅 数据守护者认领帖](https://github.com/Roloria/global-nomad-atlas/discussions/10) 回帖：
 
 ```
 认领：清迈（泰国）、里斯本（葡萄牙）

@@ -8,7 +8,7 @@
  * 部署说明见 ../README.md 与本目录下 wrangler.toml。
  */
 
-const DEFAULT_REPO = "Roloria/global-digital-nomad";
+const DEFAULT_REPO = "Roloria/global-nomad-atlas";
 const DEFAULT_LABELS = ["community-experience", "data", "anonymous-submission"];
 
 // 简易内存限流（per worker instance），生产可换 KV / Durable Objects
@@ -137,7 +137,7 @@ async function createGitHubIssue(data, env) {
     headers: {
       Authorization: `Bearer ${token}`,
       Accept: "application/vnd.github+json",
-      "User-Agent": "global-digital-nomad-api",
+      "User-Agent": "global-nomad-atlas-api",
       "X-GitHub-Api-Version": "2022-11-28",
     },
     body: JSON.stringify({ title, body, labels }),

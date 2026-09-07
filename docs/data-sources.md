@@ -57,7 +57,7 @@
 在使用本项目数据时，建议：
 
 ```
-数据来源：全球数字游民计划 (github.com/Roloria/global-digital-nomad)
+数据来源：全球数字游民计划 (github.com/Roloria/global-nomad-atlas)
 原始数据：Nomad List 等公开来源
 ```
 

@@ -10,8 +10,8 @@
 1. **Fork 本仓库**到你的 GitHub 账号
 2. **Clone** 你 fork 的仓库到本地：
    ```bash
-   git clone https://github.com/<your-username>/global-digital-nomad.git
-   cd global-digital-nomad
+   git clone https://github.com/<your-username>/global-nomad-atlas.git
+   cd global-nomad-atlas
    ```
 3. **创建分支**（不要直接改 main）：
    ```bash
@@ -44,7 +44,7 @@
 
 ### 📊 增加新维度
 想加上"税收"或"CoWorking 价格"？  
-→ 在 [Issues](https://github.com/Roloria/global-digital-nomad/issues) 中先讨论，达成共识后再改。
+→ 在 [Issues](https://github.com/Roloria/global-nomad-atlas/issues) 中先讨论，达成共识后再改。
 
 ### 🌐 翻译
 想做英文版报告？  
@@ -137,7 +137,7 @@ CSV 文件是首要数据源，推荐用文本编辑器或 LibreOffice/Numbers �
 ## ❓ 有问题？
 
 - 📖 先看 [README.md](README.md)
-- 💬 在 [Discussions](https://github.com/Roloria/global-digital-nomad/discussions) 提问
-- 🐛 Bug 或数据错误请提 [Issues](https://github.com/Roloria/global-digital-nomad/issues)
+- 💬 在 [Discussions](https://github.com/Roloria/global-nomad-atlas/discussions) 提问
+- 🐛 Bug 或数据错误请提 [Issues](https://github.com/Roloria/global-nomad-atlas/issues)
 
 > 🌟 任何贡献都很珍贵——哪怕是修正一个错别字！

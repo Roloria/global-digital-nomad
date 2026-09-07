@@ -5,7 +5,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        也可以去 Discussions「[🗳️ 求新城](https://github.com/Roloria/global-digital-nomad/discussions/11)」用 👍 投票——票数高的城市优先入库。
+        也可以去 Discussions「[🗳️ 求新城](https://github.com/Roloria/global-nomad-atlas/discussions/11)」用 👍 投票——票数高的城市优先入库。
   - type: input
     id: city
     attributes:
